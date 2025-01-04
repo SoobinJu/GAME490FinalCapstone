@@ -6,6 +6,36 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/232/Scenes/Start.unity
+    guid: 40057d05bcdf7b747a385dfe977baf7c
+  - enabled: 1
+    path: Assets/232/Scenes/WinScene.unity
+    guid: dffc34c7992948c4f98faecd7b9105c6
+  - enabled: 1
+    path: Assets/232/Scenes/StartNarration.unity
+    guid: 571bce3c482b4b64296336c830f996b3
+  - enabled: 1
+    path: Assets/232/Scenes/SampleScene.unity
+    guid: fe90154b0a8c7c14dbc32031efed8646
+  - enabled: 1
     path: Assets/Scenes/SampleScene.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
+  - enabled: 1
+    path: Assets/232/Scenes/Options.unity
+    guid: cbcdf79d57dfbc145853bb26d67f1bbd
+  - enabled: 1
+    path: Assets/232/Scenes/LoseScene.unity
+    guid: 4f5a752aed6c79648a8fc63e0513976e
+  - enabled: 1
+    path: Assets/232/Scenes/HowToPlay.unity
+    guid: 8093123a24874c34b8b8b99eebb8f232
+  - enabled: 1
+    path: Assets/232/Scenes/Game3.unity
+    guid: 963a0762d31a05149b6cfe335d3912e1
+  - enabled: 1
+    path: Assets/232/Scenes/Game2.unity
+    guid: 2be145c38e9feb248b911206f9acb3a9
+  - enabled: 1
+    path: Assets/232/Scenes/Game1.unity
+    guid: cca1d4517cc26ab46b998773c454b27e
   m_configObjects: {}
