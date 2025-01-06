@@ -58,7 +58,7 @@ public class Player : MonoBehaviour
             SceneManager.LoadScene("Game2");
             gameObject.transform.position = new Vector3(8, 12, 0);
         }
-        if (collision.gameObject.CompareTag("Door2") == true && keycount == 2)
+        if (collision.gameObject.CompareTag("Door2") == true)//&& 용의자선택)
         {
             SceneManager.LoadScene("Game3");
             gameObject.transform.position = new Vector3(8, 12, 0);
@@ -77,16 +77,16 @@ public class Player : MonoBehaviour
         }
     }
 
-    void OnCollisionEnter2D(Collision2D other)
-    {
-        if (other.gameObject.CompareTag("Enemy") == true)
-        {
-            audiosource.PlayOneShot(zombieSound,0.5f);
-            Vector2 direction = other.transform.position - transform.position;
-            LoseHealth(1,direction);
+    //void OnCollisionEnter2D(Collision2D other)
+    //{
+    //    if (other.gameObject.CompareTag("Enemy") == true)
+     //   {
+     //       audiosource.PlayOneShot(zombieSound,0.5f);
+     //       Vector2 direction = other.transform.position - transform.position;
+     //       LoseHealth(1,direction);
             //myRb.position = Vector2.MoveTowards(myRb.position, ((Vector2)other.transform.position - myRb.position), Time.deltaTime * knockback);
-        }
-    }
+     //   }
+    //}
 
 
 
