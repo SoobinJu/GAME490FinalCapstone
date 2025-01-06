@@ -13,11 +13,13 @@ public class Player : MonoBehaviour
     private bool isInvincible = false;
     int keycount;
     int score = 0;
+    private Rigidbody2D rb;
 
     public AudioClip Lootsound;
     public AudioClip zombieSound;
     AudioSource audiosource;
 
+    public GameObject gameObject;
 
 
     public float invincibilityDurationSeconds;
@@ -61,8 +63,10 @@ public class Player : MonoBehaviour
         if (collision.gameObject.CompareTag("Door2") == true)//&& 용의자선택)
         {
             SceneManager.LoadScene("Game3");
-            gameObject.transform.position = new Vector3(8, 12, 0);
+            GameManager.Instance.SpawnPlayer(new Vector3(8, 12, 0), 2);
+            Destroy(gameObject);
         }
+
         if (collision.gameObject.CompareTag("Door3") == true)
         {
             SceneManager.LoadScene("WinScene");
@@ -80,21 +84,13 @@ public class Player : MonoBehaviour
     //void OnCollisionEnter2D(Collision2D other)
     //{
     //    if (other.gameObject.CompareTag("Enemy") == true)
-     //   {
-     //       audiosource.PlayOneShot(zombieSound,0.5f);
-     //       Vector2 direction = other.transform.position - transform.position;
-     //       LoseHealth(1,direction);
-            //myRb.position = Vector2.MoveTowards(myRb.position, ((Vector2)other.transform.position - myRb.position), Time.deltaTime * knockback);
-     //   }
+    //   {
+    //       audiosource.PlayOneShot(zombieSound,0.5f);
+    //       Vector2 direction = other.transform.position - transform.position;
+    //       LoseHealth(1,direction);
+    //myRb.position = Vector2.MoveTowards(myRb.position, ((Vector2)other.transform.position - myRb.position), Time.deltaTime * knockback);
+    //   }
     //}
-
-
-
-
-
-
-
-
 
     private void ChangeColorTo(Color color)
     {

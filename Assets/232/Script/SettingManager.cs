@@ -37,3 +37,5 @@ public class SettingManager : MonoBehaviour
         isGamePaused = false;  // 게임 재개 상태로 변경
     }
 }
+
+
