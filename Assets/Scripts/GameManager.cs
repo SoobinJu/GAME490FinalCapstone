@@ -35,6 +35,9 @@ public class GameManager : MonoBehaviour
         }
     }
 
+
+
+
     //----------
     public float currentScore = 0f;
     public bool isPlaying = false;

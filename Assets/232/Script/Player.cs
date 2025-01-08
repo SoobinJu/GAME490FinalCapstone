@@ -62,8 +62,8 @@ public class Player : MonoBehaviour
         }
         if (collision.gameObject.CompareTag("Door2") == true)//&& 용의자선택)
         {
-            SceneManager.LoadScene("Game3");
-            GameManager.Instance.SpawnPlayer(new Vector3(8, 12, 0), 2);
+            SceneManager.LoadScene("Narration2");
+            //GameManager.Instance.SpawnPlayer(new Vector3(8, 12, 0), 2);
             Destroy(gameObject);
         }
 

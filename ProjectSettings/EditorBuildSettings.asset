@@ -27,6 +27,9 @@ EditorBuildSettings:
     path: Assets/232/Scenes/LoseScene.unity
     guid: 4f5a752aed6c79648a8fc63e0513976e
   - enabled: 1
+    path: Assets/232/Scenes/Narration2.unity
+    guid: 885b7078d06d44e47a23c8be60b2673f
+  - enabled: 1
     path: Assets/232/Scenes/HowToPlay.unity
     guid: 8093123a24874c34b8b8b99eebb8f232
   - enabled: 1
