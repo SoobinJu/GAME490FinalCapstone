@@ -12,6 +12,7 @@ TagManager:
   - Enemy
   - Treasure
   - Level2Player
+  - Collectible
   layers:
   - Default
   - TransparentFX
