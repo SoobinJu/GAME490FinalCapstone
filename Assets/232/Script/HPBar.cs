@@ -1,49 +1,88 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class HPBar : MonoBehaviour
+public class PlayerHealth : MonoBehaviour
 {
+    private static float health = 100;   // 현재 체력 (static으로 설정)
+    public float maxHealth = 100;       // 최대 체력
     [SerializeField]
-    private Slider hpbar;
+    private Slider healthBarSlider;     // HealthBar UI (Slider)
 
-    private float maxHp = 100;
-    private float curHp = 100;
+    public AudioSource audioSource;     // 충돌 시 재생될 오디오
 
     void Start()
     {
-        hpbar.value = curHp / maxHp;
+        if (audioSource == null)
+            audioSource = GetComponent<AudioSource>();
+
+        // 체력이 최대값보다 크면 최대값으로 제한
+        health = Mathf.Clamp(health, 0, maxHealth);
+
+        UpdateHealthbar();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void UpdateHealthbar()
     {
-        // Update UI based on current HP
-        hpbar.value = curHp / maxHp;
+        // Slider의 값 업데이트
+        healthBarSlider.value = health / maxHealth;
+    }
+
+    public void TakeDamage(float damageAmount)
+    {
+        // 체력 감소
+        health -= damageAmount;
+        health = Mathf.Clamp(health, 0, maxHealth); // 체력 범위 제한
+        UpdateHealthbar();
+
+        // 체력 0이 되면 처리
+        if (health <= 0)
+        {
+            OnHealthDepleted();
+        }
+
+        // 오디오 재생
+        if (audioSource != null)
+        {
+            audioSource.Play();
+        }
+    }
+
+    public void SetHealth(float healthAmount)
+    {
+        // 체력 설정
+        health = Mathf.Clamp(healthAmount, 0, maxHealth);
+        UpdateHealthbar();
+    }
+
+    public float GetHealth()
+    {
+        return health;
+    }
+
+    private void OnHealthDepleted()
+    {
+        // 체력이 0이 되었을 때 LoseScene으로 이동
+        ResetHealth(); // 게임 오버 시 체력을 초기화
+        SceneManager.LoadScene("LoseScene");
+    }
+
+    private void ResetHealth()
+    {
+        // 체력 초기화 (새 게임을 시작할 때만)
+        health = maxHealth;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log($"Collided with: {collision.gameObject.name}");
-
+        // 적과 충돌 시 체력 감소
         if (collision.CompareTag("Enemy"))
         {
-            Debug.Log("Collided with Enemy!");
-            TakeDamage(10); // Reduce HP by 10
+            TakeDamage(10); // Enemy는 10씩 데미지
         }
-    }
-
-    private void TakeDamage(float damage)
-    {
-        curHp -= damage;
-        curHp = Mathf.Clamp(curHp, 0, maxHp); // Prevent HP from going below 0 or above maxHp
-
-        // Optionally, check if the player is dead
-        if (curHp <= 0)
+        else if (collision.CompareTag("Obstacle"))
         {
-            Debug.Log("Player is dead!");
-            // Add death logic here
+            TakeDamage(5); // Obstacle은 5씩 데미지
         }
     }
 }

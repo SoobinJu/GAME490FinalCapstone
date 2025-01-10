@@ -13,6 +13,7 @@ TagManager:
   - Treasure
   - Level2Player
   - Collectible
+  - Obstacle
   layers:
   - Default
   - TransparentFX
