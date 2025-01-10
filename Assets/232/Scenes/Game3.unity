@@ -863,6 +863,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SwordCounter: {fileID: 1369924030}
   AmuletCounter: {fileID: 1398853104}
+--- !u!4 &598794195 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6473367963549219126, guid: d9dbf1b90778ecb4e8238926a0d50e82, type: 3}
+  m_PrefabInstance: {fileID: 756677899}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &617297311
 GameObject:
   m_ObjectHideFlags: 0
@@ -1240,7 +1245,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1081257670401967262, guid: d9dbf1b90778ecb4e8238926a0d50e82, type: 3}
       propertyPath: m_TagString
-      value: Player
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 5758124966941463834, guid: d9dbf1b90778ecb4e8238926a0d50e82, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3243,6 +3248,18 @@ PrefabInstance:
       propertyPath: orthographic size
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: baec086904791744185aaa07a6cf55c2, type: 3}
+      propertyPath: m_Target
+      value: 
+      objectReference: {fileID: 598794195}
+    - target: {fileID: 11400000, guid: baec086904791744185aaa07a6cf55c2, type: 3}
+      propertyPath: m_MoveSpeed
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: baec086904791744185aaa07a6cf55c2, type: 3}
+      propertyPath: m_AutoTargetPlayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 11400002, guid: baec086904791744185aaa07a6cf55c2, type: 3}
       propertyPath: closestDistance
       value: 0.6
@@ -4199,11 +4216,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3754598206554737652, guid: ff9b5deb121c2b7419316c1023d98796, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 1280
+      value: 960
       objectReference: {fileID: 0}
     - target: {fileID: 3754598206554737652, guid: ff9b5deb121c2b7419316c1023d98796, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -283.3333
+      value: -223.33333
       objectReference: {fileID: 0}
     - target: {fileID: 3754598206554737653, guid: ff9b5deb121c2b7419316c1023d98796, type: 3}
       propertyPath: m_fontSize
@@ -4231,11 +4248,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3754598207302482168, guid: ff9b5deb121c2b7419316c1023d98796, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 1280
+      value: 960
       objectReference: {fileID: 0}
     - target: {fileID: 3754598207302482168, guid: ff9b5deb121c2b7419316c1023d98796, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -734.99994
+      value: -555
       objectReference: {fileID: 0}
     - target: {fileID: 3754598207468420584, guid: ff9b5deb121c2b7419316c1023d98796, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -4295,11 +4312,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6042304989474477186, guid: ff9b5deb121c2b7419316c1023d98796, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 1280
+      value: 960
       objectReference: {fileID: 0}
     - target: {fileID: 6042304989474477186, guid: ff9b5deb121c2b7419316c1023d98796, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -1171.6666
+      value: -871.6666
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3754598207468420587, guid: ff9b5deb121c2b7419316c1023d98796, type: 3}
