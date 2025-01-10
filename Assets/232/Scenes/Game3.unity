@@ -970,6 +970,7 @@ Transform:
   - {fileID: 1940339146}
   - {fileID: 1350445201}
   - {fileID: 1516562088}
+  - {fileID: 1892696209}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &689464642
@@ -4572,6 +4573,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: HealthBarCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 7838186684191709148, guid: 9e2ab563bebb28944b0fe53311780957, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7838186684191709148, guid: 9e2ab563bebb28944b0fe53311780957, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7838186684191709148, guid: 9e2ab563bebb28944b0fe53311780957, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8324819641645608786, guid: 9e2ab563bebb28944b0fe53311780957, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -4610,8 +4623,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1892696208}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.41, y: -12.34, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4619,7 +4632,7 @@ Transform:
   - {fileID: 1686781831}
   - {fileID: 1622768024}
   - {fileID: 1101049270}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 678694301}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1899345719
 GameObject:
@@ -5018,7 +5031,6 @@ SceneRoots:
   - {fileID: 756677899}
   - {fileID: 712985449}
   - {fileID: 72484421}
-  - {fileID: 1892696209}
   - {fileID: 678694301}
   - {fileID: 1583370364}
   - {fileID: 1309365450}
