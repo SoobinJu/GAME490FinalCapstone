@@ -4024,7 +4024,7 @@ GameObject:
   - component: {fileID: 930720191}
   - component: {fileID: 930720190}
   m_Layer: 5
-  m_Name: "\uB2E8\uC11C(\uAE30\uC640\uC9D1) \uADF8\uB9BC \uD30C\uB12C"
+  m_Name: "Canvas \uB2E8\uC11C(\uAE30\uC640\uC9D1) "
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8541,6 +8541,6 @@ SceneRoots:
   - {fileID: 1798792942}
   - {fileID: 968111243}
   - {fileID: 900959937}
+  - {fileID: 930720193}
   - {fileID: 848184966}
   - {fileID: 1670662721}
-  - {fileID: 930720193}
