@@ -5,10 +5,10 @@ using UnityEngine.EventSystems;
 
 public class SuspectHandler : MonoBehaviour
 {
-    public TextMeshProUGUI chancesText; //  ?? ??? ?? UI ???
-    public string correctSuspect = "A"; // ??? ???
+    public TextMeshProUGUI chancesText; //  ?? ??? ?? UI ???  / UI text for chances
+    public string correctSuspect = "A"; // ??? ??? / The correct suspect
 
-    private int chances = 3; // ?? ? 
+    private int chances = 3; // ?? ? / total chances
 
     private void Start()
     {
@@ -18,7 +18,7 @@ public class SuspectHandler : MonoBehaviour
 
     private void Update()
     {
-        // ??? ??
+        // ??? ?? / detect mouse click
         if (Input.GetMouseButtonDown(0)) // ?? ??? ??? 
         {
             DetectSuspectClick();
@@ -34,15 +34,15 @@ public class SuspectHandler : MonoBehaviour
             return; // Ignore clicks on UI elements like the pop-up panel or buttons
         }
 
-        // ????? ??? ??? ?? ??? ?? ??
+        // ????? ??? ??? ?? ??? ?? ?? / Cast a ray from the camera to the world point of the mouse position
         Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         RaycastHit2D hit = Physics2D.Raycast(mousePosition, Vector2.zero);
 
         if (hit.collider != null)
         {
-            // ??? ????? ?? 
-            string clickedSuspectName = hit.collider.gameObject.name; // ??? ???? ????
-            ChooseSuspect(clickedSuspectName); // ??? ??? ??? ChooseSuspect ???? ??
+            // ??? ????? ?? /Check if the clicked object is a suspect
+            string clickedSuspectName = hit.collider.gameObject.name; // ??? ???? ???? / Get the suspect's GameObject name
+            ChooseSuspect(clickedSuspectName); // ??? ??? ??? ChooseSuspect ???? ?? / Pass the name to the ChooseSuspect method
         }
     }
 
@@ -50,29 +50,29 @@ public class SuspectHandler : MonoBehaviour
     {
         if (suspectName == correctSuspect)
         {
-            // ?? ??? ?????
+            // ?? ??? ????? / if correct suspect
             Debug.Log("Congratulation! going to next level...");
-            SceneManager.LoadScene("Narration2"); // ?? ? ????? 
+            SceneManager.LoadScene("Narration2"); // ?? ? ????? going to next scene when getting correct suspect (next scene name)
         }
         else
         {
-            // ?? ???
-            chances--; // -1 ??
-            UpdateChancesText(); // UI ???
+            // ?? ??? when player chose wrong suspect -1 chance
+            chances--; // -1 ?? 
+            UpdateChancesText(); // UI ??? / Update the UI
             Debug.Log("?????! ?? ??: " + chances);
 
             if (chances <= 0)
             {
-                // ??? 0???
+                // ??? 0??? when chances are all used 0/3
                 Debug.Log("Game Over! you got no chances left.");
-                SceneManager.LoadScene("LoseScene"); // ???? ?? ? 
+                SceneManager.LoadScene("LoseScene"); // ???? ?? ? going to Lose scene (name of next scene)
             }
         }
     }
 
     private void UpdateChancesText()
     {
-        // ?? ??? ?? (canvas? ?? ???)
-        chancesText.text = "Chances: " + chances + "/3"; // ?? ?? ??
+        // ?? ??? ?? (canvas? ?? ???) / text that appears on canvas
+        chancesText.text = "Chances: " + chances + "/3"; // ?? ?? ?? 
     }
 }
