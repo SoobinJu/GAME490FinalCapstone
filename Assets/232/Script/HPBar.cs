@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -11,15 +12,22 @@ public class PlayerHealth : MonoBehaviour
 
     public AudioSource audioSource;     // 충돌 시 재생될 오디오
 
+    private Animator animator; //애니메이션
+    private bool IsDead; //죽었냐?
+
     void Start()
     {
         if (audioSource == null)
             audioSource = GetComponent<AudioSource>();
 
+        animator = GetComponent<Animator>();
+
         // 체력이 최대값보다 크면 최대값으로 제한
         health = Mathf.Clamp(health, 0, maxHealth);
 
         UpdateHealthbar();
+
+        IsDead = false; //ㄴㄴ아직 안 죽음
     }
 
     private void UpdateHealthbar()
@@ -30,6 +38,10 @@ public class PlayerHealth : MonoBehaviour
 
     public void TakeDamage(float damageAmount)
     {
+
+        if (IsDead) return; // 이미 죽었으면 더 이상 데미지 처리하지 않음
+        animator.SetTrigger("IsDamaged"); // 데미지 모션 재생
+
         // 체력 감소
         health -= damageAmount;
         health = Mathf.Clamp(health, 0, maxHealth); // 체력 범위 제한
@@ -38,6 +50,7 @@ public class PlayerHealth : MonoBehaviour
         // 체력 0이 되면 처리
         if (health <= 0)
         {
+            DeathSequence();
             OnHealthDepleted();
         }
 
@@ -46,6 +59,36 @@ public class PlayerHealth : MonoBehaviour
         {
             audioSource.Play();
         }
+    }
+
+    private void DeathSequence()
+    {
+        IsDead = true;
+        animator.SetBool("IsDead", true);
+        Invoke("LoadLoseScene", GetAnimationClipLength("Dead"));
+    }
+
+    private float GetAnimationClipLength(string clipName)
+    {
+        // Animator에서 현재 상태의 애니메이션 길이를 가져옴
+        RuntimeAnimatorController ac = animator.runtimeAnimatorController;
+
+        foreach (AnimationClip clip in ac.animationClips)
+        {
+            if (clip.name == clipName)
+            {
+                return clip.length;
+            }
+        }
+
+        // 애니메이션 클립이 없는 경우 기본 대기 시간 반환
+        Debug.LogWarning($"Animation clip '{clipName}' not found!");
+        return 0f;
+    }
+
+    private void LoadLoseScene()
+    {
+        SceneManager.LoadScene("LoseScene");
     }
 
     public void SetHealth(float healthAmount)
@@ -62,9 +105,10 @@ public class PlayerHealth : MonoBehaviour
 
     private void OnHealthDepleted()
     {
+
         // 체력이 0이 되었을 때 LoseScene으로 이동
         ResetHealth(); // 게임 오버 시 체력을 초기화
-        SceneManager.LoadScene("LoseScene");
+        //SceneManager.LoadScene("LoseScene");
     }
 
     private void ResetHealth()

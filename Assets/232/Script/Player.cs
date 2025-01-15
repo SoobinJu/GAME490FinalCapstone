@@ -55,11 +55,11 @@ public class Player : MonoBehaviour
             print(keycount);
             collision.gameObject.SetActive(false);
         }
-        if(collision.gameObject.CompareTag("Door1") == true && keycount == 1)
-        {
-            SceneManager.LoadScene("Game2");
-            gameObject.transform.position = new Vector3(8, 12, 0);
-        }
+        //if(collision.gameObject.CompareTag("Door1") == true && keycount == 1)
+        //{
+        //    SceneManager.LoadScene("Game2");
+        //    gameObject.transform.position = new Vector3(8, 12, 0);
+        //}
         if (collision.gameObject.CompareTag("Door2") == true)//&& 용의자선택)
         {
             SceneManager.LoadScene("Narration2");
