@@ -14,6 +14,7 @@ TagManager:
   - Level2Player
   - Collectible
   - Obstacle
+  - Attackzone
   layers:
   - Default
   - TransparentFX

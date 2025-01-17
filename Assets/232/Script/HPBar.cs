@@ -13,6 +13,7 @@ public class PlayerHealth : MonoBehaviour
     public AudioSource audioSource;     // 충돌 시 재생될 오디오
 
     private Animator animator; // damaged, dead motion
+    private Rigidbody2D rb;
 
     void Start()
     {
@@ -20,6 +21,7 @@ public class PlayerHealth : MonoBehaviour
             audioSource = GetComponent<AudioSource>();
 
         animator = GetComponent<Animator>();
+        rb = GetComponent<Rigidbody2D>();
 
         // 체력이 최대값보다 크면 최대값으로 제한
         health = Mathf.Clamp(health, 0, maxHealth);
@@ -45,6 +47,10 @@ public class PlayerHealth : MonoBehaviour
         // 체력 0이 되면 처리
         if (health <= 0)
         {
+            // 죽으면 안 움직임
+            rb.velocity = Vector2.zero;
+            rb.constraints = RigidbodyConstraints2D.FreezeAll;
+            
             Death();
         }
 

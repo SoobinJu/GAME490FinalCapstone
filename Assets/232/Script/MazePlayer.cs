@@ -8,10 +8,16 @@ namespace MazeTemplate
         private Rigidbody2D rb;
         private float speed = 10f;
 
+        private Animator animator;
+        private SpriteRenderer spriteRenderer;
+
         private void Start()
         {
             rb = GetComponent<Rigidbody2D>();
             rb.gravityScale = 0;
+
+            animator = GetComponent<Animator>();
+            spriteRenderer = GetComponent<SpriteRenderer>();
         }
 
         private void Update()
@@ -34,18 +40,22 @@ namespace MazeTemplate
             if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A))
             {
                 movement += Vector2.left;
+                spriteRenderer.flipX = true; // 왼쪽으로 뒤집기
             }
             if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
             {
                 movement += Vector2.right;
+                spriteRenderer.flipX = false; // 오른쪽으로 뒤집기
             }
 
             if (movement != Vector2.zero)
             {
+                animator.SetBool("IsRunning", true);
                 rb.velocity = movement.normalized * speed;
             }
             else
             {
+                animator.SetBool("IsRunning", false);
                 rb.velocity = Vector2.zero;
             }
         }
