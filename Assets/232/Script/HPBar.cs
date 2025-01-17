@@ -12,8 +12,7 @@ public class PlayerHealth : MonoBehaviour
 
     public AudioSource audioSource;     // 충돌 시 재생될 오디오
 
-    private Animator animator; //애니메이션
-    private bool IsDead; //죽었냐?
+    private Animator animator; // damaged, dead motion
 
     void Start()
     {
@@ -26,8 +25,6 @@ public class PlayerHealth : MonoBehaviour
         health = Mathf.Clamp(health, 0, maxHealth);
 
         UpdateHealthbar();
-
-        IsDead = false; //ㄴㄴ아직 안 죽음
     }
 
     private void UpdateHealthbar()
@@ -38,9 +35,7 @@ public class PlayerHealth : MonoBehaviour
 
     public void TakeDamage(float damageAmount)
     {
-
-        if (IsDead) return; // 이미 죽었으면 더 이상 데미지 처리하지 않음
-        animator.SetTrigger("IsDamaged"); // 데미지 모션 재생
+        animator.SetTrigger("IsDamaged"); // damaged motion 재생
 
         // 체력 감소
         health -= damageAmount;
@@ -50,8 +45,7 @@ public class PlayerHealth : MonoBehaviour
         // 체력 0이 되면 처리
         if (health <= 0)
         {
-            DeathSequence();
-            OnHealthDepleted();
+            Death();
         }
 
         // 오디오 재생
@@ -59,36 +53,6 @@ public class PlayerHealth : MonoBehaviour
         {
             audioSource.Play();
         }
-    }
-
-    private void DeathSequence()
-    {
-        IsDead = true;
-        animator.SetBool("IsDead", true);
-        Invoke("LoadLoseScene", GetAnimationClipLength("Dead"));
-    }
-
-    private float GetAnimationClipLength(string clipName)
-    {
-        // Animator에서 현재 상태의 애니메이션 길이를 가져옴
-        RuntimeAnimatorController ac = animator.runtimeAnimatorController;
-
-        foreach (AnimationClip clip in ac.animationClips)
-        {
-            if (clip.name == clipName)
-            {
-                return clip.length;
-            }
-        }
-
-        // 애니메이션 클립이 없는 경우 기본 대기 시간 반환
-        Debug.LogWarning($"Animation clip '{clipName}' not found!");
-        return 0f;
-    }
-
-    private void LoadLoseScene()
-    {
-        SceneManager.LoadScene("LoseScene");
     }
 
     public void SetHealth(float healthAmount)
@@ -103,12 +67,30 @@ public class PlayerHealth : MonoBehaviour
         return health;
     }
 
-    private void OnHealthDepleted()
+    private void Death()
     {
+        animator.SetBool("IsDead", true); // dead motion 재생
+        StartCoroutine(WaitForDeath()); // 덕칠이 죽는 모션부터 씬 넘어가는 것까지
+    }
 
-        // 체력이 0이 되었을 때 LoseScene으로 이동
+    private IEnumerator WaitForDeath()
+    {
+        while (!animator.GetCurrentAnimatorStateInfo(0).IsName("Dead"))
+        {
+            yield return null; // Dead motion 재생 될 때까지 대기
+        }
+
+        // Dead motion 끝까지 대기
+        while (animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1.0f)
+        {
+            yield return null;
+        }
+
+        // 죽는 모션 후 루즈씬 넘어가기 전 1초 대기
+        yield return new WaitForSeconds(1f);
+
+        SceneManager.LoadScene("LoseScene");
         ResetHealth(); // 게임 오버 시 체력을 초기화
-        //SceneManager.LoadScene("LoseScene");
     }
 
     private void ResetHealth()
