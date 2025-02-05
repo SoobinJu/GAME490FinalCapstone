@@ -116,5 +116,9 @@ public class PlayerHealth : MonoBehaviour
         {
             TakeDamage(5); // Obstacle은 5씩 데미지
         }
+        else if (collision.CompareTag("Respawn"))
+        {
+            TakeDamage(100); // killzone은 완전히
+        }
     }
 }
