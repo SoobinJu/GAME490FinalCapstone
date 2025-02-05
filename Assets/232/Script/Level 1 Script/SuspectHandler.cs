@@ -3,6 +3,7 @@ using UnityEngine.SceneManagement;
 using TMPro;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using System.Collections;
 
 public class SuspectHandler : MonoBehaviour
 {
@@ -57,11 +58,16 @@ public class SuspectHandler : MonoBehaviour
         }
         else
         {
-            DecreaseChances();
+            StartDecreaseChances();
         }
     }
 
-    public void DecreaseChances()
+    public void StartDecreaseChances()
+    {
+        StartCoroutine(DecreaseChances());
+    }
+
+private IEnumerator DecreaseChances()
     {
         //when player chose wrong suspect -1 chance
         chances--;
@@ -71,6 +77,7 @@ public class SuspectHandler : MonoBehaviour
         if (chances <= 0)
         {
             Debug.Log("Game Over! you got no chances left.");
+            yield return new WaitForSeconds(2f);
             SceneManager.LoadScene("LoseScene"); // going to Lose scene (name of next scene)
         }
     }
@@ -78,6 +85,15 @@ public class SuspectHandler : MonoBehaviour
     private void UpdateChancesText()
     {
         // ?? ??? ?? (canvas? ?? ???) / text that appears on canvas
-        chancesText.text = "Chances: " + chances + "/3"; // ?? ?? ?? 
+        chancesText.text = "Chances: " + chances + "/3"; // ?? ?? ??
+
+        if (chances <= 0)
+        {
+            chancesText.color = Color.red; // 글자 색을 빨간색으로 변경
+        }
+        else
+        {
+            chancesText.color = Color.white; // 기본 색(흰색)으로 유지
+        }
     }
 }
