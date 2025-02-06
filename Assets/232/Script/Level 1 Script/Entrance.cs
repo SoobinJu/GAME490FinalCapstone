@@ -2,17 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
+using UnityEngine.UI; // For UI elements
 
 public class Entrance : MonoBehaviour
 {
-    public int sceneBuildIndex; // Scene to load
-    public GameObject enterButton; // UI Button
-    private bool isPlayerNear = false; // Check if player is near
+    public int sceneBuildIndex; // The index of the scene to load
+    public GameObject enterButton; // Reference to the UI button
+
+    private bool isPlayerNear = false; // Track if the player is near the entrance
 
     private void Start()
     {
-        enterButton.SetActive(false); // Hide the button at start
+        enterButton.SetActive(false); // Hide the button at the start
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -21,7 +22,7 @@ public class Entrance : MonoBehaviour
         {
             print("Player is near the entrance");
             isPlayerNear = true;
-            enterButton.SetActive(true); // Show button
+            enterButton.SetActive(true); // Show the button
         }
     }
 
@@ -31,26 +32,14 @@ public class Entrance : MonoBehaviour
         {
             print("Player left the entrance area");
             isPlayerNear = false;
-            enterButton.SetActive(false); // Hide button
+            enterButton.SetActive(false); // Hide the button
         }
     }
 
     public void EnterScene()
     {
-        if (isPlayerNear) // Ensure player is near when clicking
+        if (isPlayerNear) // Ensure the player is still near when clicking
         {
-            GameObject player = GameObject.FindGameObjectWithTag("Player");
-
-            if (player != null)
-            {
-                // Save the player's position and the entrance ID
-                PlayerPrefs.SetFloat("LastEntranceX", player.transform.position.x);
-                PlayerPrefs.SetFloat("LastEntranceY", player.transform.position.y);
-                PlayerPrefs.SetString("LastBuilding", SceneManager.GetActiveScene().name); // Store which scene they entered from
-                PlayerPrefs.SetInt("Returning", 1); // Mark that we are returning
-                PlayerPrefs.Save(); // Save data
-            }
-
             print("Switching Scene to " + sceneBuildIndex);
             SceneManager.LoadScene(sceneBuildIndex, LoadSceneMode.Single);
         }

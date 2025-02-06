@@ -85,7 +85,7 @@ private IEnumerator DecreaseChances()
     private void UpdateChancesText()
     {
         // ?? ??? ?? (canvas? ?? ???) / text that appears on canvas
-        chancesText.text = "Chances: " + chances + "/3"; // ?? ?? ??
+        chancesText.text = chances + "/3"; // ?? ?? ??
 
         if (chances <= 0)
         {

@@ -1,33 +1,29 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class PlayerPositionManager : MonoBehaviour
 {
-    public Transform defaultSpawnPoint; // Default spawn point (if no saved position)
+    public Transform defaultSpawnPoint; // Default spawn point for new scenes
     public LayerMask groundLayer; // Ground detection
 
     private void Start()
     {
-        // Check if the player is returning from a building
+        // Check if the player is returning from another scene
         if (PlayerPrefs.GetInt("Returning", 0) == 1)
         {
-            float x = PlayerPrefs.GetFloat("LastEntranceX", transform.position.x);
-            float y = PlayerPrefs.GetFloat("LastEntranceY", transform.position.y);
-            string lastBuilding = PlayerPrefs.GetString("LastBuilding", "");
+            float x = PlayerPrefs.GetFloat("PlayerX", transform.position.x);
+            float y = PlayerPrefs.GetFloat("PlayerY", transform.position.y);
 
-            if (lastBuilding == SceneManager.GetActiveScene().name) // Check if we returned to the correct scene
+            Vector3 newPosition = new Vector3(x, y, transform.position.z);
+
+            // Check if there's ground below the saved position
+            if (IsGrounded(newPosition))
             {
-                Vector3 newPosition = new Vector3(x, y, transform.position.z);
-
-                // Check if there's ground below the saved position
-                if (IsGrounded(newPosition))
-                {
-                    transform.position = newPosition; // Move player to the saved position
-                }
-                else
-                {
-                    transform.position = defaultSpawnPoint.position; // Use default spawn point if no ground
-                }
+                transform.position = newPosition; // Move player to the saved position
+            }
+            else
+            {
+                // If the saved position is in the air, use the default spawn point
+                transform.position = defaultSpawnPoint.position;
             }
 
             PlayerPrefs.SetInt("Returning", 0); // Reset returning flag
@@ -35,7 +31,8 @@ public class PlayerPositionManager : MonoBehaviour
         }
         else
         {
-            transform.position = defaultSpawnPoint.position; // Start at default position
+            // If not returning, start at the default spawn point
+            transform.position = defaultSpawnPoint.position;
         }
     }
 
