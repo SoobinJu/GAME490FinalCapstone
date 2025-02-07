@@ -12,7 +12,7 @@ public class PlayerPositionManager : MonoBehaviour
         Debug.Log(" PlayerPositionManager Started in Scene: " + SceneManager.GetActiveScene().name);
 
         // Find the correct spawn point
-        if (SceneManager.GetActiveScene().name == "Game1") // Original scene
+        if (SceneManager.GetActiveScene().name == "Game1")
         {
             defaultSpawnPoint = GameObject.Find("SpawnPoint_Default")?.transform;
         }
