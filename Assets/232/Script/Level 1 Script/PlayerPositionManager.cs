@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class PlayerPositionManager : MonoBehaviour
 {
@@ -8,54 +9,52 @@ public class PlayerPositionManager : MonoBehaviour
 
     private void Start()
     {
-        Debug.Log("🟢 PlayerPositionManager Started in Scene: " + SceneManager.GetActiveScene().name);
+        Debug.Log(" PlayerPositionManager Started in Scene: " + SceneManager.GetActiveScene().name);
 
-        // Try to find the default spawn point (ONLY in Original Scene)
-        if (SceneManager.GetActiveScene().name == "Game1") // Replace with your actual original scene name
+        // Find the correct spawn point
+        if (SceneManager.GetActiveScene().name == "Game1") // Original scene
         {
             defaultSpawnPoint = GameObject.Find("SpawnPoint_Default")?.transform;
-            if (defaultSpawnPoint != null)
-                Debug.Log("✅ Found Default Spawn Point at: " + defaultSpawnPoint.position);
-            else
-                Debug.Log("❌ Default Spawn Point NOT Found! Check Hierarchy.");
         }
-        else // Try to find the building spawn point in building scenes
+        else // In building scenes, find the building spawn point
         {
             buildingSpawnPoint = GameObject.FindWithTag("BuildingSpawnPoint")?.transform;
-            if (buildingSpawnPoint != null)
-                Debug.Log("✅ Found Building Spawn Point at: " + buildingSpawnPoint.position);
-            else
-                Debug.Log("❌ Building Spawn Point NOT Found! Check Tags and Names!");
         }
 
-        // If returning to the original scene, load the saved exit position
+        StartCoroutine(SetPlayerPositionAfterLoad()); // Force update AFTER scene fully loads
+    }
+
+    private IEnumerator SetPlayerPositionAfterLoad()
+    {
+        yield return new WaitForSeconds(0.1f); // Wait a short time to let the scene fully load
+
+        // If returning to original scene, move to saved position
         if (SceneManager.GetActiveScene().name == "Game1" && PlayerPrefs.GetInt("ReturningFromBuilding", 0) == 1)
         {
-            float x = PlayerPrefs.GetFloat("LastExitX", transform.position.x);
-            float y = PlayerPrefs.GetFloat("LastExitY", transform.position.y);
-            Debug.Log("🎯 Returning to Saved Position in Original Scene: X=" + x + " Y=" + y);
+            float x = PlayerPrefs.GetFloat("LastExitX", 0);
+            float y = PlayerPrefs.GetFloat("LastExitY", 0);
+            Debug.Log(" Returning to Saved Position in Original Scene: X=" + x + " Y=" + y);
             transform.position = new Vector3(x, y, transform.position.z);
-            PlayerPrefs.SetInt("ReturningFromBuilding", 0);
+            PlayerPrefs.SetInt("ReturningFromBuilding", 0); // Reset flag
             PlayerPrefs.Save();
         }
+        // If entering a building, use building spawn point
         else if (buildingSpawnPoint != null)
         {
-            Debug.Log("🏗 Entering Building. Spawning at Building Spawn Point: " + buildingSpawnPoint.position);
+            Debug.Log("Entering Building. Moving Player to: " + buildingSpawnPoint.position);
             transform.position = buildingSpawnPoint.position;
         }
+        // If no saved position, spawn at default
         else if (defaultSpawnPoint != null)
         {
-            Debug.Log("🌍 Spawning at Default Spawn Point");
+            Debug.Log("Spawning at Default Spawn Point");
             transform.position = defaultSpawnPoint.position;
         }
         else
         {
-            Debug.Log("⚠️ NO SPAWN POINT FOUND! Moving Player to Emergency Spawn.");
-            transform.position = new Vector3(5, 5, 0); // Change to a safe fallback location
+            Debug.Log("No Spawn Point Found! Setting Safe Position.");
+            transform.position = new Vector3(3, 10, 0); // Set to a safe default position
         }
     }
-
-
-
 
 }

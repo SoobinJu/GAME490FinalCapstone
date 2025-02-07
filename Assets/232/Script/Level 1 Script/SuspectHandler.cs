@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
 using UnityEngine.EventSystems;
@@ -14,8 +14,8 @@ public class SuspectHandler : MonoBehaviour
 
     private void Start()
     {
-        // Load saved chances or set default to 3
-        chances = PlayerPrefs.GetInt("PlayerChances", 3);
+        // 🛑 Always load chances from PlayerPrefs (default to 3 if no value exists)
+        chances = PlayerPrefs.GetInt("Chances", 3);
         UpdateChancesText();
     }
 
@@ -52,10 +52,11 @@ public class SuspectHandler : MonoBehaviour
     {
         if (suspectName == correctSuspect)
         {
-            // If correct suspect, save chances and go to the next level
-            PlayerPrefs.SetInt("PlayerChances", chances); // Save chances before switching
+            // ✅ Save chances before switching scenes
+            PlayerPrefs.SetInt("Chances", chances);
             PlayerPrefs.Save();
-            Debug.Log("Correct! Moving to next level...");
+
+            Debug.Log("✅ Correct! Moving to next level...");
             SceneManager.LoadScene("Narration2"); // Go to the next scene
         }
         else
@@ -71,16 +72,16 @@ public class SuspectHandler : MonoBehaviour
 
     private IEnumerator DecreaseChances()
     {
-        // When player chooses the wrong suspect, decrease chances
+        // ❌ When player chooses the wrong suspect, decrease chances
         chances--;
-        PlayerPrefs.SetInt("PlayerChances", chances); // Save updated chances
+        PlayerPrefs.SetInt("Chances", chances); // 🔹 Save updated chances
         PlayerPrefs.Save();
         UpdateChancesText();
-        Debug.Log("Wrong! Chances left: " + chances);
+        Debug.Log("❌ Wrong! Chances left: " + chances);
 
         if (chances <= 0)
         {
-            Debug.Log("Game Over! No chances left.");
+            Debug.Log("💀 Game Over! No chances left.");
             yield return new WaitForSeconds(2f);
             SceneManager.LoadScene("LoseScene"); // Go to the Lose scene
         }
@@ -88,7 +89,7 @@ public class SuspectHandler : MonoBehaviour
 
     private void UpdateChancesText()
     {
-        // Update UI text to show remaining chances
+        // 🔹 Update UI text to show remaining chances
         chancesText.text = chances + "/3";
 
         if (chances <= 0)

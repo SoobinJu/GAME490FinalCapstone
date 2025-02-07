@@ -39,22 +39,26 @@ public class Entrance : MonoBehaviour
     {
         if (isPlayerNear) // Ensure the player is still near when clicking
         {
-            GameObject player = GameObject.FindGameObjectWithTag("Player");
-
-            if (player != null)
+            if (SceneManager.GetActiveScene().name == "Game1") // Only save when leaving Game1
             {
-                // 📝 Save the player's current position before entering the building
-                PlayerPrefs.SetFloat("LastExitX", player.transform.position.x);
-                PlayerPrefs.SetFloat("LastExitY", player.transform.position.y);
-                PlayerPrefs.SetInt("ReturningFromBuilding", 1); // Mark that we are returning
-                PlayerPrefs.Save();
+                GameObject player = GameObject.FindGameObjectWithTag("Player");
 
-                Debug.Log("✅ Saved Player Entrance Position: X=" + player.transform.position.x + " Y=" + player.transform.position.y);
+                if (player != null)
+                {
+                    // 📝 Save the player's current position BEFORE entering the building
+                    PlayerPrefs.SetFloat("LastExitX", player.transform.position.x);
+                    PlayerPrefs.SetFloat("LastExitY", player.transform.position.y);
+                    PlayerPrefs.SetInt("ReturningFromBuilding", 1); // Mark that we are returning
+                    PlayerPrefs.Save();
+
+                    Debug.Log("✅ Saved Player Entrance Position BEFORE entering building: X=" + player.transform.position.x + " Y=" + player.transform.position.y);
+                }
             }
 
             print("Switching Scene to " + sceneBuildIndex);
             SceneManager.LoadScene(sceneBuildIndex, LoadSceneMode.Single);
         }
     }
+
 
 }
