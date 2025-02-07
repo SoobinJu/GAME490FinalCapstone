@@ -4,88 +4,103 @@ using UnityEngine.UI;
 
 public class NPC : MonoBehaviour
 {
-    public GameObject DialoguePanel;
-    public Text DialogueText;
-    public Button NextButton; // 다음 대사 버튼
-    public string[] dialogue; // 대사 배열
+    public GameObject DialoguePanel; // 이 NPC의 대화 패널
+    public Text DialogueText;        // 이 NPC의 대화 텍스트
+    public string[] dialogue;        // 이 NPC의 대화 내용
     private int index;
 
-    public float wordSpeed = 0.1f; // 글자 출력 속도
-    public bool playerIsClose;
+    public float wordSpeed = 0.05f;  // 글자 타이핑 속도
+    public bool playerIsClose = false; // 플레이어가 가까이 있는지 체크
+    public float timeBetweenLines = 2f; // 한 대화 라인 사이의 시간
 
-    private bool isTyping = false; // 현재 타이핑 중인지 확인
-    private Coroutine typingCoroutine; // 현재 진행 중인 코루틴 참조 저장
+    private bool isTyping = false;    // 현재 타이핑 중인지 체크
+    private bool isDialogueFinished = false; // 대화가 끝났는지 체크
+
+    public Button NextButton; // 다음 대화로 넘어가는 버튼
 
     void Start()
     {
-        DialoguePanel.SetActive(false); // 초기 상태에서 대화창 숨기기
-        NextButton.onClick.AddListener(NextLine); // 버튼 클릭 이벤트 추가
-        NextButton.gameObject.SetActive(false); // 버튼 비활성화
+        // 필요한 참조가 없으면 오류 로그 출력
+        if (DialoguePanel == null || DialogueText == null || NextButton == null)
+        {
+            Debug.LogError("Missing reference(s) in the NPC script.");
+            return;
+        }
+
+        // 초기 설정: 대화 패널과 버튼을 숨깁니다.
+        DialoguePanel.SetActive(false);
+        NextButton.gameObject.SetActive(false);
+        NextButton.onClick.AddListener(NextLine); // 버튼 클릭 시 NextLine 메서드 실행
     }
 
     void Update()
     {
-        // 대화 패널이 활성화되고, 대사가 끝난 경우 버튼 활성화
-        if (DialoguePanel.activeInHierarchy && !isTyping && index < dialogue.Length - 1)
+        // 플레이어가 가까이 있고 대화가 끝났을 때만 버튼을 보이게 합니다.
+        if (playerIsClose && DialoguePanel.activeInHierarchy && isDialogueFinished)
         {
-            NextButton.gameObject.SetActive(true);
-        }
-        else
-        {
-            NextButton.gameObject.SetActive(false);
+            NextButton.gameObject.SetActive(true); // 대화가 끝난 후 버튼 활성화
         }
     }
 
     public void zeroText()
     {
-        if (typingCoroutine != null) // 진행 중인 코루틴이 있으면 중단
+        // 대화 종료 시 초기화
+        if (DialogueText != null)
         {
-            StopCoroutine(typingCoroutine);
-            typingCoroutine = null;
+            DialogueText.text = "";
         }
 
-        DialogueText.text = ""; // 텍스트 초기화
-        index = 0; // 대사 인덱스 초기화
-        DialoguePanel.SetActive(false); // 대화 종료 시 대화 패널 끄기
-        isTyping = false;
+        index = 0;
+        DialoguePanel.SetActive(false); // 대화 종료 후 패널 숨기기
+        NextButton.gameObject.SetActive(false); // 버튼도 숨기기
     }
 
     IEnumerator Typing()
     {
-        isTyping = true; // 타이핑 시작
-        DialogueText.text = ""; // 텍스트 초기화
-        string currentDialogue = dialogue[index]; // 현재 대사 가져오기
-
-        foreach (char letter in currentDialogue.ToCharArray())
+        // 참조가 없으면 바로 종료
+        if (DialogueText == null || NextButton == null)
         {
-            DialogueText.text += letter; // 한 글자씩 추가
-            yield return new WaitForSeconds(wordSpeed);
+            yield break;
         }
 
-        isTyping = false; // 타이핑 완료
+        isTyping = true;
+        isDialogueFinished = false;
+
+        DialogueText.text = ""; // 이전 대화 텍스트 지우기
+
+        // 현재 대화 내용이 있으면 출력
+        if (index >= 0 && index < dialogue.Length)
+        {
+            foreach (char letter in dialogue[index].ToCharArray())
+            {
+                DialogueText.text += letter;
+                yield return new WaitForSeconds(wordSpeed); // 글자 타이핑 간격
+            }
+        }
+
+        isTyping = false;
+        isDialogueFinished = true;
+
+        // 대화가 끝났을 때 버튼 활성화
+        if (NextButton != null)
+        {
+            NextButton.gameObject.SetActive(true);
+        }
     }
 
     public void NextLine()
     {
-        if (isTyping) // 타이핑 중일 때 버튼이 눌리면 타이핑 즉시 완료
-        {
-            if (typingCoroutine != null)
-            {
-                StopCoroutine(typingCoroutine); // 현재 코루틴 중지
-            }
-            DialogueText.text = dialogue[index]; // 대사를 즉시 완성
-            isTyping = false; // 타이핑 완료 상태로 전환
-        }
-        else if (index < dialogue.Length - 1) // 타이핑이 끝난 경우 다음 대사로 진행
+        // 타이핑 중이 아니고, 더 많은 대화가 있을 때
+        if (!isTyping && index < dialogue.Length - 1)
         {
             index++;
-            if (typingCoroutine != null)
+            StartCoroutine(Typing()); // 다음 대화 출력
+            if (NextButton != null)
             {
-                StopCoroutine(typingCoroutine); // 이전 코루틴 중지
+                NextButton.gameObject.SetActive(false); // 타이핑 중에는 버튼 숨기기
             }
-            typingCoroutine = StartCoroutine(Typing()); // 다음 대사 출력 시작
         }
-        else if (index >= dialogue.Length - 1) // 마지막 대사일 경우
+        else if (index >= dialogue.Length - 1) // 마지막 대화가 끝났을 때
         {
             zeroText(); // 대화 종료
         }
@@ -93,26 +108,35 @@ public class NPC : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
+        // 플레이어가 NPC와 충돌하면 대화 시작
+        if (other.CompareTag("Player") && !isTyping)
         {
-            playerIsClose = true; // 플레이어가 대화 범위에 들어옴
-            DialoguePanel.SetActive(true); // 대화 패널 활성화
-            index = 0; // 대사를 처음부터 시작
-
-            if (typingCoroutine != null) // 이전 코루틴 중지
-            {
-                StopCoroutine(typingCoroutine);
-            }
-            typingCoroutine = StartCoroutine(Typing()); // 첫 번째 대사 출력 시작
+            playerIsClose = true;
+            DialoguePanel.SetActive(true); // 대화 패널 보이기
+            index = 0; // 첫 번째 대화부터 시작
+            StartCoroutine(Typing()); // 첫 번째 대화 라인 출력
         }
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
+        // 플레이어가 범위에서 벗어나면 대화 종료
         if (other.CompareTag("Player"))
         {
-            playerIsClose = false; // 플레이어가 대화 범위에서 나감
-            zeroText(); // 대화 종료 및 초기화
+            playerIsClose = false;
+            zeroText(); // 대화 종료
+        }
+    }
+
+    // 충돌 영역에 들어갈 때마다 대화를 다시 시작할 수 있게 해주는 메서드 추가
+    public void RestartDialogue()
+    {
+        // 대화가 진행 중이지 않고, 플레이어가 근처에 있을 때만 대화 시작
+        if (playerIsClose && !isTyping && index < dialogue.Length)
+        {
+            DialoguePanel.SetActive(true); // 대화 패널 보이기
+            index = 0; // 첫 번째 대화부터 시작
+            StartCoroutine(Typing()); // 첫 번째 대화 라인 출력
         }
     }
 }
