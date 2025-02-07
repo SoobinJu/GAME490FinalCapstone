@@ -2660,7 +2660,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1313049383
 Transform:
   m_ObjectHideFlags: 0
@@ -4248,11 +4248,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3754598206554737652, guid: ff9b5deb121c2b7419316c1023d98796, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 960
+      value: 1280
       objectReference: {fileID: 0}
     - target: {fileID: 3754598206554737652, guid: ff9b5deb121c2b7419316c1023d98796, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -223.33333
+      value: -283.3333
       objectReference: {fileID: 0}
     - target: {fileID: 3754598206554737653, guid: ff9b5deb121c2b7419316c1023d98796, type: 3}
       propertyPath: m_fontSize
@@ -4280,11 +4280,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3754598207302482168, guid: ff9b5deb121c2b7419316c1023d98796, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 960
+      value: 1280
       objectReference: {fileID: 0}
     - target: {fileID: 3754598207302482168, guid: ff9b5deb121c2b7419316c1023d98796, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -555
+      value: -734.99994
       objectReference: {fileID: 0}
     - target: {fileID: 3754598207468420584, guid: ff9b5deb121c2b7419316c1023d98796, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -4344,11 +4344,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6042304989474477186, guid: ff9b5deb121c2b7419316c1023d98796, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 960
+      value: 1280
       objectReference: {fileID: 0}
     - target: {fileID: 6042304989474477186, guid: ff9b5deb121c2b7419316c1023d98796, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -871.6666
+      value: -1171.6666
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3754598207468420587, guid: ff9b5deb121c2b7419316c1023d98796, type: 3}
