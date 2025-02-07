@@ -15,6 +15,7 @@ TagManager:
   - Collectible
   - Obstacle
   - Attackzone
+  - BuildingSpawnPoint
   layers:
   - Default
   - TransparentFX

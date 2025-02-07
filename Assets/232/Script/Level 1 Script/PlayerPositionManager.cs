@@ -1,44 +1,61 @@
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerPositionManager : MonoBehaviour
 {
-    public Transform defaultSpawnPoint; // Default spawn point for new scenes
-    public LayerMask groundLayer; // Ground detection
+    private Transform defaultSpawnPoint; // Default spawn point in original scene
+    private Transform buildingSpawnPoint; // Spawn point inside buildings
 
     private void Start()
     {
-        // Check if the player is returning from another scene
-        if (PlayerPrefs.GetInt("Returning", 0) == 1)
+        Debug.Log("🟢 PlayerPositionManager Started in Scene: " + SceneManager.GetActiveScene().name);
+
+        // Try to find the default spawn point (ONLY in Original Scene)
+        if (SceneManager.GetActiveScene().name == "Game1") // Replace with your actual original scene name
         {
-            float x = PlayerPrefs.GetFloat("PlayerX", transform.position.x);
-            float y = PlayerPrefs.GetFloat("PlayerY", transform.position.y);
-
-            Vector3 newPosition = new Vector3(x, y, transform.position.z);
-
-            // Check if there's ground below the saved position
-            if (IsGrounded(newPosition))
-            {
-                transform.position = newPosition; // Move player to the saved position
-            }
+            defaultSpawnPoint = GameObject.Find("SpawnPoint_Default")?.transform;
+            if (defaultSpawnPoint != null)
+                Debug.Log("✅ Found Default Spawn Point at: " + defaultSpawnPoint.position);
             else
-            {
-                // If the saved position is in the air, use the default spawn point
-                transform.position = defaultSpawnPoint.position;
-            }
+                Debug.Log("❌ Default Spawn Point NOT Found! Check Hierarchy.");
+        }
+        else // Try to find the building spawn point in building scenes
+        {
+            buildingSpawnPoint = GameObject.FindWithTag("BuildingSpawnPoint")?.transform;
+            if (buildingSpawnPoint != null)
+                Debug.Log("✅ Found Building Spawn Point at: " + buildingSpawnPoint.position);
+            else
+                Debug.Log("❌ Building Spawn Point NOT Found! Check Tags and Names!");
+        }
 
-            PlayerPrefs.SetInt("Returning", 0); // Reset returning flag
-            PlayerPrefs.Save(); // Clear return data
+        // If returning to the original scene, load the saved exit position
+        if (SceneManager.GetActiveScene().name == "Game1" && PlayerPrefs.GetInt("ReturningFromBuilding", 0) == 1)
+        {
+            float x = PlayerPrefs.GetFloat("LastExitX", transform.position.x);
+            float y = PlayerPrefs.GetFloat("LastExitY", transform.position.y);
+            Debug.Log("🎯 Returning to Saved Position in Original Scene: X=" + x + " Y=" + y);
+            transform.position = new Vector3(x, y, transform.position.z);
+            PlayerPrefs.SetInt("ReturningFromBuilding", 0);
+            PlayerPrefs.Save();
+        }
+        else if (buildingSpawnPoint != null)
+        {
+            Debug.Log("🏗 Entering Building. Spawning at Building Spawn Point: " + buildingSpawnPoint.position);
+            transform.position = buildingSpawnPoint.position;
+        }
+        else if (defaultSpawnPoint != null)
+        {
+            Debug.Log("🌍 Spawning at Default Spawn Point");
+            transform.position = defaultSpawnPoint.position;
         }
         else
         {
-            // If not returning, start at the default spawn point
-            transform.position = defaultSpawnPoint.position;
+            Debug.Log("⚠️ NO SPAWN POINT FOUND! Moving Player to Emergency Spawn.");
+            transform.position = new Vector3(5, 5, 0); // Change to a safe fallback location
         }
     }
 
-    private bool IsGrounded(Vector3 position)
-    {
-        RaycastHit2D hit = Physics2D.Raycast(position, Vector2.down, 1f, groundLayer);
-        return hit.collider != null;
-    }
+
+
+
 }

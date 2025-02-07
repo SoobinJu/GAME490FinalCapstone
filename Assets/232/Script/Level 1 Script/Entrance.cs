@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -8,7 +8,6 @@ public class Entrance : MonoBehaviour
 {
     public int sceneBuildIndex; // The index of the scene to load
     public GameObject enterButton; // Reference to the UI button
-
     private bool isPlayerNear = false; // Track if the player is near the entrance
 
     private void Start()
@@ -40,8 +39,22 @@ public class Entrance : MonoBehaviour
     {
         if (isPlayerNear) // Ensure the player is still near when clicking
         {
+            GameObject player = GameObject.FindGameObjectWithTag("Player");
+
+            if (player != null)
+            {
+                // 📝 Save the player's current position before entering the building
+                PlayerPrefs.SetFloat("LastExitX", player.transform.position.x);
+                PlayerPrefs.SetFloat("LastExitY", player.transform.position.y);
+                PlayerPrefs.SetInt("ReturningFromBuilding", 1); // Mark that we are returning
+                PlayerPrefs.Save();
+
+                Debug.Log("✅ Saved Player Entrance Position: X=" + player.transform.position.x + " Y=" + player.transform.position.y);
+            }
+
             print("Switching Scene to " + sceneBuildIndex);
             SceneManager.LoadScene(sceneBuildIndex, LoadSceneMode.Single);
         }
     }
+
 }

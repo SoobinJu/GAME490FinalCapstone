@@ -8,19 +8,20 @@ using System.Collections;
 public class SuspectHandler : MonoBehaviour
 {
     public TextMeshProUGUI chancesText; // UI text for chances
-    public string correctSuspect = "A"; //The correct suspect
+    public string correctSuspect = "A"; // The correct suspect
 
-    private int chances = 3; //total chances
+    private int chances; // Total chances
 
     private void Start()
     {
-  
+        // Load saved chances or set default to 3
+        chances = PlayerPrefs.GetInt("PlayerChances", 3);
         UpdateChancesText();
     }
 
     private void Update()
     {
-        //detect mouse click
+        // Detect mouse click
         if (Input.GetMouseButtonDown(0))
         {
             DetectSuspectClick();
@@ -29,22 +30,21 @@ public class SuspectHandler : MonoBehaviour
 
     private void DetectSuspectClick()
     {
-
         // If the mouse click is over a UI element, do nothing
         if (EventSystem.current.IsPointerOverGameObject())
         {
-            return; // Ignore clicks on UI elements like the pop-up panel or buttons
+            return; // Ignore clicks on UI elements
         }
 
-        //Cast a ray from the camera to the world point of the mouse position
+        // Cast a ray from the camera to the world point of the mouse position
         Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         RaycastHit2D hit = Physics2D.Raycast(mousePosition, Vector2.zero);
 
         if (hit.collider != null)
         {
-            //Check if the clicked object is a suspect
-            string clickedSuspectName = hit.collider.gameObject.name; //Get the suspect's GameObject name
-            ChooseSuspect(clickedSuspectName); //Pass the name to the ChooseSuspect method
+            // Check if the clicked object is a suspect
+            string clickedSuspectName = hit.collider.gameObject.name; // Get the suspect's GameObject name
+            ChooseSuspect(clickedSuspectName); // Pass the name to the ChooseSuspect method
         }
     }
 
@@ -52,9 +52,11 @@ public class SuspectHandler : MonoBehaviour
     {
         if (suspectName == correctSuspect)
         {
-            //if correct suspect
-            Debug.Log("Congratulation! going to next level...");
-            SceneManager.LoadScene("Narration2"); // going to next scene when getting correct suspect (next scene name)
+            // If correct suspect, save chances and go to the next level
+            PlayerPrefs.SetInt("PlayerChances", chances); // Save chances before switching
+            PlayerPrefs.Save();
+            Debug.Log("Correct! Moving to next level...");
+            SceneManager.LoadScene("Narration2"); // Go to the next scene
         }
         else
         {
@@ -67,33 +69,35 @@ public class SuspectHandler : MonoBehaviour
         StartCoroutine(DecreaseChances());
     }
 
-private IEnumerator DecreaseChances()
+    private IEnumerator DecreaseChances()
     {
-        //when player chose wrong suspect -1 chance
+        // When player chooses the wrong suspect, decrease chances
         chances--;
-        UpdateChancesText(); //Update the UI
-        Debug.Log("?????! ?? ??: " + chances);
+        PlayerPrefs.SetInt("PlayerChances", chances); // Save updated chances
+        PlayerPrefs.Save();
+        UpdateChancesText();
+        Debug.Log("Wrong! Chances left: " + chances);
 
         if (chances <= 0)
         {
-            Debug.Log("Game Over! you got no chances left.");
+            Debug.Log("Game Over! No chances left.");
             yield return new WaitForSeconds(2f);
-            SceneManager.LoadScene("LoseScene"); // going to Lose scene (name of next scene)
+            SceneManager.LoadScene("LoseScene"); // Go to the Lose scene
         }
     }
 
     private void UpdateChancesText()
     {
-        // ?? ??? ?? (canvas? ?? ???) / text that appears on canvas
-        chancesText.text = chances + "/3"; // ?? ?? ??
+        // Update UI text to show remaining chances
+        chancesText.text = chances + "/3";
 
         if (chances <= 0)
         {
-            chancesText.color = Color.red; // 글자 색을 빨간색으로 변경
+            chancesText.color = Color.red; // Change text color to red when losing
         }
         else
         {
-            chancesText.color = Color.white; // 기본 색(흰색)으로 유지
+            chancesText.color = Color.white; // Keep it white normally
         }
     }
 }
