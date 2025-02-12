@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Inventory : MonoBehaviour
@@ -8,6 +9,7 @@ public class Inventory : MonoBehaviour
 
     public Text SwordCounter;
     public Text AmuletCounter;
+    public Animator MarbleAnimator;
 
     private int Sword = 0;
     private int Amulet = 0;
@@ -21,6 +23,30 @@ public class Inventory : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
+    }
+
+    // 특정 시점에서 호출
+    public void PlayBAnimationTrigger()
+    {
+        MarbleAnimator.SetTrigger("Marble");
+        StartCoroutine(WaitForWin());
+    }
+
+    private IEnumerator WaitForWin() //여우구슬 박살~윈씬 넘어가기
+    {
+        while (!MarbleAnimator.GetCurrentAnimatorStateInfo(0).IsName("Marble"))
+        {
+            yield return null;
+        }
+
+        while (animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1.0f)
+        {
+            yield return null;
+        }
+
+        yield return new WaitForSeconds(3f);
+
+        SceneManager.LoadScene("WinScene");
     }
 
     private void Update()
