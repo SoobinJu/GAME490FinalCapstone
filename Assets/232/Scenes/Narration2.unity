@@ -516,8 +516,13 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "You\u2019ve identified the murderer, Gumiho! \nBut she killed the other
-    suspects, and now you\u2019re her next target. \nRun!"
+  m_text: "As soon as the culprit was revealed, Miho\u2019s suppressed rage exploded,
+    transforming her into a Gumiho. She began slaughtering those around her. Deokchil
+    barely escaped through the back door, running in fear until he reached a maze-like
+    forest.\n\nRealizing it resembled a place from the book Fox Marble, he noticed
+    scattered swords, norigae, and a faint blue glow. Though overwhelmed, he clung
+    to hope if the book was real, he could defeat the Gumiho. Determined, he rushed
+    into her lair, searching for the sword, norigae, and the marble to shatter."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1388,10 +1393,20 @@ MonoBehaviour:
   - {fileID: 1455835110}
   - {fileID: 787115336}
   - {fileID: 358515215}
-  typingSpeed: 0.09
+  typingSpeed: 0.05
   cursorBlinkSpeed: 0.5
-  fullText: "You\u2019ve identified the murderer, Gumiho! \nBut she killed the other
-    suspects, and now you\u2019re her next target.  Run!"
+  fullText: 'As soon as the culprit was revealed, Miho Began to transformed into
+    a Gumiho, and killed those around her!
+
+
+    Deokchil barely escaped, fleeing
+    to a maze like forest.
+
+
+    Recognizing it from the book "How to defeat Gumiho",
+    he read long time ago, he saw scattered swords and norigae just like what the
+    book was written. Clinging to hope, he rushed into the lair to find the tools
+    to break gumiho''s heart, fox marble.'
 --- !u!4 &2127351520
 Transform:
   m_ObjectHideFlags: 0
