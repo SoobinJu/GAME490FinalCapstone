@@ -109,11 +109,13 @@ public class NPC : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         // 플레이어가 NPC와 충돌하면 대화 시작
-        if (other.CompareTag("Player") && !isTyping)
+        if (other.CompareTag("Player"))
         {
             playerIsClose = true;
             DialoguePanel.SetActive(true); // 대화 패널 보이기
             index = 0; // 첫 번째 대화부터 시작
+            StopAllCoroutines(); // 기존 실행 중인 타이핑 코루틴 중지
+            DialogueText.text = ""; // 텍스트 초기화
             StartCoroutine(Typing()); // 첫 번째 대화 라인 출력
         }
     }
@@ -128,14 +130,15 @@ public class NPC : MonoBehaviour
         }
     }
 
-    // 충돌 영역에 들어갈 때마다 대화를 다시 시작할 수 있게 해주는 메서드 추가
     public void RestartDialogue()
     {
         // 대화가 진행 중이지 않고, 플레이어가 근처에 있을 때만 대화 시작
-        if (playerIsClose && !isTyping && index < dialogue.Length)
+        if (playerIsClose)
         {
             DialoguePanel.SetActive(true); // 대화 패널 보이기
             index = 0; // 첫 번째 대화부터 시작
+            StopAllCoroutines(); // 기존 실행 중인 타이핑 코루틴 중지
+            DialogueText.text = ""; // 텍스트 초기화
             StartCoroutine(Typing()); // 첫 번째 대화 라인 출력
         }
     }
