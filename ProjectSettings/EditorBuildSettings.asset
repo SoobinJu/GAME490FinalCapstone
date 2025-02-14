@@ -48,6 +48,9 @@ EditorBuildSettings:
     path: Assets/232/Scenes/Inside_Building_Pavilion.unity
     guid: 2bfe2ac67845ed543a0d61780ebeebb0
   - enabled: 1
+    path: Assets/232/Scenes/Inside_Building_Gwana.unity
+    guid: 648482c7fc4a5d9469f37a3fda04276c
+  - enabled: 1
     path: Assets/232/Scenes/Game1.unity
     guid: cca1d4517cc26ab46b998773c454b27e
   - enabled: 1

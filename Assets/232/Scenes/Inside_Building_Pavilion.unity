@@ -2188,6 +2188,7 @@ GameObject:
   - component: {fileID: 675031327}
   - component: {fileID: 675031326}
   - component: {fileID: 675031325}
+  - component: {fileID: 675031328}
   m_Layer: 5
   m_Name: D
   m_TagString: Untagged
@@ -2427,6 +2428,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 675031323}
   m_CullTransparentMesh: 1
+--- !u!114 &675031328
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 675031323}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e25fc60ee5ff164da6d39eb40fa43af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &687642057
 GameObject:
   m_ObjectHideFlags: 0
@@ -3558,7 +3571,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5223aebfe63d13748b3ba9e371f29d65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneBuildIndex: 14
+  sceneBuildIndex: 15
   enterButton: {fileID: 1241310013}
 --- !u!61 &1135387936
 BoxCollider2D:
@@ -4466,6 +4479,7 @@ GameObject:
   - component: {fileID: 1381504683}
   - component: {fileID: 1381504682}
   - component: {fileID: 1381504681}
+  - component: {fileID: 1381504685}
   m_Layer: 5
   m_Name: OpenBTN
   m_TagString: Untagged
@@ -4586,6 +4600,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -540}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1381504685
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1381504680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56c766000a452ee4eb851d8288d74bb4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1444122619
 GameObject:
   m_ObjectHideFlags: 0
