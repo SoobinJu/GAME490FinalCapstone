@@ -1,24 +1,41 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class InteractionHandler : MonoBehaviour
 {
     public GameObject openButton; // Button that appears near the object
-    public GameObject closeButton; // Button inside the panel
     public GameObject panel; // Panel that shows up
+    private bool canOpen = false;
+    private bool panelOpen = false;
 
     private void Start()
     {
         // Hide everything at the start
         openButton.SetActive(false);
-        closeButton.SetActive(false);
         panel.SetActive(false);
+    }
+
+    private void Update()
+    {
+        if (canOpen && (Input.GetKeyDown(KeyCode.E)))
+        {
+            if (panelOpen)
+            {
+                ClosePanel(); // E 키로 패널 닫기
+            }
+            else
+            {
+                OpenPanel(); // E 키로 패널 열기
+            }
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player")) // When the player comes near
         {
-            openButton.SetActive(true); // Show the open button
+            canOpen = true;
+            openButton.SetActive(true);
         }
     }
 
@@ -26,22 +43,24 @@ public class InteractionHandler : MonoBehaviour
     {
         if (other.CompareTag("Player")) // When the player goes away
         {
-            openButton.SetActive(false); // Hide the open button
+            canOpen = false;
+            openButton.SetActive(false);
+            ClosePanel();
         }
     }
 
-    public void OnOpenButtonClick()
+    public void OpenPanel()
     {
         openButton.SetActive(false); // Hide the open button
         panel.SetActive(true); // Show the panel
-        closeButton.SetActive(true); // Show the close button
+        panelOpen = true;
     }
 
-    public void OnCloseButtonClick()
+    public void ClosePanel()
     {
         panel.SetActive(false); // Hide the panel
-        closeButton.SetActive(false); // Hide the close button
         openButton.SetActive(true); // Show the open button again
+        panelOpen = false;
     }
 }
 
