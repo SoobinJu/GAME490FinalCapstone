@@ -3,15 +3,14 @@ using UnityEngine;
 
 public class InteractionHandler : MonoBehaviour
 {
-    public GameObject openButton; // Button that appears near the object
     public GameObject panel; // Panel that shows up
     private bool canOpen = false;
     private bool panelOpen = false;
+    private bool clueFounded = false;
 
     private void Start()
     {
         // Hide everything at the start
-        openButton.SetActive(false);
         panel.SetActive(false);
     }
 
@@ -35,7 +34,6 @@ public class InteractionHandler : MonoBehaviour
         if (other.CompareTag("Player")) // When the player comes near
         {
             canOpen = true;
-            openButton.SetActive(true);
         }
     }
 
@@ -44,22 +42,38 @@ public class InteractionHandler : MonoBehaviour
         if (other.CompareTag("Player")) // When the player goes away
         {
             canOpen = false;
-            openButton.SetActive(false);
             ClosePanel();
         }
     }
 
     public void OpenPanel()
     {
-        openButton.SetActive(false); // Hide the open button
         panel.SetActive(true); // Show the panel
         panelOpen = true;
+
+        if (!clueFounded)
+        {
+            clueFounded = true;
+            GameProgressTracker tracker = FindObjectOfType<GameProgressTracker>();
+
+            if (tracker != null)
+            {
+                tracker.FoundClue(); // Register clue progress
+                Debug.Log("Clue Found! Progress updated.");
+            }
+            else
+            {
+                Debug.LogError("GameProgressTracker not found! Trying to create one...");
+                GameObject newTracker = new GameObject("GameProgressTracker");
+                tracker = newTracker.AddComponent<GameProgressTracker>(); // Create a new tracker
+                tracker.FoundClue();
+            }
+        }
     }
 
     public void ClosePanel()
     {
         panel.SetActive(false); // Hide the panel
-        openButton.SetActive(true); // Show the open button again
         panelOpen = false;
     }
 }

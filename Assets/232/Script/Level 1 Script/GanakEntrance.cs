@@ -9,11 +9,27 @@ public class GanakEntrance : MonoBehaviour
     public int ganakSceneIndex;  // Scene index for Ganak
 
     private bool isPlayerNear = false;
+    private bool isWPanelOpen = false;
 
     private void Start()
     {
         if (warningPanel != null) warningPanel.SetActive(false);  // Hide warning panel at start
         if (enterButton != null) enterButton.SetActive(false);  // Hide enter button at start
+    }
+
+    private void Update()
+    {
+        if (isPlayerNear && (Input.GetKeyDown(KeyCode.E)))
+        {
+            if (isWPanelOpen)
+            {
+                ClosePanel();
+            }
+            else
+            {
+                TryEnterGanak();
+            }
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -31,26 +47,33 @@ public class GanakEntrance : MonoBehaviour
         {
             isPlayerNear = false;
             if (enterButton != null) enterButton.SetActive(false);  // Hide enter button
-            if (warningPanel != null) warningPanel.SetActive(false);  // Hide warning panel
+            ClosePanel();
         }
     }
 
     public void TryEnterGanak()
     {
-        if (isPlayerNear)
-        {
             GameProgressTracker tracker = FindObjectOfType<GameProgressTracker>();
 
             if (tracker != null && tracker.CanEnterGanak())
             {
-                Debug.Log("✅ Entering Ganak...");
+                Debug.Log("Entering Ganak...");
                 SceneManager.LoadScene(ganakSceneIndex);
             }
             else
             {
-                Debug.Log("❌ Can't enter Ganak yet. Missing clues or quizzes.");
-                if (warningPanel != null) warningPanel.SetActive(true);  // Show warning message
+                Debug.Log("Can't enter Ganak yet. Missing clues or quizzes.");
+                if (warningPanel != null)
+                {
+                    warningPanel.SetActive(true);  // Show warning message
+                    isWPanelOpen = true;
+                }
             }
-        }
+    }
+
+    public void ClosePanel()
+    {
+        warningPanel.SetActive(false);
+        isWPanelOpen = false;
     }
 }

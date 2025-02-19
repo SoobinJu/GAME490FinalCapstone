@@ -15,6 +15,14 @@ public class Entrance : MonoBehaviour
         enterButton.SetActive(false); // Hide the button at the start
     }
 
+    private void Update()
+    {
+        if (isPlayerNear && (Input.GetKeyDown(KeyCode.E)))
+        {
+            EnterScene();
+        }
+    }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
@@ -51,7 +59,7 @@ public class Entrance : MonoBehaviour
                     PlayerPrefs.SetInt("ReturningFromBuilding", 1); // Mark that we are returning
                     PlayerPrefs.Save();
 
-                    Debug.Log("✅ Saved Player Entrance Position BEFORE entering building: X=" + player.transform.position.x + " Y=" + player.transform.position.y);
+                    Debug.Log("Saved Player Entrance Position BEFORE entering building: X=" + player.transform.position.x + " Y=" + player.transform.position.y);
                 }
             }
 

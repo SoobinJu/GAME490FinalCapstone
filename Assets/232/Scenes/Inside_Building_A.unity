@@ -3153,8 +3153,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c9b3986e5156cd43bc7f0d19dd4ac7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  openButton: {fileID: 1115217268}
-  closeButton: {fileID: 1878782159}
   panel: {fileID: 85535545}
 --- !u!212 &941215610
 SpriteRenderer:
@@ -5109,7 +5107,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!61 &1622094372
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5167,8 +5165,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c9b3986e5156cd43bc7f0d19dd4ac7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  openButton: {fileID: 427791729}
-  closeButton: {fileID: 1938413187}
   panel: {fileID: 980551410}
 --- !u!212 &1622094374
 SpriteRenderer:
