@@ -1398,7 +1398,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0126837bde6e4247904d25171caaa90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ScenetoGo: Game1
+  ScenetoGo: Narration1
   target: {fileID: 0}
 --- !u!1 &1245040708
 GameObject:
