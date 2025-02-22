@@ -1,11 +1,14 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections;
+using static UnityEngine.Rendering.DebugUI;
 
 public class PlayerPositionManager : MonoBehaviour
 {
     private Transform defaultSpawnPoint; // Default spawn point in original scene
     private Transform buildingSpawnPoint; // Spawn point inside buildings
+
+    public GameObject HTPpanel;
 
     private void Start()
     {
@@ -21,12 +24,12 @@ public class PlayerPositionManager : MonoBehaviour
             buildingSpawnPoint = GameObject.FindWithTag("BuildingSpawnPoint")?.transform;
         }
 
-        StartCoroutine(SetPlayerPositionAfterLoad()); // Force update AFTER scene fully loads
+        SetPlayerPositionAfterLoad(); // Force update AFTER scene fully loads
     }
 
-    private IEnumerator SetPlayerPositionAfterLoad()
+    private void SetPlayerPositionAfterLoad()
     {
-        yield return new WaitForSeconds(0.1f); // Wait a short time to let the scene fully load
+        //yield return new WaitForSeconds(0.1f); // 이거 있으니까 딜레이 생겨서 지움
 
         // If returning to original scene, move to saved position
         if (SceneManager.GetActiveScene().name == "Game1" && PlayerPrefs.GetInt("ReturningFromBuilding", 0) == 1)
@@ -37,6 +40,7 @@ public class PlayerPositionManager : MonoBehaviour
             transform.position = new Vector3(x, y, transform.position.z);
             PlayerPrefs.SetInt("ReturningFromBuilding", 0); // Reset flag
             PlayerPrefs.Save();
+            HTPpanel.SetActive(false);
         }
         // If entering a building, use building spawn point
         else if (buildingSpawnPoint != null)

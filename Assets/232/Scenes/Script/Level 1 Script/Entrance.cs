@@ -53,7 +53,7 @@ public class Entrance : MonoBehaviour
 
                 if (player != null)
                 {
-                    // 📝 Save the player's current position BEFORE entering the building
+                    // Save the player's current position BEFORE entering the building
                     PlayerPrefs.SetFloat("LastExitX", player.transform.position.x);
                     PlayerPrefs.SetFloat("LastExitY", player.transform.position.y);
                     PlayerPrefs.SetInt("ReturningFromBuilding", 1); // Mark that we are returning
