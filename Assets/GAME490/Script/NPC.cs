@@ -39,6 +39,11 @@ public class NPC : MonoBehaviour
         if (playerIsClose && DialoguePanel.activeInHierarchy && isDialogueFinished)
         {
             NextButton.gameObject.SetActive(true); // 대화가 끝난 후 버튼 활성화
+
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                NextLine();
+            }
         }
     }
 

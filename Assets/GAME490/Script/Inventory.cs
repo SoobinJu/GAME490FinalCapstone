@@ -10,6 +10,7 @@ public class Inventory : MonoBehaviour
     public Text SwordCounter;
     public Text AmuletCounter;
     public Animator MarbleAnimator;
+    public GameObject Shatter;
 
     private int Sword = 0;
     private int Amulet = 0;
@@ -69,6 +70,7 @@ public class Inventory : MonoBehaviour
         if (other.CompareTag("Attackzone"))
         {
             IsAttackzone = true;
+            Shatter.SetActive(true);
         }
     }
 
@@ -78,6 +80,7 @@ public class Inventory : MonoBehaviour
         if (other.CompareTag("Attackzone"))
         {
             IsAttackzone = false;  // 특정 구역에서 나감
+            Shatter.SetActive(false);
         }
     }
 

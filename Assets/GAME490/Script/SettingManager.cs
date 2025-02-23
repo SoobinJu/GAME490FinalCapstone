@@ -4,8 +4,6 @@ public class SettingManager : MonoBehaviour
 {
     public GameObject settingsPanel;
 
-    private bool isGamePaused = false;
-
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
