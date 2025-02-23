@@ -77,6 +77,7 @@ public class PlayerHealth : MonoBehaviour
     {
         animator.SetBool("IsDead", true); // dead motion 재생
         StartCoroutine(WaitForDeath()); // 덕칠이 죽는 모션부터 씬 넘어가는 것까지
+        GameProgressTracker.Instance?.ResetProgress();
     }
 
     private IEnumerator WaitForDeath()

@@ -25,17 +25,24 @@ public class GameProgressTracker : MonoBehaviour
     public void FoundClue()
     {
         cluesFound++;
-        Debug.Log("🔍 Clue Found! Progress: " + cluesFound + "/" + totalClues);
+        Debug.Log("Clue Found! Progress: " + cluesFound + "/" + totalClues);
     }
 
     public void SolvedQuiz()
     {
         quizzesSolved++;
-        Debug.Log("✅ Quiz Solved! Progress: " + quizzesSolved + "/" + totalQuizzes);
+        Debug.Log("Quiz Solved! Progress: " + quizzesSolved + "/" + totalQuizzes);
     }
 
     public bool CanEnterGanak()
     {
         return cluesFound >= totalClues && quizzesSolved >= totalQuizzes;
+    }
+
+    public void ResetProgress()
+    {
+        cluesFound = 0;
+        quizzesSolved = 0;
+        Debug.Log("Game progress has been reset.");
     }
 }
