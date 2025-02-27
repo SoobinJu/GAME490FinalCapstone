@@ -247,8 +247,11 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Residents murdered, and their livers keep disappearing! \\n\\nDetective
-    Deokchil, it\u2019s up to you to uncover the criminal behind these killings!"
+  m_text: "In a once peaceful village, residents began to be murdered one by one.
+    However, the most terrifying and mysterious part was that all the bodies were
+    missing their livers.  \r\n\r\nWith the town in fear, a newly assigned detective,
+    Deokchil, was sent to investigate the case.  \r\n\r\nNow, as the player, you
+    become Deokchil unravel the mystery and track down the killer!"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7a70f9eef9ccd5347b9b88a7321dd04d, type: 2}
   m_sharedMaterial: {fileID: -4599768229172021808, guid: 7a70f9eef9ccd5347b9b88a7321dd04d, type: 2}
@@ -901,10 +904,13 @@ MonoBehaviour:
   typingSound: {fileID: 0}
   buttons:
   - {fileID: 769052544}
-  typingSpeed: 0.09
+  typingSpeed: 0.05
   cursorBlinkSpeed: 0.5
-  fullText: "Residents murdered, and their livers keep disappearing!\n\nDetective
-    Deokchil, it\u2019s up to you to uncover the criminal behind these killings!"
+  fullText: "In a once peaceful village, residents began to be murdered one by one.
+    However, the most terrifying and mysterious part was that all the bodies were
+    missing their livers!\r\n\r\nWith the town in fear, a newly assigned detective,
+    Deokchil, was sent to investigate the case.  \r\n\r\nNow, as the player, you
+    become Deokchil unravel the mystery and track down the killer!"
 --- !u!4 &2127351520
 Transform:
   m_ObjectHideFlags: 0

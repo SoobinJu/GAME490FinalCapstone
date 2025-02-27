@@ -5,7 +5,7 @@ public class GameProgressTracker : MonoBehaviour
     public static GameProgressTracker Instance;
 
     private int cluesFound = 0;
-    private int totalClues = 6;  // Adjust this to match your actual number of clues
+    private int totalClues = 9;  // Adjust this to match your actual number of clues
     private int quizzesSolved = 0;
     private int totalQuizzes = 3; // Adjust this to match your actual number of quizzes
 

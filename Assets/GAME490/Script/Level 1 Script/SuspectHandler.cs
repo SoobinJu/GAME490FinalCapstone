@@ -1,14 +1,15 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
-using UnityEngine.EventSystems;
-using UnityEngine.UI;
 using System.Collections;
+using UnityEngine.EventSystems;
+using System.Collections.Generic;
+
 
 public class SuspectHandler : MonoBehaviour
 {
     public TextMeshProUGUI chancesText; // UI text for chances
-    public string correctSuspect = "A"; // The correct suspect
+    public string correctSuspect = "Suspector B"; // ✅ Correct suspect is now B!
 
     private int chances; // Total chances
 
@@ -30,23 +31,29 @@ public class SuspectHandler : MonoBehaviour
 
     private void DetectSuspectClick()
     {
-        // If the mouse click is over a UI element, do nothing
-        if (EventSystem.current.IsPointerOverGameObject())
+        // List to store UI objects hit by raycast
+        PointerEventData pointerData = new PointerEventData(EventSystem.current)
         {
-            return; // Ignore clicks on UI elements
+            position = Input.mousePosition
+        };
+
+        List<RaycastResult> results = new List<RaycastResult>();
+        EventSystem.current.RaycastAll(pointerData, results);
+
+        foreach (RaycastResult result in results)
+        {
+            if (result.gameObject.CompareTag("Suspect")) // Make sure suspects have the "Suspect" tag
+            {
+                Debug.Log("Clicked on: " + result.gameObject.name);
+                ChooseSuspect(result.gameObject.name);
+                return;
+            }
         }
 
-        // Cast a ray from the camera to the world point of the mouse position
-        Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        RaycastHit2D hit = Physics2D.Raycast(mousePosition, Vector2.zero);
-
-        if (hit.collider != null)
-        {
-            // Check if the clicked object is a suspect
-            string clickedSuspectName = hit.collider.gameObject.name; // Get the suspect's GameObject name
-            ChooseSuspect(clickedSuspectName); // Pass the name to the ChooseSuspect method
-        }
+        Debug.Log("❌ No suspect detected! UI blocking.");
     }
+
+
 
     public void ChooseSuspect(string suspectName)
     {

@@ -16,11 +16,13 @@ TagManager:
   - Obstacle
   - Attackzone
   - BuildingSpawnPoint
+  - Suspector
+  - Suspect
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Susepct
   - Water
   - UI
   - 
