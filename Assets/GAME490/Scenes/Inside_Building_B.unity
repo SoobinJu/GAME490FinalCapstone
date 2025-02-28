@@ -1138,7 +1138,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.2255325, y: 1}
+  m_Size: {x: 2.84, y: 1}
   m_EdgeRadius: 0
 --- !u!114 &442389891
 MonoBehaviour:
@@ -1153,6 +1153,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   panel: {fileID: 1539422223}
+  defaultImage: {fileID: 21300000, guid: 8cba61571367df840b0563a8599d0030, type: 3}
+  changedImage: {fileID: 21300000, guid: eb5b1dbfedbe96144bac0a1296835302, type: 3}
 --- !u!212 &442389892
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2094,7 +2096,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.17, y: 0.08}
+  m_Offset: {x: 0, y: 0.08}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -2105,7 +2107,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.62, y: 2.2}
+  m_Size: {x: 2.08, y: 1.68}
   m_EdgeRadius: 0
 --- !u!114 &920516245
 MonoBehaviour:
@@ -2120,6 +2122,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   panel: {fileID: 1191924233}
+  defaultImage: {fileID: 21300000, guid: da47c9ed980c003469abdd7079c3b6a6, type: 3}
+  changedImage: {fileID: 21300000, guid: 044dd37fc2c98ef4cabb4b07608aa6fe, type: 3}
 --- !u!212 &920516246
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4772,6 +4776,10 @@ PrefabInstance:
     - target: {fileID: 8079241722019055608, guid: c1d63bf7dac706f42ae38649e0c67a59, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8079241722019055615, guid: c1d63bf7dac706f42ae38649e0c67a59, type: 3}
+      propertyPath: m_SortingOrder
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

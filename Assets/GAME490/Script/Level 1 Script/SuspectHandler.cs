@@ -74,10 +74,10 @@ public class SuspectHandler : MonoBehaviour
 
     public void StartDecreaseChances()
     {
-        StartCoroutine(DecreaseChances());
+        DecreaseChances();
     }
 
-    private IEnumerator DecreaseChances()
+    private void DecreaseChances()
     {
         // ❌ When player chooses the wrong suspect, decrease chances
         chances--;
@@ -89,7 +89,6 @@ public class SuspectHandler : MonoBehaviour
         if (chances <= 0)
         {
             Debug.Log("💀 Game Over! No chances left.");
-            yield return new WaitForSeconds(2f);
             SceneManager.LoadScene("LoseScene"); // Go to the Lose scene
         }
     }

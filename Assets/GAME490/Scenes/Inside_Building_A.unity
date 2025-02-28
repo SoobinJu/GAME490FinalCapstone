@@ -2803,7 +2803,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.2255325, y: 1}
+  m_Size: {x: 2.92, y: 1}
   m_EdgeRadius: 0
 --- !u!114 &941215609
 MonoBehaviour:
@@ -2818,6 +2818,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   panel: {fileID: 85535545}
+  defaultImage: {fileID: 21300000, guid: 8cba61571367df840b0563a8599d0030, type: 3}
+  changedImage: {fileID: 21300000, guid: eb5b1dbfedbe96144bac0a1296835302, type: 3}
 --- !u!212 &941215610
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4504,7 +4506,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 4.18, y: 3.33}
+  m_Size: {x: 5.81, y: 3.33}
   m_EdgeRadius: 0
 --- !u!114 &1622094373
 MonoBehaviour:
@@ -4519,6 +4521,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   panel: {fileID: 980551410}
+  defaultImage: {fileID: 21300000, guid: 316879e3aca4e8148a8b399f6fcdce9f, type: 3}
+  changedImage: {fileID: 21300000, guid: 0765043fbe541f84284ded7c2ae3ea48, type: 3}
 --- !u!212 &1622094374
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5056,6 +5060,10 @@ PrefabInstance:
     - target: {fileID: 8079241722019055608, guid: c1d63bf7dac706f42ae38649e0c67a59, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8079241722019055615, guid: c1d63bf7dac706f42ae38649e0c67a59, type: 3}
+      propertyPath: m_SortingOrder
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

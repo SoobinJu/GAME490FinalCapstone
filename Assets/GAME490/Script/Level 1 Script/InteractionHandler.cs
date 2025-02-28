@@ -8,10 +8,17 @@ public class InteractionHandler : MonoBehaviour
     private bool panelOpen = false;
     private bool clueFounded = false;
 
+    private SpriteRenderer spriteRenderer;
+    public Sprite defaultImage;
+    public Sprite changedImage;
+
     private void Start()
     {
         // Hide everything at the start
         panel.SetActive(false);
+
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteRenderer.sprite = defaultImage;
     }
 
     private void Update()
@@ -34,6 +41,7 @@ public class InteractionHandler : MonoBehaviour
         if (other.CompareTag("Player")) // When the player comes near
         {
             canOpen = true;
+            spriteRenderer.sprite = changedImage;
         }
     }
 
@@ -43,6 +51,7 @@ public class InteractionHandler : MonoBehaviour
         {
             canOpen = false;
             ClosePanel();
+            spriteRenderer.sprite = defaultImage;
         }
     }
 

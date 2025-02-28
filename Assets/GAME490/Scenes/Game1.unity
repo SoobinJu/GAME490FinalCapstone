@@ -415,6 +415,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   panel: {fileID: 1308956097}
+  defaultImage: {fileID: 21300000, guid: 88657c91e9a21d344b109e71e7997f67, type: 3}
+  changedImage: {fileID: 21300000, guid: 76a89c5f1aad2f34fb4e1a71fc70e1f0, type: 3}
 --- !u!61 &34976753
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3452,7 +3454,7 @@ MonoBehaviour:
   - "Since the murder, my dreams have become vivid and frequent at night. Maybe it\u2019s
     stress....I\u2019ve noticed more white hair. "
   - 'Oh, someone in (building name) might know something. You should check it out! '
-  wordSpeed: 0.05
+  wordSpeed: 0.02
   playerIsClose: 0
   timeBetweenLines: 2
   NextButton: {fileID: 1159485816}
@@ -3981,7 +3983,7 @@ MonoBehaviour:
   - 'Oh, so my house is the last stop? '
   - "That means you\u2019ll be heading back to the government office after this.
     Please catch the culprit, Sir Magistrate! "
-  wordSpeed: 0.05
+  wordSpeed: 0.02
   playerIsClose: 0
   timeBetweenLines: 3
   NextButton: {fileID: 1336250358}
@@ -4895,6 +4897,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   panel: {fileID: 1374239419}
+  defaultImage: {fileID: 21300000, guid: fbcb86f2cd0f5d24db627a8a5b166fbc, type: 3}
+  changedImage: {fileID: 21300000, guid: 8341028a0bc2c084095df886ac953452, type: 3}
 --- !u!61 &769912696
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6203,7 +6207,7 @@ Transform:
   m_GameObject: {fileID: 888011529}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 136.7, y: 4.6, z: 0}
+  m_LocalPosition: {x: 136.13, y: 3.43, z: 0}
   m_LocalScale: {x: 0.72, y: 0.72, z: 0.72}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -6223,6 +6227,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   panel: {fileID: 57940217}
+  defaultImage: {fileID: 21300000, guid: fbcb86f2cd0f5d24db627a8a5b166fbc, type: 3}
+  changedImage: {fileID: 21300000, guid: 8341028a0bc2c084095df886ac953452, type: 3}
 --- !u!61 &888011532
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6654,7 +6660,7 @@ MonoBehaviour:
     sunsets. They say the sun can lighten hair, you know? "
   - "I heard about the murder\u2026 As a vegetarian, I can\u2019t understand harming
     another being. It\u2019s truly shocking. "
-  wordSpeed: 0.05
+  wordSpeed: 0.02
   playerIsClose: 1
   timeBetweenLines: 2
   NextButton: {fileID: 1838172786}
@@ -12323,7 +12329,7 @@ MonoBehaviour:
     organs. Oh, my white hair? It started turning white because I wander around at
     night stargazing. "
   - "But now, with a murder case, I guess I\u2019ll have to stop. Good luck! "
-  wordSpeed: 0.05
+  wordSpeed: 0.02
   playerIsClose: 1
   timeBetweenLines: 2
   NextButton: {fileID: 979542342}
