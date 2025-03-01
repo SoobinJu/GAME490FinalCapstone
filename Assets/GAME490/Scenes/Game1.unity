@@ -7623,6 +7623,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8079241722019055603, guid: c1d63bf7dac706f42ae38649e0c67a59, type: 3}
+      propertyPath: JumpSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 1da3470055bfb9d46a9bf955e11db2b9, type: 3}
     - target: {fileID: 8079241722019055608, guid: c1d63bf7dac706f42ae38649e0c67a59, type: 3}
       propertyPath: m_LocalPosition.x
       value: 2.56
@@ -12722,7 +12726,7 @@ PrefabInstance:
     - target: {fileID: 4961671108055503357, guid: 9cd3049a40bb4fd499333b64ddb08f4b, type: 3}
       propertyPath: gameManager
       value: 
-      objectReference: {fileID: 2103214003}
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 4961671108055503357, guid: 9cd3049a40bb4fd499333b64ddb08f4b, type: 3}
     m_RemovedGameObjects: []
@@ -14770,7 +14774,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2103214001}
   - component: {fileID: 2103214002}
-  - component: {fileID: 2103214003}
   m_Layer: 0
   m_Name: DontDestroy
   m_TagString: Untagged
@@ -14810,18 +14813,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IncludeChild: 0
   objectID: 
---- !u!114 &2103214003
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2103214000}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6bbcb740a05b9c1498b176962a4fbcdc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2119474269
 GameObject:
   m_ObjectHideFlags: 0

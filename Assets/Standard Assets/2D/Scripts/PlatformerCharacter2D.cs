@@ -33,7 +33,8 @@ namespace UnityStandardAssets._2D
             m_Anim = GetComponent<Animator>();
             m_Rigidbody2D = GetComponent<Rigidbody2D>();
 
-            audioSource = gameObject.GetComponent<AudioSource>();
+            audioSource = gameObject.AddComponent<AudioSource>();
+            //audioSource = gameObject.GetComponent<AudioSource>();
         }
 
 
