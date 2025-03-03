@@ -27,6 +27,12 @@ public class PlayerHealth : MonoBehaviour
         health = Mathf.Clamp(health, 0, maxHealth);
 
         UpdateHealthbar();
+
+        if (SceneManager.GetActiveScene().name == "Game3")
+        {
+            health = maxHealth;
+            UpdateHealthbar();
+        }
     }
 
     private void UpdateHealthbar()
