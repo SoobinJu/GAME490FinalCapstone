@@ -55,9 +55,18 @@ public class GanakEntrance : MonoBehaviour
     {
             GameProgressTracker tracker = FindObjectOfType<GameProgressTracker>();
 
-            if (tracker != null && tracker.CanEnterGanak())
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+
+        if (tracker != null && tracker.CanEnterGanak())
             {
-                Debug.Log("Entering Ganak...");
+            // Save the player's current position BEFORE entering the building
+            PlayerPrefs.SetFloat("LastExitX", player.transform.position.x);
+            PlayerPrefs.SetFloat("LastExitY", player.transform.position.y);
+            PlayerPrefs.SetInt("ReturningFromBuilding", 1); // Mark that we are returning
+            PlayerPrefs.Save();
+            Debug.Log("Saved Player Entrance Position BEFORE entering building: X=" + player.transform.position.x + " Y=" + player.transform.position.y);
+
+            Debug.Log("Entering Ganak...");
                 SceneManager.LoadScene(ganakSceneIndex);
             }
             else
