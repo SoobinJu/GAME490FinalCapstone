@@ -3,6 +3,16 @@ using UnityEngine.SceneManagement;
 
 public class SaveManager : MonoBehaviour
 {
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.F1)) // F1을 누르면 저장 초기화
+        {
+            PlayerPrefs.DeleteAll();
+            PlayerPrefs.Save();
+            Debug.Log("All data was deleted");
+        }
+    }
+
     public void SaveGame()
     {
         // 현재 씬 이름 저장
