@@ -3380,12 +3380,13 @@ MonoBehaviour:
   DialoguePanel: {fileID: 2711484}
   DialogueText: {fileID: 1940337795}
   dialogue:
-  - "My lord! Welcome to my humble home. It looks worse, doesn\u2019t it? "
-  - 'The straw roof and mud walls age quickly compared to tile-roofed houses. '
-  - "Have you had dinner? I\u2019m thinking of having liver."
-  - "Since the murder, my dreams have become vivid and frequent at night. Maybe it\u2019s
-    stress....I\u2019ve noticed more white hair. "
-  - 'Oh, someone at the pavilion might know something. You should check it out! '
+  - "My lord! Welcome to my humble home straw-roofed house! It looks worse, doesn\u2019t
+    it? The straw roof and mud walls age quickly compared to tile-roofed houses. "
+  - The sun looks beautiful today. I love watching it, but the murder case in the
+    village is terrifying. I even saw the crime scene and almost fainted from the
+    sight of blood.
+  - Oh, I heard something is written at Straw-roofed House. You should check it out!
+    Stay strong, Sir Magistrate!
   wordSpeed: 0.02
   playerIsClose: 0
   timeBetweenLines: 2
@@ -3909,16 +3910,16 @@ MonoBehaviour:
   DialoguePanel: {fileID: 154211185}
   DialogueText: {fileID: 1380747327}
   dialogue:
-  - 'Ah, Sir Magistrate! This pavilion was recently built in a scenic spot for people
-    to relax and enjoy the view. '
-  - 'It may look like a hut, but the colorful tiles give it an elegant touch. Feel
+  - Ah, Sir Magistrate! What brings you to this pavilion? You know it was recently
+    built in a scenic spot for people to relax and enjoy the view.
+  - ' It may look like a hut, but the colorful tiles give it an elegant touch. Feel
     free to rest here anytime! '
-  - 'The sun looks beautiful today. I love watching it, but the murder case in the
-    village is terrifying. I even saw the crime scene and almost fainted from the
-    sight of blood. '
-  - 'Oh, so my house is the last stop? '
-  - "That means you\u2019ll be heading back to the government office after this.
-    Please catch the culprit, Sir Magistrate! "
+  - "Ah, it\u2019s been a while! My hair\u2019s brown now maybe from watching and
+    staying too much under the sunsets. I heard some say the sun can lighten hair,
+    you know? "
+  - "Also, I heard about the murder\u2026 As a vegetarian, I can\u2019t understand
+    harming another being. It\u2019s truly shocking"
+  - ' If you need more clues, check Pavilion. You might find something useful! '
   wordSpeed: 0.02
   playerIsClose: 0
   timeBetweenLines: 3
@@ -6514,12 +6515,15 @@ MonoBehaviour:
   DialoguePanel: {fileID: 1721570840}
   DialogueText: {fileID: 1086321985}
   dialogue:
-  - "Hello, Sir Magistrate! I just moved in. It\u2019s not as grand as my old home,
-    but the black clay tiles give it a noble, luxurious feel, don\u2019t they? "
-  - "Ah, it\u2019s been a while! My hair\u2019s brown now\u2014maybe from watching
-    sunsets. They say the sun can lighten hair, you know? "
-  - "I heard about the murder\u2026 As a vegetarian, I can\u2019t understand harming
-    another being. It\u2019s truly shocking. "
+  - "Hello, Sir Magistrate! I just moved into a tiled roofed house. It\u2019s not
+    as grand as my old home, but the black clay tiles give it a noble, luxurious
+    feel, don\u2019t they? "
+  - " By the way, I\u2019m feeling hungry\u2026 Maybe I\u2019ll have liver or internal
+    organs. Oh, my white hair? It started turning white because I wander around at
+    night stargazing. But now, with a murder case, I guess I\u2019ll have to stop.
+    Good luck!"
+  - "Oh, and since it\u2019s your first time, make sure to find the Hunminjeongeum
+    books on the road,  and try to solve the mysteries. They will definitely be helpful! "
   wordSpeed: 0.02
   playerIsClose: 1
   timeBetweenLines: 2
@@ -12198,17 +12202,19 @@ MonoBehaviour:
   DialoguePanel: {fileID: 782163267}
   DialogueText: {fileID: 1309361994}
   dialogue:
-  - 'Ah, Sir Magistrate (Deokchil-nim)! I heard something that might help your investigation. '
-  - 'Each house and building has strange documents with clues solving them reveals
+  - 'Ah, Sir Magistrate (Deokchil-nim)! I heard something that might help your investigation.
+    Each house and building has strange documents with clues solving them reveals
     clues about the suspect. '
   - "Also, look for two Hunminjeongeum books on the road; they\u2019ll help solve
     the clues. There are three documents in total. Solve them all, gather the clues,
-    and head to the Gwana (government office) to identify the culprit. "
+    and head to the Gwana (government office) to identify the culprit."
   - 'Be careful! You only have 3 chances, and losing all will get you died! '
-  - "By the way, I\u2019m feeling hungry\u2026 Maybe I\u2019ll have liver or internal
-    organs. Oh, my white hair? It started turning white because I wander around at
-    night stargazing. "
-  - "But now, with a murder case, I guess I\u2019ll have to stop. Good luck! "
+  - "Anyways, Have you had dinner? I\u2019m thinking of having liver. Also, since
+    the murder, my dreams have become vivid and frequent at night. Maybe it\u2019s
+    stress"
+  - "I\u2019ve also noticed more white hair or maybe I\u2019m just getting old. "
+  - Oh, come to think of it, I think someone living in a straw-roofed house knows
+    something. How about checking it out?
   wordSpeed: 0.02
   playerIsClose: 1
   timeBetweenLines: 2
