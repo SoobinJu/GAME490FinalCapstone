@@ -486,8 +486,8 @@ RectTransform:
   m_GameObject: {fileID: 671876524}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.9028647, y: 0.9028647, z: 0.9028647}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.66, y: 0.66, z: 0.66}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1691690833}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -516,7 +516,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'As soon as the culprit was revealed, Miho Began to transformed into a
+  m_text: 'As soon as the culprit was revealed, Miho began to transformed into a
     Gumiho, and killed those around her!
 
 
