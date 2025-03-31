@@ -9,8 +9,8 @@ public class TypewriterEffect : MonoBehaviour
     public AudioClip typingSound;
     public Button nextButton;     // 텍스트 끝난 후 보이게
     public Button skipButton;     // 텍스트 출력 중에 미리 보이게
-    public Button saveButton;     // 텍스트 끝난 후 보이게
-    public Button quitButton;     // 텍스트 끝난 후 보이게
+    public Button saveButton;     // 텍스트 끝난 후 보이게 (선택)
+    public Button quitButton;     // 텍스트 끝난 후 보이게 (선택)
     public float typingSpeed = 0.1f;
     public float cursorBlinkSpeed = 0.5f;
 
@@ -21,15 +21,23 @@ public class TypewriterEffect : MonoBehaviour
     private bool showCursor = true;
     private bool isTextComplete = false;
 
-    void Start()
+    void OnEnable()
     {
+        // 디버깅용
+        Debug.Log("Typewriter 시작: " + gameObject.name);
+        Debug.Log("텍스트 길이: " + fullText.Length);
+
         audioSource = GetComponent<AudioSource>();
 
-        // 시작할 때 모든 버튼 숨기기
-        nextButton.gameObject.SetActive(false);
-        skipButton.gameObject.SetActive(false);
-        saveButton.gameObject.SetActive(false);
-        quitButton.gameObject.SetActive(false);
+        currentText = "";
+        isTextComplete = false;
+        showCursor = true;
+
+        // 버튼 숨기기
+        if (nextButton != null) nextButton.gameObject.SetActive(false);
+        if (skipButton != null) skipButton.gameObject.SetActive(false);
+        if (saveButton != null) saveButton.gameObject.SetActive(false);
+        if (quitButton != null) quitButton.gameObject.SetActive(false);
 
         StartCoroutine(ShowText());
         StartCoroutine(BlinkCursor());
@@ -43,11 +51,12 @@ public class TypewriterEffect : MonoBehaviour
             textComponent.text = currentText + (showCursor ? "|" : "");
 
             // 일정 글자 수 후 skip 버튼 표시
-            if (i == 20)
+            if (i == 30 && skipButton != null)
             {
                 skipButton.gameObject.SetActive(true);
             }
 
+            // 타이핑 사운드
             if (typingSound != null && audioSource != null)
             {
                 audioSource.PlayOneShot(typingSound);
@@ -59,17 +68,13 @@ public class TypewriterEffect : MonoBehaviour
         isTextComplete = true;
         showCursor = false;
 
-        nextButton.gameObject.SetActive(true);
+        // 버튼들 표시
+        if (nextButton != null) nextButton.gameObject.SetActive(true);
+        if (saveButton != null) saveButton.gameObject.SetActive(true);
+        if (quitButton != null) quitButton.gameObject.SetActive(true);
+        if (skipButton != null) skipButton.gameObject.SetActive(false);
 
-        if (saveButton != null)
-            saveButton.gameObject.SetActive(true);
-
-        if (quitButton != null)
-            quitButton.gameObject.SetActive(true);
-
-        skipButton.gameObject.SetActive(false);
         textComponent.text = currentText;
-
     }
 
     IEnumerator BlinkCursor()
@@ -82,7 +87,6 @@ public class TypewriterEffect : MonoBehaviour
         }
     }
 
-    // [선택] Skip 버튼 눌렀을 때 바로 전체 텍스트 출력
     public void Skip()
     {
         StopAllCoroutines();
@@ -92,16 +96,9 @@ public class TypewriterEffect : MonoBehaviour
         currentText = fullText;
         textComponent.text = fullText;
 
-        nextButton.gameObject.SetActive(true);
-
-        if (saveButton != null)
-            saveButton.gameObject.SetActive(true);
-
-        if (quitButton != null)
-            quitButton.gameObject.SetActive(true);
-
-        skipButton.gameObject.SetActive(false);
+        if (nextButton != null) nextButton.gameObject.SetActive(true);
+        if (saveButton != null) saveButton.gameObject.SetActive(true);
+        if (quitButton != null) quitButton.gameObject.SetActive(true);
+        if (skipButton != null) skipButton.gameObject.SetActive(false);
     }
-
-
 }
