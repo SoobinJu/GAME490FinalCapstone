@@ -5,28 +5,31 @@ using UnityEngine.UI;
 
 public class TypewriterEffect : MonoBehaviour
 {
-    public TextMeshProUGUI textComponent; // 연결할 TextMeshPro 오브젝트
-    public AudioClip typingSound;         // 타자기 소리
-    public Button[] buttons;             // 여러 버튼 배열
-    public float typingSpeed = 0.1f;      // 글씨가 나오는 속도 (초)
-    public float cursorBlinkSpeed = 0.5f; // 커서 깜박이는 속도 (초)
+    public TextMeshProUGUI textComponent;
+    public AudioClip typingSound;
+    public Button nextButton;     // 텍스트 끝난 후 보이게
+    public Button skipButton;     // 텍스트 출력 중에 미리 보이게
+    public Button saveButton;     // 텍스트 끝난 후 보이게
+    public Button quitButton;     // 텍스트 끝난 후 보이게
+    public float typingSpeed = 0.1f;
+    public float cursorBlinkSpeed = 0.5f;
 
     [TextArea(3, 10)]
-    public string fullText = "";          // Inspector에서 설정 가능한 전체 텍스트
-    private string currentText = "";      // 현재 표시된 텍스트
-    private AudioSource audioSource;      // 오디오 소스
-    private bool showCursor = true;       // 커서 깜박임 상태
-    private bool isTextComplete = false;  // 텍스트 출력 완료 여부
+    public string fullText = "";
+    private string currentText = "";
+    private AudioSource audioSource;
+    private bool showCursor = true;
+    private bool isTextComplete = false;
 
     void Start()
     {
-        audioSource = GetComponent<AudioSource>(); // AudioSource 컴포넌트 가져오기
+        audioSource = GetComponent<AudioSource>();
 
-        // 버튼들 비활성화
-        foreach (var button in buttons)
-        {
-            button.gameObject.SetActive(false);
-        }
+        // 시작할 때 모든 버튼 숨기기
+        nextButton.gameObject.SetActive(false);
+        skipButton.gameObject.SetActive(false);
+        saveButton.gameObject.SetActive(false);
+        quitButton.gameObject.SetActive(false);
 
         StartCoroutine(ShowText());
         StartCoroutine(BlinkCursor());
@@ -36,36 +39,69 @@ public class TypewriterEffect : MonoBehaviour
     {
         for (int i = 0; i <= fullText.Length; i++)
         {
-            currentText = fullText.Substring(0, i); // i번째까지 텍스트 가져오기
-            textComponent.text = currentText + (showCursor ? "|" : ""); // 커서 추가
+            currentText = fullText.Substring(0, i);
+            textComponent.text = currentText + (showCursor ? "|" : "");
 
-            // 타자기 소리 재생
+            // 일정 글자 수 후 skip 버튼 표시
+            if (i == 20)
+            {
+                skipButton.gameObject.SetActive(true);
+            }
+
             if (typingSound != null && audioSource != null)
             {
                 audioSource.PlayOneShot(typingSound);
             }
 
-            yield return new WaitForSeconds(typingSpeed); // 대기 시간
+            yield return new WaitForSeconds(typingSpeed);
         }
 
-        isTextComplete = true; // 텍스트 출력 완료
+        isTextComplete = true;
+        showCursor = false;
 
-        // 버튼들 활성화
-        foreach (var button in buttons)
-        {
-            button.gameObject.SetActive(true);
-        }
+        nextButton.gameObject.SetActive(true);
 
-        textComponent.text = currentText; // 커서를 제거
+        if (saveButton != null)
+            saveButton.gameObject.SetActive(true);
+
+        if (quitButton != null)
+            quitButton.gameObject.SetActive(true);
+
+        skipButton.gameObject.SetActive(false);
+        textComponent.text = currentText;
+
     }
 
     IEnumerator BlinkCursor()
     {
-        while (!isTextComplete) // 텍스트 출력 중에만 커서 깜박임
+        while (!isTextComplete)
         {
-            showCursor = !showCursor; // 커서 상태 반전
-            textComponent.text = currentText + (showCursor ? "|" : ""); // 텍스트 갱신
-            yield return new WaitForSeconds(cursorBlinkSpeed); // 깜박임 속도
+            showCursor = !showCursor;
+            textComponent.text = currentText + (showCursor ? "|" : "");
+            yield return new WaitForSeconds(cursorBlinkSpeed);
         }
     }
+
+    // [선택] Skip 버튼 눌렀을 때 바로 전체 텍스트 출력
+    public void Skip()
+    {
+        StopAllCoroutines();
+
+        isTextComplete = true;
+        showCursor = false;
+        currentText = fullText;
+        textComponent.text = fullText;
+
+        nextButton.gameObject.SetActive(true);
+
+        if (saveButton != null)
+            saveButton.gameObject.SetActive(true);
+
+        if (quitButton != null)
+            quitButton.gameObject.SetActive(true);
+
+        skipButton.gameObject.SetActive(false);
+    }
+
+
 }
