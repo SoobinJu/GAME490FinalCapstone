@@ -59,6 +59,7 @@ public class InteractionHandler : MonoBehaviour
     {
         panel.SetActive(true); // Show the panel
         panelOpen = true;
+        UpdateGamePauseState();
 
         if (!clueFounded)
         {
@@ -84,6 +85,19 @@ public class InteractionHandler : MonoBehaviour
     {
         panel.SetActive(false); // Hide the panel
         panelOpen = false;
+        UpdateGamePauseState();
+    }
+
+    private void UpdateGamePauseState()
+    {
+        if (panel.activeSelf)
+        {
+            Time.timeScale = 0f;
+        }
+        else
+        {
+            Time.timeScale = 1f;
+        }
     }
 }
 

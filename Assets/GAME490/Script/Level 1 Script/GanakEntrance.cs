@@ -76,6 +76,7 @@ public class GanakEntrance : MonoBehaviour
                 {
                     warningPanel.SetActive(true);  // Show warning message
                     isWPanelOpen = true;
+                    UpdateGamePauseState();
                 }
             }
     }
@@ -84,5 +85,18 @@ public class GanakEntrance : MonoBehaviour
     {
         warningPanel.SetActive(false);
         isWPanelOpen = false;
+        UpdateGamePauseState();
+    }
+
+    private void UpdateGamePauseState()
+    {
+        if (warningPanel.activeSelf)
+        {
+            Time.timeScale = 0f;
+        }
+        else
+        {
+            Time.timeScale = 1f;
+        }
     }
 }
