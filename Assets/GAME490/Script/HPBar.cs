@@ -10,7 +10,9 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField]
     private Slider healthBarSlider;     // HealthBar UI (Slider)
 
-    public AudioSource audioSource;     // 충돌 시 재생될 오디오
+    AudioSource audioSource;     // 충돌 시 재생될 오디오
+    public AudioClip DamagedSound;
+    public AudioClip DeadSound;
 
     private Animator animator; // damaged, dead motion
     private Rigidbody2D rb;
@@ -63,7 +65,7 @@ public class PlayerHealth : MonoBehaviour
         // 오디오 재생
         if (audioSource != null)
         {
-            audioSource.Play();
+            audioSource.PlayOneShot(DamagedSound);
         }
     }
 
@@ -84,6 +86,7 @@ public class PlayerHealth : MonoBehaviour
         animator.SetBool("IsDead", true); // dead motion 재생
         StartCoroutine(WaitForDeath()); // 덕칠이 죽는 모션부터 씬 넘어가는 것까지
         GameProgressTracker.Instance?.ResetProgress();
+        audioSource.PlayOneShot(DeadSound);
     }
 
     private IEnumerator WaitForDeath()

@@ -24,6 +24,7 @@ namespace UnityStandardAssets._2D
 
         AudioSource audioSource;
         public AudioClip JumpSound;
+        public AudioClip WalkSound;
 
         private void Awake()
         {
@@ -34,7 +35,6 @@ namespace UnityStandardAssets._2D
             m_Rigidbody2D = GetComponent<Rigidbody2D>();
 
             audioSource = gameObject.AddComponent<AudioSource>();
-            //audioSource = gameObject.GetComponent<AudioSource>();
         }
 
 
@@ -127,6 +127,10 @@ namespace UnityStandardAssets._2D
             Vector3 theScale = transform.localScale;
             theScale.x *= -1;
             transform.localScale = theScale;
+        }
+        public void WalkingSound()
+        {
+            audioSource.PlayOneShot(WalkSound);
         }
     }
 }
