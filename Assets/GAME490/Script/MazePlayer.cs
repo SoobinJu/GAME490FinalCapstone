@@ -3,13 +3,16 @@ using UnityEngine;
 
 namespace MazeTemplate
 {
-    public class PlayerController : MonoBehaviour
+    public class MazePlayer : MonoBehaviour
     {
         private Rigidbody2D rb;
         private float speed = 10f;
 
         private Animator animator;
         private SpriteRenderer spriteRenderer;
+
+        AudioSource audioSource;
+        public AudioClip RunSound;
 
         private void Start()
         {
@@ -18,6 +21,7 @@ namespace MazeTemplate
 
             animator = GetComponent<Animator>();
             spriteRenderer = GetComponent<SpriteRenderer>();
+            audioSource = gameObject.AddComponent<AudioSource>();
         }
 
         private void Update()
@@ -66,6 +70,11 @@ namespace MazeTemplate
             {
                 Destroy(gameObject, 3);
             }
+        }
+
+        public void RunningSound()
+        {
+            audioSource.PlayOneShot(RunSound);
         }
     }
 }

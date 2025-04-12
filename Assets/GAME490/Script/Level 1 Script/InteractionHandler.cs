@@ -12,6 +12,11 @@ public class InteractionHandler : MonoBehaviour
     public Sprite defaultImage;
     public Sprite changedImage;
 
+    AudioSource audioSource;
+    public AudioClip PanelSound;
+
+
+
     private void Start()
     {
         // Hide everything at the start
@@ -19,6 +24,8 @@ public class InteractionHandler : MonoBehaviour
 
         spriteRenderer = GetComponent<SpriteRenderer>();
         spriteRenderer.sprite = defaultImage;
+
+        audioSource = gameObject.AddComponent<AudioSource>();
     }
 
     private void Update()
@@ -28,10 +35,12 @@ public class InteractionHandler : MonoBehaviour
             if (panelOpen)
             {
                 ClosePanel(); // E 키로 패널 닫기
+                audioSource.PlayOneShot(PanelSound);
             }
             else
             {
                 OpenPanel(); // E 키로 패널 열기
+                audioSource.PlayOneShot(PanelSound);
             }
         }
     }

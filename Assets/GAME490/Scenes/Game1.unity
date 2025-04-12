@@ -516,6 +516,7 @@ GameObject:
   - component: {fileID: 34976754}
   - component: {fileID: 34976752}
   - component: {fileID: 34976753}
+  - component: {fileID: 34976755}
   m_Layer: 0
   m_Name: White Fur
   m_TagString: Untagged
@@ -554,6 +555,7 @@ MonoBehaviour:
   panel: {fileID: 1308956097}
   defaultImage: {fileID: 21300000, guid: 88657c91e9a21d344b109e71e7997f67, type: 3}
   changedImage: {fileID: 21300000, guid: 76a89c5f1aad2f34fb4e1a71fc70e1f0, type: 3}
+  PanelSound: {fileID: 8300000, guid: 9db86cd498224fe4b841c0ed5a3f5fd6, type: 3}
 --- !u!61 &34976753
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -651,6 +653,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &34976755
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 34976750}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d8ff08da32ac1a49802c8e0b2967203, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioType: 0
+  playOnStart: 0
 --- !u!4 &37040906 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8475471398585311857, guid: 7c9347a654fc569479fc218013575eae, type: 3}
@@ -5143,6 +5159,7 @@ GameObject:
   - component: {fileID: 769912693}
   - component: {fileID: 769912695}
   - component: {fileID: 769912696}
+  - component: {fileID: 769912697}
   m_Layer: 0
   m_Name: Hunminjeongeum 1
   m_TagString: Untagged
@@ -5233,6 +5250,7 @@ MonoBehaviour:
   panel: {fileID: 1374239419}
   defaultImage: {fileID: 21300000, guid: fbcb86f2cd0f5d24db627a8a5b166fbc, type: 3}
   changedImage: {fileID: 21300000, guid: 8341028a0bc2c084095df886ac953452, type: 3}
+  PanelSound: {fileID: 8300000, guid: 9db86cd498224fe4b841c0ed5a3f5fd6, type: 3}
 --- !u!61 &769912696
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5278,6 +5296,20 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.62, y: 2.2}
   m_EdgeRadius: 0
+--- !u!114 &769912697
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 769912692}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d8ff08da32ac1a49802c8e0b2967203, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioType: 0
+  playOnStart: 0
 --- !u!1 &771635965
 GameObject:
   m_ObjectHideFlags: 0
@@ -6585,6 +6617,7 @@ GameObject:
   - component: {fileID: 888011533}
   - component: {fileID: 888011531}
   - component: {fileID: 888011532}
+  - component: {fileID: 888011534}
   m_Layer: 0
   m_Name: Hunminjeongeum 2
   m_TagString: Untagged
@@ -6623,6 +6656,7 @@ MonoBehaviour:
   panel: {fileID: 1018976598}
   defaultImage: {fileID: 21300000, guid: fbcb86f2cd0f5d24db627a8a5b166fbc, type: 3}
   changedImage: {fileID: 21300000, guid: 8341028a0bc2c084095df886ac953452, type: 3}
+  PanelSound: {fileID: 8300000, guid: 9db86cd498224fe4b841c0ed5a3f5fd6, type: 3}
 --- !u!61 &888011532
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6720,6 +6754,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &888011534
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 888011529}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d8ff08da32ac1a49802c8e0b2967203, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioType: 0
+  playOnStart: 0
 --- !u!1 &904570802
 GameObject:
   m_ObjectHideFlags: 0

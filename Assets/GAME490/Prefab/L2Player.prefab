@@ -343,6 +343,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   JumpSound: {fileID: 0}
+  WalkSound: {fileID: 0}
 --- !u!114 &8790977938111875413
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -412,3 +413,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 792361d576068bb4b8d4809f5d796518, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  RunSound: {fileID: 0}

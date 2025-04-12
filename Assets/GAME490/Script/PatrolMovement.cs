@@ -12,10 +12,14 @@ public class PatrolMovement : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private Rigidbody2D rb;
 
+    AudioSource audioSource;
+    public AudioClip attackSound;
+
     private void Start()
     {
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        audioSource = gameObject.AddComponent<AudioSource>();
 
         rb = GetComponent<Rigidbody2D>();
         rb.gravityScale = 0;
@@ -29,10 +33,11 @@ public class PatrolMovement : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        // 적과 충돌 시 체력 감소
+        // 적과 충돌 시 공격 모션 재생
         if (collision.CompareTag("Player"))
         {
             animator.SetBool("IsAttacking", true);
+            audioSource.PlayOneShot(attackSound);
         }
     }
 
