@@ -47,7 +47,8 @@ public class QuizChance : MonoBehaviour
         if (chances <= 0)
         {
             Debug.Log("Game Over! No chances left.");
-            yield return new WaitForSeconds(2f);
+            Time.timeScale = 1f;
+            yield return new WaitForSeconds(1f);
             SceneManager.LoadScene("LoseScene");
         }
     }

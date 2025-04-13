@@ -4,6 +4,7 @@ using TMPro;
 using System.Collections;
 using UnityEngine.EventSystems;
 using System.Collections.Generic;
+using static UnityEngine.Rendering.DebugUI;
 
 
 public class SuspectHandler : MonoBehaviour
@@ -13,17 +14,25 @@ public class SuspectHandler : MonoBehaviour
 
     private int chances; // Total chances
 
+    AudioSource audioSource;
+    public AudioClip correctSound;
+    public AudioClip wrongSound;
+
+    bool isClikable = true;
+
     private void Start()
     {
         // 🛑 Always load chances from PlayerPrefs (default to 3 if no value exists)
         chances = PlayerPrefs.GetInt("Chances", 3);
         UpdateChancesText();
+        
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void Update()
     {
         // Detect mouse click
-        if (Input.GetMouseButtonDown(0))
+        if (isClikable && Input.GetMouseButtonDown(0))
         {
             DetectSuspectClick();
         }
@@ -45,7 +54,7 @@ public class SuspectHandler : MonoBehaviour
             if (result.gameObject.CompareTag("Suspect")) // Make sure suspects have the "Suspect" tag
             {
                 Debug.Log("Clicked on: " + result.gameObject.name);
-                ChooseSuspect(result.gameObject.name);
+                Correct(result.gameObject.name);
                 return;
             }
         }
@@ -53,9 +62,12 @@ public class SuspectHandler : MonoBehaviour
         Debug.Log("❌ No suspect detected! UI blocking.");
     }
 
+    public void Correct(string suspectName)
+    {
+        StartCoroutine(ChooseSuspect(suspectName));
+    }
 
-
-    public void ChooseSuspect(string suspectName)
+    private IEnumerator ChooseSuspect(string suspectName)
     {
         if (suspectName == correctSuspect)
         {
@@ -63,7 +75,11 @@ public class SuspectHandler : MonoBehaviour
             PlayerPrefs.SetInt("Chances", chances);
             PlayerPrefs.Save();
 
+            audioSource.PlayOneShot(correctSound);
             Debug.Log("✅ Correct! Moving to next level...");
+            isClikable = false;
+            Time.timeScale = 1f;
+            yield return new WaitForSeconds(1f);
             SceneManager.LoadScene("Narration2"); // Go to the next scene
         }
         else
@@ -74,11 +90,12 @@ public class SuspectHandler : MonoBehaviour
 
     public void StartDecreaseChances()
     {
-        DecreaseChances();
+        StartCoroutine(DecreaseChances());
     }
 
-    private void DecreaseChances()
+    private IEnumerator DecreaseChances()
     {
+        audioSource.PlayOneShot(wrongSound);
         // ❌ When player chooses the wrong suspect, decrease chances
         chances--;
         PlayerPrefs.SetInt("Chances", chances); // 🔹 Save updated chances
@@ -89,6 +106,9 @@ public class SuspectHandler : MonoBehaviour
         if (chances <= 0)
         {
             Debug.Log("💀 Game Over! No chances left.");
+            isClikable = false;
+            Time.timeScale = 1f;
+            yield return new WaitForSeconds(1f);
             SceneManager.LoadScene("LoseScene"); // Go to the Lose scene
         }
     }
