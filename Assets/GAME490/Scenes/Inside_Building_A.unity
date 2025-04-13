@@ -898,6 +898,7 @@ GameObject:
   m_Component:
   - component: {fileID: 427012226}
   - component: {fileID: 427012225}
+  - component: {fileID: 427012227}
   m_Layer: 0
   m_Name: Background Music
   m_TagString: Untagged
@@ -1016,6 +1017,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &427012227
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 427012224}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d8ff08da32ac1a49802c8e0b2967203, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioType: 1
+  playOnStart: 0
 --- !u!1 &428962122
 GameObject:
   m_ObjectHideFlags: 0
@@ -2628,7 +2643,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   healthBarSlider: {fileID: 700320239}
-  audioSource: {fileID: 0}
+  DamagedSound: {fileID: 0}
+  DeadSound: {fileID: 0}
+  RunSound: {fileID: 0}
 --- !u!114 &854383818
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2654,6 +2671,7 @@ GameObject:
   - component: {fileID: 941215610}
   - component: {fileID: 941215609}
   - component: {fileID: 941215608}
+  - component: {fileID: 941215612}
   m_Layer: 0
   m_Name: Research Material A
   m_TagString: Untagged
@@ -2721,6 +2739,7 @@ MonoBehaviour:
   panel: {fileID: 85535545}
   defaultImage: {fileID: 21300000, guid: 8cba61571367df840b0563a8599d0030, type: 3}
   changedImage: {fileID: 21300000, guid: eb5b1dbfedbe96144bac0a1296835302, type: 3}
+  PanelSound: {fileID: 8300000, guid: 9db86cd498224fe4b841c0ed5a3f5fd6, type: 3}
 --- !u!212 &941215610
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2789,6 +2808,20 @@ Transform:
   - {fileID: 85535549}
   m_Father: {fileID: 371663741}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &941215612
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 941215607}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d8ff08da32ac1a49802c8e0b2967203, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioType: 0
+  playOnStart: 0
 --- !u!1 &966989571
 GameObject:
   m_ObjectHideFlags: 0
@@ -4460,6 +4493,7 @@ GameObject:
   - component: {fileID: 1622094374}
   - component: {fileID: 1622094373}
   - component: {fileID: 1622094372}
+  - component: {fileID: 1622094376}
   m_Layer: 0
   m_Name: Human liver
   m_TagString: Untagged
@@ -4527,6 +4561,7 @@ MonoBehaviour:
   panel: {fileID: 980551410}
   defaultImage: {fileID: 21300000, guid: 316879e3aca4e8148a8b399f6fcdce9f, type: 3}
   changedImage: {fileID: 21300000, guid: 0765043fbe541f84284ded7c2ae3ea48, type: 3}
+  PanelSound: {fileID: 8300000, guid: 9db86cd498224fe4b841c0ed5a3f5fd6, type: 3}
 --- !u!212 &1622094374
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4595,6 +4630,20 @@ Transform:
   - {fileID: 980551414}
   m_Father: {fileID: 371663741}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 6.684}
+--- !u!114 &1622094376
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1622094371}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d8ff08da32ac1a49802c8e0b2967203, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioType: 0
+  playOnStart: 0
 --- !u!1 &1636314578
 GameObject:
   m_ObjectHideFlags: 0

@@ -20,10 +20,17 @@ public class Inventory : MonoBehaviour
     private bool IsAttackzone = false;
     private Rigidbody2D rb;
 
+    AudioSource audioSource;
+    public AudioClip amuletSound;
+    public AudioClip swordSound;
+    public AudioClip swingSound;
+
+
     private void Start()
     {
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     // 특정 시점에서 호출
@@ -91,10 +98,12 @@ public class Inventory : MonoBehaviour
             if(collectible is AmuletCollectible)
             {
                 Amulet++;
+                audioSource.PlayOneShot(amuletSound);
             }
             else if (collectible is SwordCollectible)
             {
                 Sword++;
+                audioSource.PlayOneShot(swordSound);
             }
             UpdateGUI();
         }
@@ -103,6 +112,7 @@ public class Inventory : MonoBehaviour
     private void UseAttack()
     {
         animator.SetBool("IsAttacking", true);
+        audioSource.PlayOneShot(swingSound);
     }
 
     private void UpdateGUI()
@@ -110,6 +120,8 @@ public class Inventory : MonoBehaviour
         SwordCounter.text = Sword.ToString();
         AmuletCounter.text = Amulet.ToString(); 
     }
+
+
 }
 
 

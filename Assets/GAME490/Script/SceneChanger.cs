@@ -8,22 +8,22 @@ public class SceneChanger : MonoBehaviour
     public string ScenetoGo;
 
     public GameObject target;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     public void GoScene()
     {
+
+        StartCoroutine(GoSceneCoroutine());
+    }
+
+    private IEnumerator GoSceneCoroutine()
+    {
+        // 2√  ¥Î±‚
+        yield return new WaitForSeconds(0.5f);
+
         Debug.Log("Going to: " + ScenetoGo);
         SceneManager.LoadScene(ScenetoGo);
     }
+
     public void changeactive(bool active)
     {
         if(active == true)

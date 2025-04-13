@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 using UnityEngine.SceneManagement;
 
 public class SaveManager : MonoBehaviour
@@ -25,19 +26,26 @@ public class SaveManager : MonoBehaviour
 
     public void LoadGame()
     {
+        StartCoroutine(LoadGameCoroutine());
+    }
+
+    private IEnumerator LoadGameCoroutine()
+    {
+        // 2초 대기
+        yield return new WaitForSeconds(0.5f);
+
         // 저장된 씬 이름 가져오기
         if (PlayerPrefs.HasKey("SavedScene"))
         {
             string savedScene = PlayerPrefs.GetString("SavedScene");
-            SceneManager.LoadScene(savedScene); // 저장된 씬으로 이동
-            Debug.Log("Loading Saved Scene: " + savedScene);
+            Debug.Log("Loading Saved Scene after delay: " + savedScene);
+            SceneManager.LoadScene(savedScene);
         }
         else
         {
-            // 저장된 데이터가 없으면 기본 첫 번째 레벨로 이동
-            SceneManager.LoadScene("Narration1");
-            Debug.Log("No saved game found. Starting from Narration1");
+            Debug.Log("No saved game found. Starting from Narration1 after delay");
             ResetGame();
+            SceneManager.LoadScene("Narration1");
         }
     }
 
@@ -47,5 +55,4 @@ public class SaveManager : MonoBehaviour
         PlayerPrefs.Save();
         Debug.Log("All game data has been deleted.");
     }
-
 }
