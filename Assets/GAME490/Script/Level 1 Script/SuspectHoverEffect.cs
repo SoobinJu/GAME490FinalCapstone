@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using UnityEngine.UI; // ✅ Import UI for Image
+using UnityEngine.EventSystems;
 
-public class SuspectHoverEffect : MonoBehaviour
+public class SuspectHoverEffect : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     private Image suspectImage; // Change from SpriteRenderer to Image
     public Color hoverColor = Color.gray; // Color on hover
@@ -16,7 +17,7 @@ public class SuspectHoverEffect : MonoBehaviour
         }
     }
 
-    private void OnMouseEnter()
+    /*private void OnMouseEnter()
     {
         if (suspectImage != null)
         {
@@ -25,6 +26,22 @@ public class SuspectHoverEffect : MonoBehaviour
     }
 
     private void OnMouseExit()
+    {
+        if (suspectImage != null)
+        {
+            suspectImage.color = originalColor;
+        }
+    }*/
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        if (suspectImage != null)
+        {
+            suspectImage.color = hoverColor;
+        }
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
     {
         if (suspectImage != null)
         {
