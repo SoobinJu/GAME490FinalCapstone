@@ -3791,7 +3791,7 @@ MonoBehaviour:
     sight of blood.
   - Oh, I heard something is written at Straw-roofed House. You should check it out!
     Stay strong, Sir Magistrate!
-  wordSpeed: 0.08
+  wordSpeed: 0.04
   playerIsClose: 0
   timeBetweenLines: 2
   NextButton: {fileID: 1159485816}
@@ -4605,7 +4605,7 @@ MonoBehaviour:
   - "Also, I heard about the murder\u2026 As a vegetarian, I can\u2019t understand
     harming another being. It\u2019s truly shocking"
   - ' If you need more clues, check Pavilion. You might find something useful! '
-  wordSpeed: 0.08
+  wordSpeed: 0.04
   playerIsClose: 0
   timeBetweenLines: 3
   NextButton: {fileID: 1336250358}
@@ -7903,7 +7903,7 @@ MonoBehaviour:
     Good luck!"
   - "Oh, and since it\u2019s your first time, make sure to find the Hunminjeongeum
     books on the road,  and try to solve the mysteries. They will definitely be helpful! "
-  wordSpeed: 0.08
+  wordSpeed: 0.04
   playerIsClose: 1
   timeBetweenLines: 2
   NextButton: {fileID: 1838172786}
@@ -14042,7 +14042,7 @@ MonoBehaviour:
   - "I\u2019ve also noticed more white hair or maybe I\u2019m just getting old. "
   - Oh, come to think of it, I think someone living in a straw-roofed house knows
     something. How about checking it out?
-  wordSpeed: 0.08
+  wordSpeed: 0.04
   playerIsClose: 1
   timeBetweenLines: 2
   NextButton: {fileID: 979542342}
