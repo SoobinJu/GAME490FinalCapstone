@@ -1,150 +1,171 @@
-using System.Collections;
+Ôªøusing System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class NPC : MonoBehaviour
 {
-    public GameObject DialoguePanel; // ¿Ã NPC¿« ¥Î»≠ ∆–≥Œ
-    public Text DialogueText;        // ¿Ã NPC¿« ¥Î»≠ ≈ÿΩ∫∆Æ
-    public string[] dialogue;        // ¿Ã NPC¿« ¥Î»≠ ≥ªøÎ
+    public GameObject DialoguePanel;
+    public Text DialogueText;
+    public string[] dialogue;
     private int index;
 
-    public float wordSpeed = 0.05f;  // ±€¿⁄ ≈∏¿Ã«Œ º”µµ
-    public bool playerIsClose = false; // «√∑π¿ÃæÓ∞° ∞°±Ó¿Ã ¿÷¥¬¡ˆ √º≈©
-    public float timeBetweenLines = 2f; // «— ¥Î»≠ ∂Û¿Œ ªÁ¿Ã¿« Ω√∞£
+    public float wordSpeed = 0.05f;
+    public bool playerIsClose = false;
+    public float timeBetweenLines = 2f;
 
-    private bool isTyping = false;    // «ˆ¿Á ≈∏¿Ã«Œ ¡ﬂ¿Œ¡ˆ √º≈©
-    private bool isDialogueFinished = false; // ¥Î»≠∞° ≥°≥µ¥¬¡ˆ √º≈©
+    private bool isTyping = false;
+    private bool isDialogueFinished = false;
+    private bool skipRequested = false;
 
-    public Button NextButton; // ¥Ÿ¿Ω ¥Î»≠∑Œ ≥—æÓ∞°¥¬ πˆ∆∞
+    public Button NextButton;
+    public Button SkipButton; // ‚úÖ Skip Î≤ÑÌäº Ï∂îÍ∞Ä
 
     void Start()
     {
-        // « ø‰«— ¬¸¡∂∞° æ¯¿∏∏È ø¿∑˘ ∑Œ±◊ √‚∑¬
-        if (DialoguePanel == null || DialogueText == null || NextButton == null)
+        if (DialoguePanel == null || DialogueText == null || NextButton == null || SkipButton == null)
         {
             Debug.LogError("Missing reference(s) in the NPC script.");
             return;
         }
 
-        // √ ±‚ º≥¡§: ¥Î»≠ ∆–≥Œ∞˙ πˆ∆∞¿ª º˚±È¥œ¥Ÿ.
         DialoguePanel.SetActive(false);
         NextButton.gameObject.SetActive(false);
-        NextButton.onClick.AddListener(NextLine); // πˆ∆∞ ≈¨∏Ø Ω√ NextLine ∏ﬁº≠µÂ Ω««‡
+        SkipButton.gameObject.SetActive(false); // ÏãúÏûë Ïãú Ïà®ÍπÄ
+
+        NextButton.onClick.AddListener(NextLine);
+        SkipButton.onClick.AddListener(() => skipRequested = true);
     }
 
     void Update()
     {
-        // «√∑π¿ÃæÓ∞° ∞°±Ó¿Ã ¿÷∞Ì ¥Î»≠∞° ≥°≥µ¿ª ∂ß∏∏ πˆ∆∞¿ª ∫∏¿Ã∞‘ «’¥œ¥Ÿ.
-        if (playerIsClose && DialoguePanel.activeInHierarchy && isDialogueFinished)
+        if (playerIsClose && DialoguePanel.activeInHierarchy)
         {
-            NextButton.gameObject.SetActive(true); // ¥Î»≠∞° ≥°≥≠ »ƒ πˆ∆∞ »∞º∫»≠
-
             if (Input.GetKeyDown(KeyCode.E))
             {
-                NextLine();
+                if (isTyping)
+                {
+                    skipRequested = true;
+                }
+                else if (isDialogueFinished)
+                {
+                    NextLine();
+                }
+            }
+
+            // Next Î≤ÑÌäºÏùÄ ÎåÄÌôî ÎÅùÎÇ¨ÏùÑ ÎïåÎßå ÌôúÏÑ±Ìôî
+            if (isDialogueFinished)
+            {
+                NextButton.gameObject.SetActive(true);
+            }
+            else
+            {
+                NextButton.gameObject.SetActive(false);
             }
         }
     }
 
     public void zeroText()
     {
-        // ¥Î»≠ ¡æ∑· Ω√ √ ±‚»≠
         if (DialogueText != null)
         {
             DialogueText.text = "";
         }
 
         index = 0;
-        DialoguePanel.SetActive(false); // ¥Î»≠ ¡æ∑· »ƒ ∆–≥Œ º˚±‚±‚
-        NextButton.gameObject.SetActive(false); // πˆ∆∞µµ º˚±‚±‚
+        DialoguePanel.SetActive(false);
+        NextButton.gameObject.SetActive(false);
+        SkipButton.gameObject.SetActive(false);
     }
 
     IEnumerator Typing()
     {
-        // ¬¸¡∂∞° æ¯¿∏∏È πŸ∑Œ ¡æ∑·
-        if (DialogueText == null || NextButton == null)
-        {
+        if (DialogueText == null || NextButton == null || SkipButton == null)
             yield break;
-        }
 
         isTyping = true;
         isDialogueFinished = false;
+        skipRequested = false;
+        DialogueText.text = "";
 
-        DialogueText.text = ""; // ¿Ã¿¸ ¥Î»≠ ≈ÿΩ∫∆Æ ¡ˆøÏ±‚
+        SkipButton.gameObject.SetActive(false); // ÏãúÏûëÌï† Îïå Ìï≠ÏÉÅ Ïà®Í∏∞Í∏∞
 
-        // «ˆ¿Á ¥Î»≠ ≥ªøÎ¿Ã ¿÷¿∏∏È √‚∑¬
         if (index >= 0 && index < dialogue.Length)
         {
-            foreach (char letter in dialogue[index].ToCharArray())
+            string currentLine = dialogue[index];
+
+            for (int i = 0; i < currentLine.Length; i++)
             {
-                DialogueText.text += letter;
-                yield return new WaitForSeconds(wordSpeed); // ±€¿⁄ ≈∏¿Ã«Œ ∞£∞›
+                if (skipRequested)
+                {
+                    DialogueText.text = currentLine;
+                    break;
+                }
+
+                DialogueText.text += currentLine[i];
+
+                // ‚úÖ Í∏ÄÏûê 5Í∞úÏØ§ Ï∂úÎ†•ÎêòÎ©¥ Skip Î≤ÑÌäº Î≥¥Ïó¨Ï§å
+                if (i == 8)
+                {
+                    SkipButton.gameObject.SetActive(true);
+                }
+
+                yield return new WaitForSeconds(wordSpeed);
             }
         }
 
         isTyping = false;
         isDialogueFinished = true;
+        skipRequested = false;
 
-        // ¥Î»≠∞° ≥°≥µ¿ª ∂ß πˆ∆∞ »∞º∫»≠
-        if (NextButton != null)
-        {
-            NextButton.gameObject.SetActive(true);
-        }
+        SkipButton.gameObject.SetActive(false); // ‚úÖ Î¨∏Ïû• ÎÅùÎÇòÎ©¥ Skip Î≤ÑÌäº Ïà®ÍπÄ
+        NextButton.gameObject.SetActive(true);  // ‚úÖ Îã§Ïùå Î≤ÑÌäº ÌôúÏÑ±Ìôî
     }
 
     public void NextLine()
     {
-        // ≈∏¿Ã«Œ ¡ﬂ¿Ã æ∆¥œ∞Ì, ¥ı ∏π¿∫ ¥Î»≠∞° ¿÷¿ª ∂ß
         if (!isTyping && index < dialogue.Length - 1)
         {
             index++;
-            StartCoroutine(Typing()); // ¥Ÿ¿Ω ¥Î»≠ √‚∑¬
-            if (NextButton != null)
-            {
-                NextButton.gameObject.SetActive(false); // ≈∏¿Ã«Œ ¡ﬂø°¥¬ πˆ∆∞ º˚±‚±‚
-            }
+            StartCoroutine(Typing());
+            NextButton.gameObject.SetActive(false);
         }
-        else if (index >= dialogue.Length - 1) // ∏∂¡ˆ∏∑ ¥Î»≠∞° ≥°≥µ¿ª ∂ß
+        else if (index >= dialogue.Length - 1)
         {
-            zeroText(); // ¥Î»≠ ¡æ∑·
+            zeroText();
         }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        // «√∑π¿ÃæÓ∞° NPCøÕ √Êµπ«œ∏È ¥Î»≠ Ω√¿€
         if (other.CompareTag("Player"))
         {
             playerIsClose = true;
-            DialoguePanel.SetActive(true); // ¥Î»≠ ∆–≥Œ ∫∏¿Ã±‚
-            index = 0; // √π π¯¬∞ ¥Î»≠∫Œ≈Õ Ω√¿€
-            StopAllCoroutines(); // ±‚¡∏ Ω««‡ ¡ﬂ¿Œ ≈∏¿Ã«Œ ƒ⁄∑Á∆æ ¡ﬂ¡ˆ
-            DialogueText.text = ""; // ≈ÿΩ∫∆Æ √ ±‚»≠
-            StartCoroutine(Typing()); // √π π¯¬∞ ¥Î»≠ ∂Û¿Œ √‚∑¬
+            DialoguePanel.SetActive(true);
+            index = 0;
+            StopAllCoroutines();
+            DialogueText.text = "";
+            StartCoroutine(Typing());
         }
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        // «√∑π¿ÃæÓ∞° π¸¿ßø°º≠ π˛æÓ≥™∏È ¥Î»≠ ¡æ∑·
         if (other.CompareTag("Player"))
         {
             playerIsClose = false;
-            zeroText(); // ¥Î»≠ ¡æ∑·
+            zeroText();
         }
     }
 
     public void RestartDialogue()
     {
-        // ¥Î»≠∞° ¡¯«‡ ¡ﬂ¿Ã¡ˆ æ ∞Ì, «√∑π¿ÃæÓ∞° ±Ÿ√≥ø° ¿÷¿ª ∂ß∏∏ ¥Î»≠ Ω√¿€
         if (playerIsClose)
         {
-            DialoguePanel.SetActive(true); // ¥Î»≠ ∆–≥Œ ∫∏¿Ã±‚
-            index = 0; // √π π¯¬∞ ¥Î»≠∫Œ≈Õ Ω√¿€
-            StopAllCoroutines(); // ±‚¡∏ Ω««‡ ¡ﬂ¿Œ ≈∏¿Ã«Œ ƒ⁄∑Á∆æ ¡ﬂ¡ˆ
-            DialogueText.text = ""; // ≈ÿΩ∫∆Æ √ ±‚»≠
-            StartCoroutine(Typing()); // √π π¯¬∞ ¥Î»≠ ∂Û¿Œ √‚∑¬
+            DialoguePanel.SetActive(true);
+            index = 0;
+            StopAllCoroutines();
+            DialogueText.text = "";
+            StartCoroutine(Typing());
         }
     }
 }
