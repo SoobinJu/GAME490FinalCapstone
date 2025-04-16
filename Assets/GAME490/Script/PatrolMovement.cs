@@ -64,12 +64,13 @@ public class PatrolMovement : MonoBehaviour
 
             if (direction > 0)
             {
-                spriteRenderer.flipX = false;
+                transform.localScale = new Vector3(1, 1, 1);  // Face Right
             }
             else if (direction < 0)
             {
-                spriteRenderer.flipX = true; // 왼쪽 이동 시 뒤집기
+                transform.localScale = new Vector3(-1, 1, 1); // Face Left (flipped)
             }
         }
     }
+
 }

@@ -59,4 +59,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/GAME490/Scenes/Credit.unity
     guid: 90fd64dcf28ba094ca164f0cdbc0c242
+  - enabled: 1
+    path: Assets/GAME490/Scenes/Narration3.unity
+    guid: bedb0aafb7c0be045abac0d57aec0953
   m_configObjects: {}
