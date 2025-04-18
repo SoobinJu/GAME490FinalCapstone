@@ -5509,6 +5509,7 @@ GameObject:
   - component: {fileID: 712985450}
   - component: {fileID: 712985451}
   - component: {fileID: 712985452}
+  - component: {fileID: 712985454}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -5560,6 +5561,7 @@ MonoBehaviour:
   lightImage: {fileID: 718412324}
   ableImage: {fileID: 7482667652216324306, guid: 74f062f7f9590af429781fadc63e30ed, type: 3}
   unableImage: {fileID: -2413806693520163455, guid: 45fcd7be3476fb940b39b798f7c8e84f, type: 3}
+  lightSound: {fileID: 8300000, guid: af7ccd7302fb33d4b93b31e965a63ce9, type: 3}
 --- !u!212 &712985452
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5612,6 +5614,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &712985454
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 712985447}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d8ff08da32ac1a49802c8e0b2967203, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioType: 0
+  playOnStart: 0
 --- !u!1 &714257203 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100002, guid: baec086904791744185aaa07a6cf55c2, type: 3}

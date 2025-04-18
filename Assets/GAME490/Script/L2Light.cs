@@ -12,12 +12,17 @@ public class L2Light : MonoBehaviour
     public Sprite ableImage;
     public Sprite unableImage;
 
+    AudioSource audioSource;
+    public AudioClip lightSound;
+
     private int useCount = 0;
     private int maxUses = 2;
     private bool ableE = true;
 
     private void Start()
     {
+        audioSource = gameObject.AddComponent<AudioSource>();
+
         if (lightImage != null)
         {
             lightImage.sprite = ableImage;
@@ -36,7 +41,6 @@ public class L2Light : MonoBehaviour
     {
         if (useCount < maxUses)
         {
-
             useCount++;
             StartCoroutine(TurnOn());
 
@@ -55,6 +59,7 @@ public class L2Light : MonoBehaviour
 
     private IEnumerator TurnOn()
     {
+        audioSource.PlayOneShot(lightSound);
         ableE = false;
         lightEffect.SetActive(false);
         yield return new WaitForSeconds(8f);
