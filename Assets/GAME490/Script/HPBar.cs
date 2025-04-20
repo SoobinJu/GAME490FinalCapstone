@@ -82,7 +82,7 @@ public class PlayerHealth : MonoBehaviour
         return health;
     }
 
-    private void Death()
+    public void Death()
     {
         animator.SetBool("IsDead", true); // dead motion 재생
         StartCoroutine(WaitForDeath()); // 덕칠이 죽는 모션부터 씬 넘어가는 것까지

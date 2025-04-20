@@ -1,5 +1,7 @@
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using System.Collections;
 
 namespace MazeTemplate
 {
@@ -10,6 +12,10 @@ namespace MazeTemplate
 
         private Animator animator;
         private SpriteRenderer spriteRenderer;
+
+        private Vector2 movement;
+
+        public Gumiho_mini gumiho;
 
         private void Start()
         {
@@ -23,11 +29,16 @@ namespace MazeTemplate
         private void Update()
         {
             HandleMovement();
+
+            if (gumiho.isWatching && movement != Vector2.zero)
+            {
+                SceneManager.LoadScene("LoseScene"); // LoseScene은 패배 씬 이름
+            }
         }
 
         private void HandleMovement()
         {
-            Vector2 movement = Vector2.zero;
+            movement = Vector2.zero;
 
             if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W))
             {
@@ -66,6 +77,17 @@ namespace MazeTemplate
             {
                 Destroy(gameObject, 3);
             }
+
+            if (collision.CompareTag("Goal"))
+            {
+                StartCoroutine(Finish());
+            }
+        }
+
+        IEnumerator Finish()
+        {
+            yield return new WaitForSeconds(3f);
+            SceneManager.LoadScene("Game3");
         }
     }
 }

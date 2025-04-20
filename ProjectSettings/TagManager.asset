@@ -18,6 +18,7 @@ TagManager:
   - BuildingSpawnPoint
   - Suspector
   - Suspect
+  - Goal
   layers:
   - Default
   - TransparentFX

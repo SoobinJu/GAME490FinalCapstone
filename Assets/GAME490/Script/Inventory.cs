@@ -12,8 +12,8 @@ public class Inventory : MonoBehaviour
     public Animator MarbleAnimator;
     public GameObject Shatter;
 
-    private int Sword = 2;
-    private int Amulet = 2;
+    private int Sword = 0;
+    private int Amulet = 0;
     private int RequiredItems = 4;
 
     private Animator animator;
@@ -120,8 +120,6 @@ public class Inventory : MonoBehaviour
         SwordCounter.text = Sword.ToString();
         AmuletCounter.text = Amulet.ToString(); 
     }
-
-
 }
 
 
