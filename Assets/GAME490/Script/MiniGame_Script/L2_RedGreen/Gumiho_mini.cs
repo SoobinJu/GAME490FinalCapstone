@@ -9,7 +9,9 @@ public class Gumiho_mini : MonoBehaviour
     public float switchInterval = 3f;
 
     private SpriteRenderer sr;
+    
     public bool isWatching = true;
+    public bool stopWatching = false;
 
     // Start is called before the first frame update
     void Start()
@@ -22,9 +24,20 @@ public class Gumiho_mini : MonoBehaviour
     {
         while (true)
         {
-            isWatching = !isWatching;
-            sr.sprite = isWatching ? frontSprite : backSprite;
+            if (!stopWatching)
+            {
+                isWatching = !isWatching;
+                sr.sprite = isWatching ? frontSprite : backSprite;
+            }
+           
             yield return new WaitForSeconds(switchInterval);
         }
+    }
+
+    public void StopWatching()
+    {
+        stopWatching = true;
+        isWatching = false;
+        sr.sprite = backSprite;
     }
 }

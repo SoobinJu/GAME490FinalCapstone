@@ -15,18 +15,26 @@ public class L2Light : MonoBehaviour
     AudioSource audioSource;
     public AudioClip lightSound;
 
+    public Text lightCounter;
+
     private int useCount = 0;
-    private int maxUses = 2;
+    public static int maxUses = 2;
     private bool ableE = true;
+    private int remained;
 
     private void Start()
     {
+        remained = maxUses - useCount;
+
         audioSource = gameObject.AddComponent<AudioSource>();
 
         if (lightImage != null)
         {
             lightImage.sprite = ableImage;
         }
+
+        UpdateGUI();
+
     }
 
     private void Update()
@@ -42,7 +50,9 @@ public class L2Light : MonoBehaviour
         if (useCount < maxUses)
         {
             useCount++;
+            remained = maxUses - useCount;
             StartCoroutine(TurnOn());
+            UpdateGUI();
 
             if (useCount == maxUses && lightImage != null)
             {
@@ -52,7 +62,7 @@ public class L2Light : MonoBehaviour
         }    
         else
         {
-            Debug.Log("2°³ ´Ù ¾¸");
+            Debug.Log("You used all lights.");
         }
 
     }
@@ -65,5 +75,10 @@ public class L2Light : MonoBehaviour
         yield return new WaitForSeconds(8f);
         lightEffect.SetActive(true);
         ableE = true;
+    }
+
+    public void UpdateGUI()
+    {
+        lightCounter.text = remained.ToString();
     }
 }

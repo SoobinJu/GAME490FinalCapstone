@@ -13,7 +13,6 @@ public class PlayerHealth : MonoBehaviour
     AudioSource audioSource;     // 충돌 시 재생될 오디오
     public AudioClip DamagedSound;
     public AudioClip DeadSound;
-    public AudioClip RunSound;
 
     private Animator animator; // damaged, dead motion
     private Rigidbody2D rb;
@@ -56,7 +55,6 @@ public class PlayerHealth : MonoBehaviour
         // 체력 0이 되면 처리
         if (health <= 0)
         {
-            // 죽으면 안 움직임
             rb.velocity = Vector2.zero;
             rb.constraints = RigidbodyConstraints2D.FreezeAll;
             
@@ -131,10 +129,5 @@ public class PlayerHealth : MonoBehaviour
         {
             TakeDamage(100); // killzone은 완전히
         }
-    }
-
-    public void RunningSound()
-    {
-        audioSource.PlayOneShot(RunSound);
     }
 }

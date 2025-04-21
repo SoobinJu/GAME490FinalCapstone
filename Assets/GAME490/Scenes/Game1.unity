@@ -7831,7 +7831,6 @@ MonoBehaviour:
   healthBarSlider: {fileID: 700320239}
   DamagedSound: {fileID: 8300000, guid: 8b397f73e9ff359429fe5452ddd45134, type: 3}
   DeadSound: {fileID: 8300000, guid: 4a92102883a09e045b5bd32a74397164, type: 3}
-  RunSound: {fileID: 0}
 --- !u!114 &854383818
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20196,15 +20195,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7838186684191709148, guid: 9e2ab563bebb28944b0fe53311780957, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7838186684191709148, guid: 9e2ab563bebb28944b0fe53311780957, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7838186684191709148, guid: 9e2ab563bebb28944b0fe53311780957, type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8324819641645608786, guid: 9e2ab563bebb28944b0fe53311780957, type: 3}
       propertyPath: m_Pivot.x

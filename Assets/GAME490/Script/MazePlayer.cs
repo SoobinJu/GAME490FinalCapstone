@@ -2,6 +2,8 @@ using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections;
+using static UnityEngine.Rendering.DebugUI;
+using Unity.VisualScripting;
 
 namespace MazeTemplate
 {
@@ -16,6 +18,17 @@ namespace MazeTemplate
         private Vector2 movement;
 
         public Gumiho_mini gumiho;
+        public new L2Light light;
+        public Mini_TimeLimit time;
+        public PlayerHealth health;
+
+        public GameObject goalPanel;
+
+        private bool isFinished = false;
+        private bool isDead = false;
+
+        AudioSource audioSource;
+        public AudioClip runSound;
 
         private void Start()
         {
@@ -24,15 +37,24 @@ namespace MazeTemplate
 
             animator = GetComponent<Animator>();
             spriteRenderer = GetComponent<SpriteRenderer>();
+            audioSource = gameObject.AddComponent<AudioSource>();
+
+            goalPanel.SetActive(false);
         }
 
         private void Update()
         {
             HandleMovement();
 
-            if (gumiho.isWatching && movement != Vector2.zero)
+            if (!isDead && gumiho.isWatching && movement != Vector2.zero)
             {
-                SceneManager.LoadScene("LoseScene"); // LoseScene은 패배 씬 이름
+                isDead = true;
+
+                rb.velocity = Vector2.zero;
+                rb.constraints = RigidbodyConstraints2D.FreezeAll;
+
+                time.TimePause();
+                health.Death();
             }
         }
 
@@ -78,16 +100,37 @@ namespace MazeTemplate
                 Destroy(gameObject, 3);
             }
 
-            if (collision.CompareTag("Goal"))
+            if (!isFinished && collision.CompareTag("Goal"))
             {
+                isFinished = true;
+                
                 StartCoroutine(Finish());
+            }
+            if (collision.CompareTag("Trigger"))
+            {
+                SceneManager.LoadScene("Red_Green");
             }
         }
 
         IEnumerator Finish()
         {
+            rb.velocity = Vector2.zero;
+            rb.constraints = RigidbodyConstraints2D.FreezeAll;
+
+            gumiho.StopWatching();
+            time.TimePause();
+
+            goalPanel.SetActive(true);
             yield return new WaitForSeconds(3f);
+
             SceneManager.LoadScene("Game3");
+            L2Light.maxUses++;
+            light.UpdateGUI();
+        }
+
+        public void RunningSound()
+        {
+            audioSource.PlayOneShot(runSound);
         }
     }
 }

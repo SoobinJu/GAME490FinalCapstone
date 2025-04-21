@@ -117,7 +117,7 @@ namespace UnityStandardAssets._2D
             }
         }
 
-
+        
         private void Flip()
         {
             // Switch the way the player is labelled as facing.

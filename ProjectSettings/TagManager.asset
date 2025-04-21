@@ -19,6 +19,7 @@ TagManager:
   - Suspector
   - Suspect
   - Goal
+  - Trigger
   layers:
   - Default
   - TransparentFX
