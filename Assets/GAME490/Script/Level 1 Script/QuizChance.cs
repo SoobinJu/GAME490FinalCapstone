@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
 using UnityEngine.EventSystems;
@@ -10,7 +10,9 @@ public class QuizChance : MonoBehaviour
     public TextMeshProUGUI chancesText;
     private int chances;
 
-    // Start is called before the first frame update
+    // 타이머 연결 추가!
+    public TimedPanelController timerController;
+
     void Start()
     {
         chances = PlayerPrefs.GetInt("Chances", 3);
@@ -44,9 +46,16 @@ public class QuizChance : MonoBehaviour
         UpdateChancesText();
         Debug.Log("Wrong! Chances left: " + chances);
 
+        // 기회가 다 떨어지면 타이머 멈추기!
         if (chances <= 0)
         {
             Debug.Log("Game Over! No chances left.");
+
+            if (timerController != null)
+            {
+                timerController.StopTimer();  //  타이머 멈춤
+            }
+
             Time.timeScale = 1f;
             yield return new WaitForSeconds(1f);
             SceneManager.LoadScene("LoseScene");
