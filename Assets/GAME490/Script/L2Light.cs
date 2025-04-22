@@ -11,6 +11,7 @@ public class L2Light : MonoBehaviour
     public Image lightImage;
     public Sprite ableImage;
     public Sprite unableImage;
+    public GameObject howToPanel;
 
     AudioSource audioSource;
     public AudioClip lightSound;
@@ -20,11 +21,13 @@ public class L2Light : MonoBehaviour
     private int useCount = 0;
     public static int maxUses = 2;
     private bool ableE = true;
-    private int remained;
+    public int remained;
 
     private void Start()
     {
-        remained = maxUses - useCount;
+        LoadInventory();
+
+        useCount = Mathf.Clamp(maxUses - remained, 0, maxUses);
 
         audioSource = gameObject.AddComponent<AudioSource>();
 
@@ -35,11 +38,13 @@ public class L2Light : MonoBehaviour
 
         UpdateGUI();
 
+
+
     }
 
     private void Update()
     {
-        if (ableE && Input.GetKeyDown(KeyCode.E))
+        if (ableE && howToPanel != null && !howToPanel.activeSelf &&Input.GetKeyDown(KeyCode.E))
         {
             DelayLight();
         }
@@ -59,6 +64,7 @@ public class L2Light : MonoBehaviour
                 lightImage.sprite = unableImage;
             }
 
+            SaveInventory();
         }    
         else
         {
@@ -80,5 +86,25 @@ public class L2Light : MonoBehaviour
     public void UpdateGUI()
     {
         lightCounter.text = remained.ToString();
+    }
+
+    public void SaveInventory()
+    {
+        PlayerPrefs.SetInt("LightCount", remained);
+        PlayerPrefs.Save();
+    }
+
+    private void LoadInventory()
+    {
+        if (PlayerPrefs.HasKey("LightCount"))
+        {
+            remained = PlayerPrefs.GetInt("LightCount");
+        }
+        else
+        {
+            remained = maxUses;
+        }
+
+        UpdateGUI();
     }
 }

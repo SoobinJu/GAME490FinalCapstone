@@ -19,10 +19,12 @@ namespace MazeTemplate
 
         public Gumiho_mini gumiho;
         public new L2Light light;
+
         public Mini_TimeLimit time;
         public PlayerHealth health;
 
         public GameObject goalPanel;
+        public GameObject howToPlayPanel;
 
         private bool isFinished = false;
         private bool isDead = false;
@@ -39,22 +41,24 @@ namespace MazeTemplate
             spriteRenderer = GetComponent<SpriteRenderer>();
             audioSource = gameObject.AddComponent<AudioSource>();
 
-            goalPanel.SetActive(false);
+            if (goalPanel != null)
+            {
+                goalPanel.SetActive(false);
+            }
         }
 
         private void Update()
         {
             HandleMovement();
 
-            if (!isDead && gumiho.isWatching && movement != Vector2.zero)
+            if (!isDead && gumiho != null && gumiho.isWatching && movement != Vector2.zero)
             {
+                health.Death();
+
                 isDead = true;
 
                 rb.velocity = Vector2.zero;
                 rb.constraints = RigidbodyConstraints2D.FreezeAll;
-
-                time.TimePause();
-                health.Death();
             }
         }
 
@@ -118,14 +122,18 @@ namespace MazeTemplate
             rb.constraints = RigidbodyConstraints2D.FreezeAll;
 
             gumiho.StopWatching();
+            goalPanel.SetActive(true);
+
             time.TimePause();
 
-            goalPanel.SetActive(true);
+            light.remained++;
+            PlayerPrefs.SetInt("LightCount", light.remained);
+            PlayerPrefs.Save();
+
             yield return new WaitForSeconds(3f);
 
             SceneManager.LoadScene("Game3");
-            L2Light.maxUses++;
-            light.UpdateGUI();
+
         }
 
         public void RunningSound()

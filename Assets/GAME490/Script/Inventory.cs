@@ -6,7 +6,6 @@ using UnityEngine.UI;
 
 public class Inventory : MonoBehaviour
 {
-
     public Text SwordCounter;
     public Text AmuletCounter;
     public Animator MarbleAnimator;
@@ -25,12 +24,15 @@ public class Inventory : MonoBehaviour
     public AudioClip swordSound;
     public AudioClip swingSound;
 
+    public L2Time L2time;
 
     private void Start()
     {
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         audioSource = GetComponent<AudioSource>();
+
+        LoadInventory();
     }
 
     // 특정 시점에서 호출
@@ -111,6 +113,8 @@ public class Inventory : MonoBehaviour
 
     private void UseAttack()
     {
+        L2time.L2TimePause();
+
         animator.SetBool("IsAttacking", true);
         audioSource.PlayOneShot(swingSound);
     }
@@ -119,6 +123,28 @@ public class Inventory : MonoBehaviour
     {
         SwordCounter.text = Sword.ToString();
         AmuletCounter.text = Amulet.ToString(); 
+    }
+
+    public void SaveInventory()
+    {
+        PlayerPrefs.SetInt("SwordCount", Sword);
+        PlayerPrefs.SetInt("AmuletCount", Amulet);
+        PlayerPrefs.Save();
+    }
+
+    private void LoadInventory()
+    {
+        if (PlayerPrefs.HasKey("SwordCount"))
+        {
+            Sword = PlayerPrefs.GetInt("SwordCount");
+        }
+
+        if (PlayerPrefs.HasKey("AmuletCount"))
+        {
+            Amulet = PlayerPrefs.GetInt("AmuletCount");
+        }
+
+        UpdateGUI();
     }
 }
 

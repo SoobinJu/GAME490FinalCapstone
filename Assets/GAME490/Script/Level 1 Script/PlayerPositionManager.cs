@@ -29,7 +29,6 @@ public class PlayerPositionManager : MonoBehaviour
 
     private void SetPlayerPositionAfterLoad()
     {
-        //yield return new WaitForSeconds(0.1f); // 이거 있으니까 딜레이 생겨서 지움
 
         // If returning to original scene, move to saved position
         if (SceneManager.GetActiveScene().name == "Game1" && PlayerPrefs.GetInt("ReturningFromBuilding", 0) == 1)

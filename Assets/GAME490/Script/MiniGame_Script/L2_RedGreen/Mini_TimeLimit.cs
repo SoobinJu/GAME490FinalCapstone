@@ -9,7 +9,8 @@ public class Mini_TimeLimit : MonoBehaviour
     public float timeLimit = 4f;
     private float currentTime;
     public PlayerHealth healthScript;
-    
+    public GameObject instructionPanel;
+
     private bool isTimeOver = false;
     public bool isTimerRunning = true;
 
@@ -18,12 +19,18 @@ public class Mini_TimeLimit : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        instructionPanel.SetActive(true);
         currentTime = timeLimit;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (instructionPanel.activeSelf)
+        {
+            Time.timeScale = 0f;
+        }
+
         if (!isTimerRunning) return;
 
         if (currentTime > 0)

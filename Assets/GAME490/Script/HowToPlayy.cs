@@ -6,13 +6,6 @@ public class HowToPlayy : MonoBehaviour
 {
     public GameObject panel;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        // Hide everything at the start
-        panel.SetActive(true);
-    }
-
     // Update is called once per frame
     void Update()
     {
@@ -25,5 +18,6 @@ public class HowToPlayy : MonoBehaviour
     public void ClosePanel()
     {
         panel.SetActive(false);
+        Time.timeScale = 1f;
     }
 }
