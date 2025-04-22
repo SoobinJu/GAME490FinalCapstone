@@ -28,8 +28,6 @@ public class InteractionHandler : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         spriteRenderer.sprite = defaultImage;
 
-        timerController = panel.GetComponent<TimedPanelController>();
-
 
         audioSource = gameObject.AddComponent<AudioSource>();
     }
@@ -76,12 +74,6 @@ public class InteractionHandler : MonoBehaviour
         panelOpen = true;
         UpdateGamePauseState();
 
-        // ≈∏¿Ã∏” Ω√¿€
-        if (timerController != null)
-        {
-            timerController.StartTimer();
-        }
-
         if (!clueFounded)
         {
             clueFounded = true;
@@ -102,20 +94,12 @@ public class InteractionHandler : MonoBehaviour
         }
     }
 
-
     public void ClosePanel()
     {
         panel.SetActive(false); // Hide the panel
         panelOpen = false;
         UpdateGamePauseState();
-
-        // ≈∏¿Ã∏” ∏ÿ√„
-        if (timerController != null)
-        {
-            timerController.StopTimer();
-        }
     }
-
 
     private void UpdateGamePauseState()
     {

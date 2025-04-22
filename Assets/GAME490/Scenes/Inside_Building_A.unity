@@ -323,7 +323,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetPanel: {fileID: 85535545}
   timerText: {fileID: 66761030}
-  timeLimit: 61
+  timeLimit: 11
   quizChance: {fileID: 1253830060}
   timeOutText: {fileID: 913538881}
   timeUpSound: {fileID: 0}

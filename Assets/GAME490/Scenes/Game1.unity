@@ -1279,7 +1279,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &152651996
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15444,6 +15444,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chancesText: {fileID: 1705830299}
+  timerController: {fileID: 0}
 --- !u!114 &1670662725
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19142,7 +19143,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2083361436
 RectTransform:
   m_ObjectHideFlags: 0
