@@ -1,5 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
+
 
 public class TimedPanelController : MonoBehaviour
 {
@@ -8,6 +10,11 @@ public class TimedPanelController : MonoBehaviour
     public float timeLimit = 90f;       // 공통 제한 시간 (예: 1분 30초)
     private float timer;
     private bool isTimerRunning = false;
+
+    public QuizChance quizChance;  // 기회 관리 스크립트 연결
+    public Text timeOutText;  //  Time Out! 텍스트 연결
+
+
 
     public AudioClip timeUpSound;
     public AudioSource audioSource;
@@ -53,6 +60,19 @@ public class TimedPanelController : MonoBehaviour
         // timerText.gameObject.SetActive(false); //  텍스트 숨기지 않음
     }
 
+    private IEnumerator ClosePanelAfterDelay(float delay)
+    {
+        yield return new WaitForSecondsRealtime(delay);  //  일시정지 무시하고 기다림
+
+        targetPanel.SetActive(false);  // 패널 닫기
+
+        if (timeOutText != null)
+        {
+            timeOutText.gameObject.SetActive(false);  // Time Out 텍스트 숨기기
+        }
+    }
+
+
     void OnTimeLimitReached()
     {
         Debug.Log("Time's up!");
@@ -62,7 +82,20 @@ public class TimedPanelController : MonoBehaviour
             audioSource.PlayOneShot(timeUpSound);
         }
 
-        targetPanel.SetActive(false);           // 패널 닫기
-        // timerText.gameObject.SetActive(false); //  텍스트 숨기지 않음
+        if (quizChance != null)
+        {
+            quizChance.StartDecreaseChances();
+        }
+
+        //  Time Out! 텍스트 표시
+        if (timeOutText != null)
+        {
+            timeOutText.gameObject.SetActive(true);
+        }
+
+        //  잠깐 기다렸다가 패널 닫기 (예: 1초 후)
+        StartCoroutine(ClosePanelAfterDelay(1f));
     }
+
+
 }
