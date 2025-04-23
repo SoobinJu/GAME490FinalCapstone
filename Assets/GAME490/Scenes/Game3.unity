@@ -4692,7 +4692,6 @@ MonoBehaviour:
   healthBarSlider: {fileID: 2123788921}
   DamagedSound: {fileID: 8300000, guid: 8b397f73e9ff359429fe5452ddd45134, type: 3}
   DeadSound: {fileID: 8300000, guid: 4a92102883a09e045b5bd32a74397164, type: 3}
-  L2time: {fileID: 712985455}
 --- !u!114 &598794205
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5793,6 +5792,7 @@ MonoBehaviour:
   howToPanel: {fileID: 816529188}
   lightSound: {fileID: 8300000, guid: af7ccd7302fb33d4b93b31e965a63ce9, type: 3}
   lightCounter: {fileID: 2040841250}
+  remained: 0
 --- !u!212 &712985452
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5996,7 +5996,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 7482667652216324306, guid: a565dbbfbdcd8704ba36da8811f40816, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a8454a996ad1b35439a4241bb3ba46a5, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

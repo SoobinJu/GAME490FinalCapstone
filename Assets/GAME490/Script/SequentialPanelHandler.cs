@@ -77,6 +77,7 @@ public class SequentialPanelTrigger : MonoBehaviour
             case 1: // A ´Ý°í B ¿­±â
                 panelA.SetActive(false);
                 panelB.SetActive(true);
+                Time.timeScale = 0f;  // <<< ¿©±â Ãß°¡µÊ!
                 interactionStage = 2;
                 break;
 

@@ -27,17 +27,19 @@ public class TimedPanelController : MonoBehaviour
 
     void Update()
     {
+        Debug.Log(">>> Update() 작동중, 타이머 상태: " + timer + ", isTimerRunning: " + isTimerRunning);
+
         if (isTimerRunning)
         {
             timer -= Time.unscaledDeltaTime;
 
-            if (timer <= 0.01f)  // 더 여유 있게, 확실하게!
+            if (timer <= 0.01f)
             {
                 timer = 0;
                 isTimerRunning = false;
                 timerText.text = "0:00";
                 Debug.Log("타이머 0 도달 → 타임아웃 처리 호출!");
-                OnTimeLimitReached();  // 무조건 호출됨!
+                OnTimeLimitReached();
             }
             else
             {
@@ -50,50 +52,48 @@ public class TimedPanelController : MonoBehaviour
 
 
 
+
+
     // 패널 열릴 때 타이머 시작
     public void StartTimer()
     {
-        Debug.Log("StartTimer 호출됨 → 타이머 리셋 및 작동 시작!");
+        Debug.Log(">>> StartTimer 호출됨");
+        timer = timeLimit;
+        isTimerRunning = true;
+        timerText.gameObject.SetActive(true);
+        UpdateTimerText();
+    }
 
-        timer = timeLimit;       // 시간 리셋 (예: 61초)
-        isTimerRunning = true;   // 타이머 작동 플래그 true
-        timerText.gameObject.SetActive(true);  // 텍스트 보이게
+    public void StopTimer()
+    {
+        Debug.Log(">>> StopTimer 호출됨");
+        isTimerRunning = false;
+    }
 
+    void UpdateTimerText()
+    {
         int minutes = Mathf.FloorToInt(timer / 60f);
         int seconds = Mathf.FloorToInt(timer % 60f);
         timerText.text = string.Format("{0:0}:{1:00}", minutes, seconds);
-
-        Debug.Log("StartTimer 내부 → timer = " + timer + ", isTimerRunning = " + isTimerRunning);
-    }
-
-
-
-    // 패널 닫힐 때 타이머 정지 (텍스트는 그대로)
-    public void StopTimer()
-    {
-        isTimerRunning = false;
-        // timerText.gameObject.SetActive(false); //  텍스트 숨기지 않음
     }
 
     private IEnumerator ClosePanelAfterDelay(float delay)
     {
-        yield return new WaitForSecondsRealtime(delay);  //  일시정지 무시하고 기다림
-
-        targetPanel.SetActive(false);  // 패널 닫기
-
+        yield return new WaitForSecondsRealtime(delay);
+        targetPanel.SetActive(false);
         if (timeOutText != null)
         {
-            timeOutText.gameObject.SetActive(false);  // Time Out 텍스트 숨기기
+            timeOutText.gameObject.SetActive(false);
         }
+        Debug.Log(">>> 패널 닫힘 완료, 타임아웃 상태: " + wasTimedOut);
     }
-
 
     void OnTimeLimitReached()
     {
-        Debug.Log(">>> OnTimeLimitReached 호출됨!!!");  // 이거 무조건 뜨나?
+        Debug.Log(">>> OnTimeLimitReached 호출됨");
 
         wasTimedOut = true;
-        Debug.Log(">>> wasTimedOut 값: " + wasTimedOut);  // true 찍히는지 확인
+        Debug.Log(">>> wasTimedOut 값: " + wasTimedOut);
 
         if (timeUpSound != null && audioSource != null)
         {
@@ -117,18 +117,25 @@ public class TimedPanelController : MonoBehaviour
 
     public void OpenPanel()
     {
+        Debug.Log(">>> OpenPanel 호출됨, 이전 wasTimedOut: " + wasTimedOut);
+
         targetPanel.SetActive(true);
 
-        StartTimer();  // 무조건 타이머 시작!
+        // 강제 리셋
         wasTimedOut = false;
+        timer = timeLimit;          // 타이머 리셋
+        isTimerRunning = true;      // 타이머 다시 시작!
+
+        timerText.gameObject.SetActive(true);
+        UpdateTimerText();
 
         if (timeOutText != null)
         {
-            timeOutText.gameObject.SetActive(false);  // Time Out 텍스트 끔
+            timeOutText.gameObject.SetActive(false);
         }
+
+        Debug.Log(">>> OpenPanel 끝, 타이머 리셋됨: " + timer + ", isTimerRunning: " + isTimerRunning);
     }
-
-
 
 
 }
