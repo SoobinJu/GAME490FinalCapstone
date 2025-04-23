@@ -1,11 +1,11 @@
 ﻿using UnityEngine;
 
-public class RiceCakeHP : MonoBehaviour
+public class GonjangHP : MonoBehaviour
 {
     void Start()
     {
         // Check the saved minigame result
-        int result = PlayerPrefs.GetInt("RicecakeResult", -1);
+        int result = PlayerPrefs.GetInt("GongjangResult", -1);
 
         if (result == 1) // 1 means they won!
         {
@@ -34,6 +34,6 @@ public class RiceCakeHP : MonoBehaviour
         }
 
         // Clear the result so this only happens once
-        PlayerPrefs.SetInt("RicecakeResult", -1);
+        PlayerPrefs.SetInt("GongjangResult", -1);
     }
 }

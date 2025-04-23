@@ -9,6 +9,13 @@ public class GameProgressTracker : MonoBehaviour
     private int quizzesSolved = 0;
     private int totalQuizzes = 3; // Adjust this to match your actual number of quizzes
 
+
+    private string[] clueIDs = new string[]
+{
+    "Clue_Hunmin1", "Clue_Hunmin2", "Clue_Whitefur", "Clue_Quiz1",
+    "Clue_liver", "Clue_Quiz2", "Clue_Wall", "Clue_Quiz3", "Clue_Wall2"
+};
+
     private void Awake()
     {
         if (Instance == null)
@@ -20,6 +27,18 @@ public class GameProgressTracker : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        // 🧠 Recount clue progress from PlayerPrefs
+        cluesFound = 0;
+        foreach (string clueID in clueIDs)
+        {
+            if (PlayerPrefs.HasKey(clueID))
+            {
+                cluesFound++;
+            }
+        }
+        Debug.Log("🧠 Clues loaded from PlayerPrefs: " + cluesFound + "/" + totalClues);
+
     }
 
     public void FoundClue()
@@ -44,6 +63,12 @@ public class GameProgressTracker : MonoBehaviour
         cluesFound = 0;
         quizzesSolved = 0;
         Debug.Log("🧹 Progress reset! Current scene: " + UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
+
+        foreach (string clueID in clueIDs)
+        {
+            PlayerPrefs.DeleteKey(clueID);
+        }
+
     }
 
 

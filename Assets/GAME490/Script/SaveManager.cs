@@ -62,9 +62,9 @@ public class SaveManager : MonoBehaviour
         }
         else
         {
-            Debug.Log("No saved game found. Starting from Narration1 after delay");
+            Debug.Log("No saved game found. Starting from Game1 after delay");
             ResetGame();
-            SceneManager.LoadScene("Narration1");
+            SceneManager.LoadScene("Game1");
         }
     }
 

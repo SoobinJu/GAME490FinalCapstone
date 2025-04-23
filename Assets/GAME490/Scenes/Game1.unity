@@ -16796,13 +16796,11 @@ GameObject:
   - component: {fileID: 1670662721}
   - component: {fileID: 1670662723}
   - component: {fileID: 1670662724}
-  - component: {fileID: 1670662725}
-  - component: {fileID: 1670662730}
   - component: {fileID: 1670662726}
   - component: {fileID: 1670662729}
   - component: {fileID: 1670662731}
-  - component: {fileID: 1670662728}
-  - component: {fileID: 1670662727}
+  - component: {fileID: 1670662732}
+  - component: {fileID: 1670662733}
   m_Layer: 0
   m_Name: Game Manager
   m_TagString: Untagged
@@ -16852,19 +16850,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   chancesText: {fileID: 1705830299}
   timerController: {fileID: 0}
---- !u!114 &1670662725
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1670662720}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1682475f8b16bcb4ab8a72c4b51820d5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerHealth: {fileID: 854383817}
 --- !u!114 &1670662726
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16872,7 +16857,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1670662720}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9a9ccb226859b1041a8355568f5e208f, type: 3}
   m_Name: 
@@ -16881,30 +16866,6 @@ MonoBehaviour:
   checkInterval: 5
   triggerChance: 0.95
   triggerSound: {fileID: 8300000, guid: f0256eeccd2e31c4f924c1ec00234426, type: 3}
---- !u!114 &1670662727
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1670662720}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2e907f1720f37704da73efd26aa82be1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1670662728
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1670662720}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b90cdac4c2bf56246a6ae1f240625f40, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1670662729
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16921,7 +16882,19 @@ MonoBehaviour:
   checkInterval: 5
   triggerChance: 0.99
   triggerSound: {fileID: 0}
---- !u!114 &1670662730
+--- !u!114 &1670662731
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1670662720}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc1e61fc948882146a41fe15ae53a193, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1670662732
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -16933,7 +16906,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d528e30b9a2d14a4393d5706809a8d85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1670662731
+--- !u!114 &1670662733
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -16942,7 +16915,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1670662720}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fc1e61fc948882146a41fe15ae53a193, type: 3}
+  m_Script: {fileID: 11500000, guid: 1682475f8b16bcb4ab8a72c4b51820d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1696447684
