@@ -7,6 +7,8 @@ using TMPro;
 public class WordSearchManager : MonoBehaviour
 {
     public static WordSearchManager Instance;
+    public QuizChance quizChance;
+
 
     public GameObject cellPrefab;
     public Transform gridParent;
@@ -174,6 +176,12 @@ public class WordSearchManager : MonoBehaviour
 
             if (solvedWords.Count == wordList.Count)
             {
+                // 기회 증가
+                if (quizChance != null)
+                {
+                    quizChance.IncreaseChances();
+                }
+
                 ShowResultMessage("You got everything right! +1 Choice earned!");
             }
         }

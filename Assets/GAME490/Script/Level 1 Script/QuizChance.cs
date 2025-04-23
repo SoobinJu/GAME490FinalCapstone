@@ -32,6 +32,15 @@ public class QuizChance : MonoBehaviour
             chancesText.color = Color.white;
         }
     }
+    public void IncreaseChances()
+    {
+        chances++;
+        PlayerPrefs.SetInt("Chances", chances);
+        PlayerPrefs.Save();
+        UpdateChancesText();
+        Debug.Log("IncreaseChances 실행됨! 현재 chances: " + chances);
+    }
+
 
     public void StartDecreaseChances()
     {

@@ -4006,7 +4006,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chancesText: {fileID: 1160566203}
-  timerController: {fileID: 0}
+  timerController: {fileID: 85535550}
 --- !u!114 &1253830061
 MonoBehaviour:
   m_ObjectHideFlags: 0

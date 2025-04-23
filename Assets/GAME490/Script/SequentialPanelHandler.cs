@@ -15,10 +15,10 @@ public class SequentialPanelTrigger : MonoBehaviour
 
     private AudioSource audioSource;
     public AudioClip panelSound;
+    public QuizManager quizManager;
 
     void Start()
     {
-        // 패널은 처음엔 꺼져 있음
         panelA.SetActive(false);
         panelB.SetActive(false);
 
@@ -66,6 +66,12 @@ public class SequentialPanelTrigger : MonoBehaviour
                     }
                 }
 
+                // 퀴즈가 완료되었으면 resultText 다시 보여주기
+                if (quizManager != null && quizManager.resultText != null && quizManager.IsQuizCompleted())
+                {
+                    quizManager.resultText.gameObject.SetActive(true);
+                }
+
                 break;
 
             case 1: // A 닫고 B 열기
@@ -78,6 +84,12 @@ public class SequentialPanelTrigger : MonoBehaviour
                 panelB.SetActive(false);
                 Time.timeScale = 1f;
                 interactionStage = 0;
+
+                // 닫힐 때는 resultText 꺼주기
+                if (quizManager != null && quizManager.resultText != null)
+                {
+                    quizManager.resultText.gameObject.SetActive(false);
+                }
                 break;
         }
     }
@@ -107,5 +119,10 @@ public class SequentialPanelTrigger : MonoBehaviour
         panelB.SetActive(false);
         interactionStage = 0;
         Time.timeScale = 1f;
+
+        if (quizManager != null && quizManager.resultText != null)
+        {
+            quizManager.resultText.gameObject.SetActive(false); // 밖으로 나가도 숨기기
+        }
     }
 }

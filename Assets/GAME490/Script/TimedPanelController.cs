@@ -119,18 +119,14 @@ public class TimedPanelController : MonoBehaviour
     {
         targetPanel.SetActive(true);
 
-        if (wasTimedOut)
+        StartTimer();  // 무조건 타이머 시작!
+        wasTimedOut = false;
+
+        if (timeOutText != null)
         {
-            StartTimer();      // 타이머 새로 시작
-            wasTimedOut = false;  // 상태 초기화
-        }
-        else
-        {
-            timerText.gameObject.SetActive(true);  // 기존 타이머 유지
+            timeOutText.gameObject.SetActive(false);  // Time Out 텍스트 끔
         }
     }
-
-
 
 
 
