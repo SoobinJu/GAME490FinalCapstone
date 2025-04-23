@@ -43,8 +43,9 @@ public class GameProgressTracker : MonoBehaviour
     {
         cluesFound = 0;
         quizzesSolved = 0;
-        Debug.Log("Game progress has been reset.");
+        Debug.Log("🧹 Progress reset! Current scene: " + UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
     }
+
 
     public int GetCluesFound() => cluesFound;
     public int GetQuizzesSolved() => quizzesSolved;

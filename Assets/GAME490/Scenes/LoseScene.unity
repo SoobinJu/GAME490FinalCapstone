@@ -619,7 +619,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1697055738}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: GameProgressTracker, Assembly-CSharp
         m_MethodName: ResetProgress
         m_Mode: 1
@@ -1089,6 +1089,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8288cc4faac392644904aad259fac4fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  saveMessageCanvas: {fileID: 0}
 --- !u!1 &1697055737
 GameObject:
   m_ObjectHideFlags: 0
@@ -1098,7 +1099,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1697055739}
-  - component: {fileID: 1697055738}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
@@ -1106,18 +1106,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1697055738
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1697055737}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 892175ae4b92c1a4fa36581ecd6bfb3f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &1697055739
 Transform:
   m_ObjectHideFlags: 0
