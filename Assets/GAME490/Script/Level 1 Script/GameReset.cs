@@ -19,8 +19,12 @@ public class GameReset : MonoBehaviour
         PlayerPrefs.SetInt("Chances", 3);
         PlayerPrefs.Save();
 
+        // ✅ ALSO reset clue/quiz progress
+        GameProgressTracker.Instance.ResetProgress(); // 💥 THIS!
+
         // Update the UI immediately
         totalChances = 3;
         chancesText.text = "Chances: " + totalChances + "/3";
     }
+
 }

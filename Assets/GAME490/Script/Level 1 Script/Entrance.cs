@@ -45,28 +45,47 @@ public class Entrance : MonoBehaviour
 
     public void EnterScene()
     {
-        if (isPlayerNear) // Ensure the player is still near when clicking
+        if (isPlayerNear)
         {
-            if (SceneManager.GetActiveScene().name == "Game1") // Only save when leaving Game1
-            {
-                GameObject player = GameObject.FindGameObjectWithTag("Player");
+            GameObject player = GameObject.FindGameObjectWithTag("Player");
 
-                if (player != null)
+            if (player != null)
+            {
+                string currentScene = SceneManager.GetActiveScene().name;
+                string targetScene = SceneManager.GetSceneByBuildIndex(sceneBuildIndex).name;
+
+                // ✅ Game1 → 건물 진입할 때 (위치 + chances 저장)
+                if (currentScene == "Game1")
                 {
-                    // Save the player's current position BEFORE entering the building
                     PlayerPrefs.SetFloat("LastExitX", player.transform.position.x);
                     PlayerPrefs.SetFloat("LastExitY", player.transform.position.y);
-                    PlayerPrefs.SetInt("ReturningFromBuilding", 1); // Mark that we are returning
+                    PlayerPrefs.SetInt("ReturningFromBuilding", 1);
+
+                    int chances = PlayerPrefs.GetInt("Chances", 3);
+                    PlayerPrefs.SetInt("SavedChancesBeforeQuiz", chances);
                     PlayerPrefs.Save();
 
-                    Debug.Log("Saved Player Entrance Position BEFORE entering building: X=" + player.transform.position.x + " Y=" + player.transform.position.y);
+                    Debug.Log($"➡️ Game1 → {targetScene} | 위치 & chances 저장 완료: Pos={player.transform.position}, Chances={chances}");
+                }
+
+                // ✅ 건물 → Game1 나갈 때 (chances만 저장)
+                else if (targetScene == "Game1")
+                {
+                    int currentChances = PlayerPrefs.GetInt("Chances", 3);
+                    PlayerPrefs.SetInt("SavedChancesBeforeQuiz", currentChances);
+                    PlayerPrefs.Save();
+
+                    Debug.Log($"🏠 건물 → Game1 | 줄어든 chances 저장 완료: {currentChances}");
                 }
             }
 
-            print("Switching Scene to " + sceneBuildIndex);
-            SceneManager.LoadScene(sceneBuildIndex, LoadSceneMode.Single);
+            SceneManager.LoadScene(sceneBuildIndex);
         }
     }
 
 
+
 }
+
+
+

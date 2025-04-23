@@ -45,4 +45,11 @@ public class GameProgressTracker : MonoBehaviour
         quizzesSolved = 0;
         Debug.Log("Game progress has been reset.");
     }
+
+    public int GetCluesFound() => cluesFound;
+    public int GetQuizzesSolved() => quizzesSolved;
+
+    public void SetCluesFound(int value) => cluesFound = value;
+    public void SetQuizzesSolved(int value) => quizzesSolved = value;
+
 }
