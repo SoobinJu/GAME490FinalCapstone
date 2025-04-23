@@ -16795,6 +16795,7 @@ GameObject:
   - component: {fileID: 1670662730}
   - component: {fileID: 1670662726}
   - component: {fileID: 1670662729}
+  - component: {fileID: 1670662731}
   - component: {fileID: 1670662728}
   - component: {fileID: 1670662727}
   m_Layer: 0
@@ -16853,7 +16854,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1670662720}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1682475f8b16bcb4ab8a72c4b51820d5, type: 3}
   m_Name: 
@@ -16866,7 +16867,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1670662720}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9a9ccb226859b1041a8355568f5e208f, type: 3}
   m_Name: 
@@ -16926,12 +16927,24 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1670662720}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d528e30b9a2d14a4393d5706809a8d85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   playerHealth: {fileID: 0}
+--- !u!114 &1670662731
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1670662720}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc1e61fc948882146a41fe15ae53a193, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1696447684
 GameObject:
   m_ObjectHideFlags: 0
@@ -22279,15 +22292,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7838186684191709148, guid: 9e2ab563bebb28944b0fe53311780957, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7838186684191709148, guid: 9e2ab563bebb28944b0fe53311780957, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7838186684191709148, guid: 9e2ab563bebb28944b0fe53311780957, type: 3}
       propertyPath: m_AnchorMin.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8324819641645608786, guid: 9e2ab563bebb28944b0fe53311780957, type: 3}
       propertyPath: m_Pivot.x

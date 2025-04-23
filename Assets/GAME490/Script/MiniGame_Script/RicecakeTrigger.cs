@@ -41,16 +41,25 @@ public class RicecakeTrigger : MonoBehaviour
     {
         triggered = true;
 
-        // 효과음 재생
         if (audioSource != null && triggerSound != null)
         {
             audioSource.PlayOneShot(triggerSound);
         }
 
-        // 씬 이름 저장해서 복귀용
+        // 🧠 Save previous scene
         PlayerPrefs.SetString("PreviousScene", SceneManager.GetActiveScene().name);
 
-        // 약간의 delay 후 전환하면 효과음 끝나고 이동
+        // 💾 Save player position
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        if (player != null)
+        {
+            PlayerPrefs.SetFloat("MinigameReturnX", player.transform.position.x);
+            PlayerPrefs.SetFloat("MinigameReturnY", player.transform.position.y);
+        }
+
+        PlayerPrefs.SetFloat("MinigameReturnX", GameObject.FindWithTag("Player").transform.position.x);
+        PlayerPrefs.SetFloat("MinigameReturnY", GameObject.FindWithTag("Player").transform.position.y);
+
         Invoke("GoToMinigame", 1f);
     }
 

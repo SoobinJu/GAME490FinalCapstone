@@ -4,7 +4,7 @@ using TMPro;
 public class GameReset : MonoBehaviour
 {
     public TextMeshProUGUI chancesText;
-    private int totalChances = 3; // Default number of chances
+    private int totalChances = 4; // Default number of chances
 
     public void ResetGame()
     {

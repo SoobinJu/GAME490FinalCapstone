@@ -29,6 +29,24 @@ public class PlayerPositionManager : MonoBehaviour
 
     private void SetPlayerPositionAfterLoad()
     {
+        /*// 🟨 If returning from Minigame, restore saved position
+        if (PlayerPrefs.HasKey("MinigameReturnX") && PlayerPrefs.HasKey("MinigameReturnY"))
+        {
+            float x = PlayerPrefs.GetFloat("MinigameReturnX");
+            float y = PlayerPrefs.GetFloat("MinigameReturnY");
+
+            Debug.Log("Returning from Minigame to position: " + x + ", " + y);
+            transform.position = new Vector3(x, y, transform.position.z);
+
+            // Optional: reset velocity if you're using Rigidbody2D
+            // GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+
+            // Clean up
+            PlayerPrefs.DeleteKey("MinigameReturnX");
+            PlayerPrefs.DeleteKey("MinigameReturnY");
+            return; // 🛑 Stop here to prevent other position logic
+        }
+        */
 
         // If returning to original scene, move to saved position
         if (SceneManager.GetActiveScene().name == "Game1" && PlayerPrefs.GetInt("ReturningFromBuilding", 0) == 1)
