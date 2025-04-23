@@ -1,10 +1,12 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 
 public class SequentialPanelTrigger : MonoBehaviour
 {
+    public string clueID; // ğŸ‘ˆ Set this in the Inspector
+
     public GameObject panelA;
     public GameObject panelB;
-    private int interactionStage = 0; // 0: ¾Æ¹«°Íµµ ¾È ¿­¸², 1: A ¿­¸², 2: B ¿­¸²
+    private int interactionStage = 0; // 0: Â¾Ã†Â¹Â«Â°ÃÂµÂµ Â¾Ãˆ Â¿Â­Â¸Â², 1: A Â¿Â­Â¸Â², 2: B Â¿Â­Â¸Â²
 
     private bool canInteract = false;
     private bool clueFound = false;
@@ -42,31 +44,24 @@ public class SequentialPanelTrigger : MonoBehaviour
 
         switch (interactionStage)
         {
-            case 0: // ÆĞ³Î A ¿­±â
+            case 0: // Ã†ÃÂ³Ã A Â¿Â­Â±Ã¢
                 panelA.SetActive(true);
                 Time.timeScale = 0f;
                 interactionStage = 1;
 
-                if (!clueFound)
+                if (!PlayerPrefs.HasKey(clueID))
                 {
-                    clueFound = true;
-                    GameProgressTracker tracker = FindObjectOfType<GameProgressTracker>();
-
-                    if (tracker != null)
-                    {
-                        tracker.FoundClue();
-                        Debug.Log("Clue Found! Progress updated.");
-                    }
-                    else
-                    {
-                        Debug.LogError("GameProgressTracker not found! Creating one...");
-                        GameObject newTracker = new GameObject("GameProgressTracker");
-                        tracker = newTracker.AddComponent<GameProgressTracker>();
-                        tracker.FoundClue();
-                    }
+                    PlayerPrefs.SetInt(clueID, 1); // ğŸ” Save that this clue was found
+                    GameProgressTracker.Instance.FoundClue();
+                    Debug.Log("âœ… Clue '" + clueID + "' collected!");
+                }
+                else
+                {
+                    Debug.Log("â—Clue '" + clueID + "' was already collected.");
                 }
 
-                // ÄûÁî°¡ ¿Ï·áµÇ¾úÀ¸¸é resultText ´Ù½Ã º¸¿©ÁÖ±â
+
+                // Ã„Ã»ÃÃ®Â°Â¡ Â¿ÃÂ·Ã¡ÂµÃ‡Â¾ÃºÃ€Â¸Â¸Ã© resultText Â´Ã™Â½Ãƒ ÂºÂ¸Â¿Â©ÃÃ–Â±Ã¢
                 if (quizManager != null && quizManager.resultText != null && quizManager.IsQuizCompleted())
                 {
                     quizManager.resultText.gameObject.SetActive(true);
@@ -74,19 +69,19 @@ public class SequentialPanelTrigger : MonoBehaviour
 
                 break;
 
-            case 1: // A ´İ°í B ¿­±â
+            case 1: // A Â´ÃÂ°Ã­ B Â¿Â­Â±Ã¢
                 panelA.SetActive(false);
                 panelB.SetActive(true);
-                Time.timeScale = 0f;  // <<< ¿©±â Ãß°¡µÊ!
+                Time.timeScale = 0f;  // <<< Â¿Â©Â±Ã¢ ÃƒÃŸÂ°Â¡ÂµÃŠ!
                 interactionStage = 2;
                 break;
 
-            case 2: // B ´İ±â
+            case 2: // B Â´ÃÂ±Ã¢
                 panelB.SetActive(false);
                 Time.timeScale = 1f;
                 interactionStage = 0;
 
-                // ´İÈú ¶§´Â resultText ²¨ÁÖ±â
+                // Â´ÃÃˆÃº Â¶Â§Â´Ã‚ resultText Â²Â¨ÃÃ–Â±Ã¢
                 if (quizManager != null && quizManager.resultText != null)
                 {
                     quizManager.resultText.gameObject.SetActive(false);
@@ -123,7 +118,7 @@ public class SequentialPanelTrigger : MonoBehaviour
 
         if (quizManager != null && quizManager.resultText != null)
         {
-            quizManager.resultText.gameObject.SetActive(false); // ¹ÛÀ¸·Î ³ª°¡µµ ¼û±â±â
+            quizManager.resultText.gameObject.SetActive(false); // Â¹Ã›Ã€Â¸Â·Ã Â³ÂªÂ°Â¡ÂµÂµ Â¼Ã»Â±Ã¢Â±Ã¢
         }
     }
 }

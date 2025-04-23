@@ -1,12 +1,15 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 
 public class InteractionHandler : MonoBehaviour
 {
+
+    public string clueID; // Set this in the Inspector for each clue!
+
     public GameObject panel;
     private bool canOpen = false;
     private bool panelOpen = false;
     private bool clueFounded = false;
-    private bool answerCorrect = false; // Á¤´ä ¸ÂÃè´ÂÁö È®ÀÎ¿ë
+    private bool answerCorrect = false; // ÃÂ¤Â´Ã¤ Â¸Ã‚ÃƒÃ¨Â´Ã‚ÃÃ¶ ÃˆÂ®Ã€ÃÂ¿Ã«
 
     private SpriteRenderer spriteRenderer;
     public Sprite defaultImage;
@@ -26,11 +29,11 @@ public class InteractionHandler : MonoBehaviour
 
         audioSource = gameObject.AddComponent<AudioSource>();
 
-        // Å¸ÀÌ¸Ó ÄÁÆ®·Ñ·¯ ¿¬°á
+        // Ã…Â¸Ã€ÃŒÂ¸Ã“ Ã„ÃÃ†Â®Â·Ã‘Â·Â¯ Â¿Â¬Â°Ã¡
         timerController = panel.GetComponent<TimedPanelController>();
         if (timerController == null)
         {
-            Debug.LogError(">>> TimedPanelController ¸ø Ã£À½!");
+            Debug.LogError(">>> TimedPanelController Â¸Ã¸ ÃƒÂ£Ã€Â½!");
         }
     }
 
@@ -76,27 +79,23 @@ public class InteractionHandler : MonoBehaviour
         panelOpen = true;
         UpdateGamePauseState();
 
-        // Á¤´ä ¸ÂÃèÀ¸¸é Å¸ÀÌ¸Ó ÀÛµ¿ ¾È ÇÔ
+        // ÃÂ¤Â´Ã¤ Â¸Ã‚ÃƒÃ¨Ã€Â¸Â¸Ã© Ã…Â¸Ã€ÃŒÂ¸Ã“ Ã€Ã›ÂµÂ¿ Â¾Ãˆ Ã‡Ã”
         if (!answerCorrect && timerController != null)
         {
-            timerController.OpenPanel(); // Å¸ÀÌ¸Ó ¸®¼Â + ÀÛµ¿
+            timerController.OpenPanel(); // Ã…Â¸Ã€ÃŒÂ¸Ã“ Â¸Â®Â¼Ã‚ + Ã€Ã›ÂµÂ¿
         }
 
-        if (!clueFounded)
+        if (!PlayerPrefs.HasKey(clueID))
         {
-            clueFounded = true;
-            GameProgressTracker tracker = FindObjectOfType<GameProgressTracker>();
-
-            if (tracker != null)
-            {
-                tracker.FoundClue();
-                Debug.Log("Clue Found! Progress updated.");
-            }
-            else
-            {
-                Debug.LogError("GameProgressTracker not found!");
-            }
+            PlayerPrefs.SetInt(clueID, 1);
+            GameProgressTracker.Instance.FoundClue();
+            Debug.Log("âœ… Clue '" + clueID + "' collected from InteractionHandler!");
         }
+        else
+        {
+            Debug.Log("â—Clue '" + clueID + "' was already collected.");
+        }
+
     }
 
     public void ClosePanel()
@@ -105,7 +104,7 @@ public class InteractionHandler : MonoBehaviour
         panelOpen = false;
         UpdateGamePauseState();
 
-        // Á¤´ä ¸ÂÃèÀ¸¸é ¸ØÃßÁö ¸»°í ±×´ë·Î µÎ±â
+        // ÃÂ¤Â´Ã¤ Â¸Ã‚ÃƒÃ¨Ã€Â¸Â¸Ã© Â¸Ã˜ÃƒÃŸÃÃ¶ Â¸Â»Â°Ã­ Â±Ã—Â´Ã«Â·Ã ÂµÃÂ±Ã¢
         if (!answerCorrect && timerController != null)
         {
             timerController.StopTimer();
@@ -117,15 +116,15 @@ public class InteractionHandler : MonoBehaviour
         Time.timeScale = panel.activeSelf ? 0f : 1f;
     }
 
-    // Á¤´ä ¸ÂÃèÀ» ¶§ ²À È£ÃâÇØÁà!
+    // ÃÂ¤Â´Ã¤ Â¸Ã‚ÃƒÃ¨Ã€Â» Â¶Â§ Â²Ã€ ÃˆÂ£ÃƒÃ¢Ã‡Ã˜ÃÃ !
     public void OnAnswerCorrect()
     {
-        Debug.Log("Á¤´ä ¸ÂÃã ¡æ Å¸ÀÌ¸Ó ¸ØÃã + »óÅÂ ÀúÀå!");
+        Debug.Log("ÃÂ¤Â´Ã¤ Â¸Ã‚ÃƒÃ£ Â¡Ã¦ Ã…Â¸Ã€ÃŒÂ¸Ã“ Â¸Ã˜ÃƒÃ£ + Â»Ã³Ã…Ã‚ Ã€ÃºÃ€Ã¥!");
         answerCorrect = true;
 
         if (timerController != null)
         {
-            timerController.StopTimer(); // Å¸ÀÌ¸Ó ¸ØÃã
+            timerController.StopTimer(); // Ã…Â¸Ã€ÃŒÂ¸Ã“ Â¸Ã˜ÃƒÃ£
         }
     }
 }

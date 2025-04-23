@@ -1399,6 +1399,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c9b3986e5156cd43bc7f0d19dd4ac7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  clueID: Clue_Quiz2
   panel: {fileID: 1539422223}
   defaultImage: {fileID: 21300000, guid: 8cba61571367df840b0563a8599d0030, type: 3}
   changedImage: {fileID: 21300000, guid: eb5b1dbfedbe96144bac0a1296835302, type: 3}
@@ -3370,6 +3371,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c9b3986e5156cd43bc7f0d19dd4ac7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  clueID: Clue_Wall
   panel: {fileID: 1191924233}
   defaultImage: {fileID: 21300000, guid: da47c9ed980c003469abdd7079c3b6a6, type: 3}
   changedImage: {fileID: 21300000, guid: 044dd37fc2c98ef4cabb4b07608aa6fe, type: 3}

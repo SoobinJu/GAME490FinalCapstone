@@ -2864,6 +2864,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c9b3986e5156cd43bc7f0d19dd4ac7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  clueID: Clue_Quiz1
   panel: {fileID: 85535545}
   defaultImage: {fileID: 21300000, guid: 8cba61571367df840b0563a8599d0030, type: 3}
   changedImage: {fileID: 21300000, guid: eb5b1dbfedbe96144bac0a1296835302, type: 3}
@@ -4902,6 +4903,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c9b3986e5156cd43bc7f0d19dd4ac7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  clueID: Clue_liver
   panel: {fileID: 980551410}
   defaultImage: {fileID: 21300000, guid: 316879e3aca4e8148a8b399f6fcdce9f, type: 3}
   changedImage: {fileID: 21300000, guid: 0765043fbe541f84284ded7c2ae3ea48, type: 3}

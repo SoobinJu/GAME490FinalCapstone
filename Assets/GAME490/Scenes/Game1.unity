@@ -551,6 +551,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c9b3986e5156cd43bc7f0d19dd4ac7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  clueID: Clue_Whitefur
   panel: {fileID: 1308956097}
   defaultImage: {fileID: 21300000, guid: 88657c91e9a21d344b109e71e7997f67, type: 3}
   changedImage: {fileID: 21300000, guid: 76a89c5f1aad2f34fb4e1a71fc70e1f0, type: 3}
@@ -7028,6 +7029,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c9b3986e5156cd43bc7f0d19dd4ac7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  clueID: 
   panel: {fileID: 1374239419}
   defaultImage: {fileID: 21300000, guid: fbcb86f2cd0f5d24db627a8a5b166fbc, type: 3}
   changedImage: {fileID: 21300000, guid: 8341028a0bc2c084095df886ac953452, type: 3}
@@ -7103,6 +7105,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b377371286fb2084b91777f1a42b21ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  clueID: Clue_Hunmin1
   panelA: {fileID: 1374239419}
   panelB: {fileID: 1025020672}
   defaultImage: {fileID: 21300000, guid: fbcb86f2cd0f5d24db627a8a5b166fbc, type: 3}
@@ -9049,6 +9052,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c9b3986e5156cd43bc7f0d19dd4ac7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  clueID: 
   panel: {fileID: 1018976598}
   defaultImage: {fileID: 21300000, guid: fbcb86f2cd0f5d24db627a8a5b166fbc, type: 3}
   changedImage: {fileID: 21300000, guid: 8341028a0bc2c084095df886ac953452, type: 3}
@@ -9176,6 +9180,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b377371286fb2084b91777f1a42b21ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  clueID: Clue_Hunmin2
   panelA: {fileID: 1374239419}
   panelB: {fileID: 2013160173}
   defaultImage: {fileID: 21300000, guid: fbcb86f2cd0f5d24db627a8a5b166fbc, type: 3}
@@ -16888,8 +16893,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e907f1720f37704da73efd26aa82be1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 8079241722374174384}
-  playerHealth: {fileID: 854383817}
 --- !u!114 &1670662728
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16902,8 +16905,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b90cdac4c2bf56246a6ae1f240625f40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 8079241722374174384}
-  playerHealth: {fileID: 854383817}
 --- !u!114 &1670662729
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22292,15 +22293,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7838186684191709148, guid: 9e2ab563bebb28944b0fe53311780957, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7838186684191709148, guid: 9e2ab563bebb28944b0fe53311780957, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7838186684191709148, guid: 9e2ab563bebb28944b0fe53311780957, type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8324819641645608786, guid: 9e2ab563bebb28944b0fe53311780957, type: 3}
       propertyPath: m_Pivot.x
