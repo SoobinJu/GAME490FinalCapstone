@@ -198,6 +198,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c9b3986e5156cd43bc7f0d19dd4ac7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  clueID: 
   panel: {fileID: 332115125}
   defaultImage: {fileID: 21300000, guid: babaf1a6759371742a492e8d7d152c11, type: 3}
   changedImage: {fileID: 21300000, guid: babaf1a6759371742a492e8d7d152c11, type: 3}
@@ -2362,7 +2363,6 @@ MonoBehaviour:
   healthBarSlider: {fileID: 1415973685}
   DamagedSound: {fileID: 0}
   DeadSound: {fileID: 0}
-  RunSound: {fileID: 0}
 --- !u!114 &854383818
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3659,6 +3659,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chancesText: {fileID: 1801961289}
+  timerController: {fileID: 0}
 --- !u!1 &1537289306
 GameObject:
   m_ObjectHideFlags: 0
@@ -4110,8 +4111,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 3/3
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: df8509ba5a4b6794396e32e2ce8d4a39, type: 2}
+  m_sharedMaterial: {fileID: -4599768229172021808, guid: df8509ba5a4b6794396e32e2ce8d4a39, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -4194,17 +4195,17 @@ RectTransform:
   m_GameObject: {fileID: 1801961288}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.8334299, y: 1.8334299, z: 1.8334299}
+  m_LocalScale: {x: 1.4, y: 1.4, z: 1.4}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 365930631}
   m_Father: {fileID: 1945976573}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 1}
-  m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -49.46997}
+  m_AnchorMin: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -3, y: -182}
   m_SizeDelta: {x: 200, y: 50}
-  m_Pivot: {x: 0.5, y: 1}
+  m_Pivot: {x: 1, y: 1}
 --- !u!1 &1921092070
 GameObject:
   m_ObjectHideFlags: 0

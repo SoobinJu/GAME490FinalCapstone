@@ -326,17 +326,13 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\rAs soon as Deokchil collected all the items, a mysterious power began
-    to surge through him. In that very moment, the long-sought blue fox marble appeared
-    before his eyes.\r\nUsing his newfound strength, he shattered the marble with
-    his sword. At the same time, the Gumiho chasing after him, was stripped of her
-    powers and transformed into a poweless fox.\r\nDeokchil didn\u2019t miss his
-    chance. without hesitation, he struck once more and defeated the Gumiho.\nThanks
-    to his courage, the village returned to peace, and Deokchil was remembered as
-    a hero ever since.\r"
+  m_text: "The Gumiho chasing after him, was stripped of her powers and transformed
+    into a poweless fox.\r\n\nDeokchil didn\u2019t miss his chance. without hesitation,
+    he struck once more and defeated the Gumiho.\n\nThanks to his courage, the village
+    returned to peace, and Deokchil was remembered as a hero ever since.\r"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 7a70f9eef9ccd5347b9b88a7321dd04d, type: 2}
-  m_sharedMaterial: {fileID: -4599768229172021808, guid: 7a70f9eef9ccd5347b9b88a7321dd04d, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: df8509ba5a4b6794396e32e2ce8d4a39, type: 2}
+  m_sharedMaterial: {fileID: -4599768229172021808, guid: df8509ba5a4b6794396e32e2ce8d4a39, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1295,14 +1291,10 @@ MonoBehaviour:
   quitButton: {fileID: 0}
   typingSpeed: 0.06
   cursorBlinkSpeed: 0.5
-  fullText: "\r\rAs soon as Deokchil collected all the items, a mysterious power
-    began to surge through him. In that very moment, the long-sought blue fox marble
-    appeared before his eyes.\r\nUsing his newfound strength, he shattered the marble
-    with his sword. At the same time, the Gumiho chasing after him, was stripped
-    of her powers and transformed into a poweless fox.\r\nDeokchil didn\u2019t miss
-    his chance. without hesitation, he struck once more and defeated the Gumiho.\nThanks
-    to his courage, the village returned to peace, and Deokchil was remembered as
-    a hero ever since.\r"
+  fullText: "The Gumiho chasing after him, was stripped of her powers and transformed
+    into a poweless fox.\r\n\nDeokchil didn\u2019t miss his chance. without hesitation,
+    he struck once more and defeated the Gumiho.\n\nThanks to his courage, the village
+    returned to peace, and Deokchil was remembered as a hero ever since.\r"
 --- !u!4 &2127351520
 Transform:
   m_ObjectHideFlags: 0

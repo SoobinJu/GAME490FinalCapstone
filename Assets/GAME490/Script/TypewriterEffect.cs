@@ -51,7 +51,7 @@ public class TypewriterEffect : MonoBehaviour
             textComponent.text = currentText + (showCursor ? "|" : "");
 
             // 일정 글자 수 후 skip 버튼 표시
-            if (i == 30 && skipButton != null)
+            if (i == 1 && skipButton != null)
             {
                 skipButton.gameObject.SetActive(true);
             }

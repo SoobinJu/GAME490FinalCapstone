@@ -2,11 +2,13 @@ using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using TMPro;
 
 public class SaveManager : MonoBehaviour
 {
     // 따로 만든 Canvas 안의 메시지 패널 또는 텍스트 오브젝트
     public GameObject saveMessageCanvas;
+    public GameObject logText;
 
     void Start()
     {
@@ -21,7 +23,7 @@ public class SaveManager : MonoBehaviour
         {
             PlayerPrefs.DeleteAll();
             PlayerPrefs.Save();
-            Debug.Log("All data was deleted");
+            logText.SetActive(true);
         }
     }
 
@@ -62,9 +64,9 @@ public class SaveManager : MonoBehaviour
         }
         else
         {
-            Debug.Log("No saved game found. Starting from Game1 after delay");
+            Debug.Log("No saved game found. Starting from Narration1 after delay");
             ResetGame();
-            SceneManager.LoadScene("Game1");
+            SceneManager.LoadScene("Narration1");
         }
     }
 

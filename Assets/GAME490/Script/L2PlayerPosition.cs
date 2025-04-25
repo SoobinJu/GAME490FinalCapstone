@@ -28,13 +28,13 @@ public class L2PlayerPosition : MonoBehaviour
     private void SetPlayerPositionAfterLoad()
     {
 
-        if (SceneManager.GetActiveScene().name == "Game3" && PlayerPrefs.GetInt("ReturningFromBuilding", 0) == 1)
+        if (SceneManager.GetActiveScene().name == "Game3" && PlayerPrefs.GetInt("ReturningFromMini", 0) == 1)
         {
             float x = PlayerPrefs.GetFloat("LastExitX", 0);
             float y = PlayerPrefs.GetFloat("LastExitY", 0);
             Debug.Log(" Returning to Saved Position in Original Scene: X=" + x + " Y=" + y);
             transform.position = new Vector3(x, y, transform.position.z);
-            PlayerPrefs.SetInt("ReturningFromBuilding", 0);
+            PlayerPrefs.SetInt("ReturningFromMini", 0);
             PlayerPrefs.Save();
 
             playPanel.SetActive(false);

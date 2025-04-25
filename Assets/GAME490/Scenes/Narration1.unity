@@ -332,8 +332,8 @@ MonoBehaviour:
     Deokchil, was sent to investigate the case.  \r\n\r\nNow, as the player, you
     become Deokchil unravel the mystery and track down the killer!"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 7a70f9eef9ccd5347b9b88a7321dd04d, type: 2}
-  m_sharedMaterial: {fileID: -4599768229172021808, guid: 7a70f9eef9ccd5347b9b88a7321dd04d, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: df8509ba5a4b6794396e32e2ce8d4a39, type: 2}
+  m_sharedMaterial: {fileID: -4599768229172021808, guid: df8509ba5a4b6794396e32e2ce8d4a39, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
