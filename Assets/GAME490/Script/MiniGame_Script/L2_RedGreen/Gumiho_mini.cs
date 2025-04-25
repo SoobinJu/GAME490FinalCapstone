@@ -6,7 +6,7 @@ public class Gumiho_mini : MonoBehaviour
 {
     public Sprite frontSprite;
     public Sprite backSprite;
-    public float switchInterval = 3f;
+    public float switchInterval = 1.5f;
 
     private SpriteRenderer sr;
     
