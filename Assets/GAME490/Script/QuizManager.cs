@@ -44,7 +44,8 @@ public class QuizManager : MonoBehaviour
         ShowQuiz();
     }
 
-    void ShowQuiz()
+    // 접근 제한자 수정됨!
+    public void ShowQuiz()
     {
         if (quizCompleted)
         {
@@ -116,7 +117,6 @@ public class QuizManager : MonoBehaviour
             btn.GetComponent<Button>().onClick.AddListener(() => OnLetterClick(selectedChar));
         }
     }
-
 
     void OnLetterClick(char c)
     {

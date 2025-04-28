@@ -2,14 +2,13 @@
 
 public class SequentialPanelTrigger : MonoBehaviour
 {
-    public string clueID; // 👈 Set this in the Inspector
+    public string clueID; // Set this in the Inspector
 
     public GameObject panelA;
     public GameObject panelB;
-    private int interactionStage = 0; // 0: ¾Æ¹«°Íµµ ¾È ¿­¸², 1: A ¿­¸², 2: B ¿­¸²
+    private int interactionStage = 0;
 
     private bool canInteract = false;
-    private bool clueFound = false;
 
     private SpriteRenderer spriteRenderer;
     public Sprite defaultImage;
@@ -44,48 +43,62 @@ public class SequentialPanelTrigger : MonoBehaviour
 
         switch (interactionStage)
         {
-            case 0: // ÆÐ³Î A ¿­±â
+            case 0: // Panel A 열기
                 panelA.SetActive(true);
                 Time.timeScale = 0f;
                 interactionStage = 1;
 
                 if (!PlayerPrefs.HasKey(clueID))
                 {
-                    PlayerPrefs.SetInt(clueID, 1); // 🔐 Save that this clue was found
+                    PlayerPrefs.SetInt(clueID, 1);
                     GameProgressTracker.Instance.FoundClue();
                     Debug.Log("✅ Clue '" + clueID + "' collected!");
                 }
-                else
-                {
-                    Debug.Log("❗Clue '" + clueID + "' was already collected.");
-                }
 
-
-                // ÄûÁî°¡ ¿Ï·áµÇ¾úÀ¸¸é resultText ´Ù½Ã º¸¿©ÁÖ±â
-                if (quizManager != null && quizManager.resultText != null && quizManager.IsQuizCompleted())
+                // 퀴즈가 끝났으면 결과만 보여주고
+                if (quizManager != null && quizManager.IsQuizCompleted())
                 {
                     quizManager.resultText.gameObject.SetActive(true);
                 }
+                else
+                {
+                    // 퀴즈 안끝났으면 다음 문제 강제로 보여줌
+                    quizManager.ShowQuiz();  // 다음 문제 표시!
+                }
 
                 break;
 
-            case 1: // A ´Ý°í B ¿­±â
+            case 1: // Panel A 닫고 Panel B 열기
                 panelA.SetActive(false);
                 panelB.SetActive(true);
-                Time.timeScale = 0f;  // <<< ¿©±â Ãß°¡µÊ!
+                Time.timeScale = 0f;
                 interactionStage = 2;
                 break;
 
-            case 2: // B ´Ý±â
+            case 2: // Panel B 닫기
                 panelB.SetActive(false);
                 Time.timeScale = 1f;
                 interactionStage = 0;
 
-                // ´ÝÈú ¶§´Â resultText ²¨ÁÖ±â
-                if (quizManager != null && quizManager.resultText != null)
+                // 패널 닫을 때 모든 UI 확실히 정리
+                if (quizManager != null)
                 {
-                    quizManager.resultText.gameObject.SetActive(false);
+                    if (quizManager.resultText != null)
+                    {
+                        quizManager.resultText.gameObject.SetActive(false);
+                    }
+
+                    if (quizManager.correctImage != null)
+                    {
+                        quizManager.correctImage.gameObject.SetActive(false);
+                    }
+
+                    if (quizManager.wrongImage != null)
+                    {
+                        quizManager.wrongImage.gameObject.SetActive(false);
+                    }
                 }
+
                 break;
         }
     }
@@ -116,9 +129,22 @@ public class SequentialPanelTrigger : MonoBehaviour
         interactionStage = 0;
         Time.timeScale = 1f;
 
-        if (quizManager != null && quizManager.resultText != null)
+        if (quizManager != null)
         {
-            quizManager.resultText.gameObject.SetActive(false); // ¹ÛÀ¸·Î ³ª°¡µµ ¼û±â±â
+            if (quizManager.resultText != null)
+            {
+                quizManager.resultText.gameObject.SetActive(false);
+            }
+
+            if (quizManager.correctImage != null)
+            {
+                quizManager.correctImage.gameObject.SetActive(false);
+            }
+
+            if (quizManager.wrongImage != null)
+            {
+                quizManager.wrongImage.gameObject.SetActive(false);
+            }
         }
     }
 }
