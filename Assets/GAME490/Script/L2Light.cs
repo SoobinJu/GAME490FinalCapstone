@@ -77,9 +77,9 @@ public class L2Light : MonoBehaviour
     {
         audioSource.PlayOneShot(lightSound);
         ableE = false;
-        lightEffect.SetActive(false);
-        yield return new WaitForSeconds(8f);
         lightEffect.SetActive(true);
+        yield return new WaitForSeconds(8f);
+        lightEffect.SetActive(false);
         ableE = true;
     }
 
