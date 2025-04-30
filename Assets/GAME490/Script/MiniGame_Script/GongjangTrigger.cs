@@ -1,70 +1,56 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class GonjangTrigger : MonoBehaviour
 {
-    public float minTimeBeforeTrigger = 60f; // 2분
-    public float checkInterval = 5f; // 5초마다 한 번씩 체크
-    public float triggerChance = 0.2f; // 20% 확률
+    public string triggerID = "Minigame_Punish1"; // 👈 unique PlayerPrefs key for one-time check
+    public GameObject messageTextObject; // 👈 Drag your TextMeshProUGUI message object
+    private TextMeshProUGUI messageText;
 
-    private float timeSinceStart = 0f;
-    private float timeSinceLastCheck = 0f;
     private bool triggered = false;
-
-    public AudioClip triggerSound;
-    private AudioSource audioSource;
 
     void Start()
     {
-        audioSource = GetComponent<AudioSource>();
-    }
-
-    void Update()
-    {
-        if (triggered) return;
-
-        timeSinceStart += Time.deltaTime;
-        timeSinceLastCheck += Time.deltaTime;
-
-        if (timeSinceStart >= minTimeBeforeTrigger && timeSinceLastCheck >= checkInterval)
+        if (messageTextObject != null)
         {
-            timeSinceLastCheck = 0f;
+            messageText = messageTextObject.GetComponent<TextMeshProUGUI>();
+            messageTextObject.SetActive(false);
+        }
 
-            if (Random.value < triggerChance)
-            {
-                TriggerMinigame();
-            }
+        // 🛑 If this minigame has already been played
+        if (PlayerPrefs.GetInt(triggerID, 0) == 1)
+        {
+            triggered = true;
+            gameObject.SetActive(false); // Disable this trigger permanently
         }
     }
 
-    void TriggerMinigame()
+    private void OnTriggerEnter2D(Collider2D other)
     {
+        if (triggered || !other.CompareTag("Player")) return;
+
         triggered = true;
+        PlayerPrefs.SetInt(triggerID, 1); // ✅ Save that it's been used
+        PlayerPrefs.Save();
 
-        if (audioSource != null && triggerSound != null)
-        {
-            audioSource.PlayOneShot(triggerSound);
-        }
-
-        // 🧠 Save previous scene
+        // Save return position
         PlayerPrefs.SetString("PreviousScene", SceneManager.GetActiveScene().name);
+        PlayerPrefs.SetFloat("MinigameReturnX", other.transform.position.x);
+        PlayerPrefs.SetFloat("MinigameReturnY", other.transform.position.y);
 
-        // 💾 Save player position
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
-        if (player != null)
+        // Show UI message
+        if (messageTextObject != null)
         {
-            PlayerPrefs.SetFloat("MinigameReturnX", player.transform.position.x);
-            PlayerPrefs.SetFloat("MinigameReturnY", player.transform.position.y);
+            messageTextObject.SetActive(true);
+            messageText.text = "Entering punishment minigame...";
         }
 
-        PlayerPrefs.SetFloat("MinigameReturnX", GameObject.FindWithTag("Player").transform.position.x);
-        PlayerPrefs.SetFloat("MinigameReturnY", GameObject.FindWithTag("Player").transform.position.y);
-
-        Invoke("GoToMinigame", 1f);
+        Invoke("GoToMinigame", 2f); // ✨ Add delay
     }
 
     void GoToMinigame()
     {
-        SceneManager.LoadScene("Minigame1");
+        SceneManager.LoadScene("Minigame"); // Change to your real scene name if needed
     }
 }
