@@ -14,11 +14,6 @@ public class L2EntranceB : MonoBehaviour
         {
             PlayerPrefs.SetFloat("SavedTimeLimit", timeScript.currentTime);
 
-            PlayerPrefs.SetInt("Amulet1", 1);
-            PlayerPrefs.SetInt("Amulet2", 1);
-            PlayerPrefs.SetInt("Sword1", 1);
-            PlayerPrefs.SetInt("Sword2", 1);
-
             PlayerPrefs.SetFloat("LastExitX", collision.transform.position.x);
             PlayerPrefs.SetFloat("LastExitY", collision.transform.position.y);
             PlayerPrefs.SetInt("ReturningFromMini", 1);
