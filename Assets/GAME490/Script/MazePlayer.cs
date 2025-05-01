@@ -39,7 +39,9 @@ namespace MazeTemplate
 
             animator = GetComponent<Animator>();
             spriteRenderer = GetComponent<SpriteRenderer>();
-            audioSource = gameObject.AddComponent<AudioSource>();
+
+            if (audioSource == null)
+                audioSource = GetComponent<AudioSource>();
 
             if (goalPanel != null)
             {

@@ -19,7 +19,9 @@ public class PatrolMovement : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-        audioSource = gameObject.AddComponent<AudioSource>();
+        
+        if (audioSource == null)
+            audioSource = GetComponent<AudioSource>();
 
         rb = GetComponent<Rigidbody2D>();
         rb.gravityScale = 0;

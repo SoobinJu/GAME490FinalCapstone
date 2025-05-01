@@ -60,13 +60,13 @@ public class RicecakeMiniGame : MonoBehaviour
                 EndGame();
             }
         }
-        else if (gameEnded)
-        {
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                SceneManager.LoadScene("Game1");
-            }
-        }
+        //else if (gameEnded)
+        //{
+        //    if (Input.GetKeyDown(KeyCode.E))
+        //    {
+        //        SceneManager.LoadScene("Game1");
+        //    }
+        //}
     }
 
     void StartGame()
@@ -88,14 +88,14 @@ public class RicecakeMiniGame : MonoBehaviour
 
         if (gaugeValue >= gaugeMax)
         {
-            resultText.text = "Congratulations! Deokchil, you made the chewiest and most delicious Rice cake, Tteok in the entire village!  \r\n\r\nThanks to this, you've become known as not only smart, but also someone who’s amazing at making Reice cake, Tteok! " +
-                "\r\n\r\nAs a reward,+50 HP!!";
+            resultText.text = "Congratulations! Deokchil, you made the chewiest and most delicious rice cake—tteok—in the entire village!  \r\n\r\nThanks to this, you're now known not only for you smarts, but also for being amazing at making rice cake, tteok! " +
+                "\r\n\r\nAs a reward: +50 HP!";
             PlayerPrefs.SetInt("RicecakeResult", 1);
         }
         else
         {
-            resultText.text = "Oh no… unfortunately, you misjudged your strength while pounding the tteok, and it flew up into the sky… " +
-                " \r\nToday’s village festival will have to go on without Rice cake, Tteok…";
+            resultText.text = "Oh no…. Unfortunately, you misjudged your strength while pounding the tteok, and it flew up into the sky… " +
+                " \r\nToday’s village festival will have to go on without rice cake, tteok….";
             PlayerPrefs.SetInt("RicecakeResult", 0);
         }
     }
