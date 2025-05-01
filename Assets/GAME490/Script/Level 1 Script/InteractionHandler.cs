@@ -27,7 +27,8 @@ public class InteractionHandler : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         spriteRenderer.sprite = defaultImage;
 
-        audioSource = gameObject.AddComponent<AudioSource>();
+        if (audioSource == null)
+            audioSource = GetComponent<AudioSource>();
 
         // Å¸ÀÌ¸Ó ÄÁÆ®·Ñ·¯ ¿¬°á
         timerController = panel.GetComponent<TimedPanelController>();

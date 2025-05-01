@@ -26,7 +26,8 @@ public class SequentialPanelTrigger : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         spriteRenderer.sprite = defaultImage;
 
-        audioSource = gameObject.AddComponent<AudioSource>();
+        if (audioSource == null)
+            audioSource = GetComponent<AudioSource>();
     }
 
     void Update()

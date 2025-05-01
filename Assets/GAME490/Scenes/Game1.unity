@@ -7632,10 +7632,10 @@ GameObject:
   m_Component:
   - component: {fileID: 769912694}
   - component: {fileID: 769912693}
-  - component: {fileID: 769912695}
   - component: {fileID: 769912696}
   - component: {fileID: 769912697}
   - component: {fileID: 769912698}
+  - component: {fileID: 769912699}
   m_Layer: 0
   m_Name: Hunminjeongeum 1
   m_TagString: Untagged
@@ -7711,23 +7711,6 @@ Transform:
   - {fileID: 1374239423}
   m_Father: {fileID: 2139186385}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &769912695
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 769912692}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5c9b3986e5156cd43bc7f0d19dd4ac7d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  clueID: 
-  panel: {fileID: 1374239419}
-  defaultImage: {fileID: 21300000, guid: fbcb86f2cd0f5d24db627a8a5b166fbc, type: 3}
-  changedImage: {fileID: 21300000, guid: 8341028a0bc2c084095df886ac953452, type: 3}
-  PanelSound: {fileID: 8300000, guid: 9db86cd498224fe4b841c0ed5a3f5fd6, type: 3}
 --- !u!61 &769912696
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -7806,6 +7789,102 @@ MonoBehaviour:
   changedImage: {fileID: 21300000, guid: 8341028a0bc2c084095df886ac953452, type: 3}
   panelSound: {fileID: 8300000, guid: 9db86cd498224fe4b841c0ed5a3f5fd6, type: 3}
   quizManager: {fileID: 0}
+--- !u!82 &769912699
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 769912692}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &771635965
 GameObject:
   m_ObjectHideFlags: 0
@@ -9800,10 +9879,10 @@ GameObject:
   m_Component:
   - component: {fileID: 888011530}
   - component: {fileID: 888011533}
-  - component: {fileID: 888011531}
   - component: {fileID: 888011532}
   - component: {fileID: 888011534}
   - component: {fileID: 888011535}
+  - component: {fileID: 888011536}
   m_Layer: 0
   m_Name: Hunminjeongeum 2
   m_TagString: Untagged
@@ -9827,23 +9906,6 @@ Transform:
   - {fileID: 1018976599}
   m_Father: {fileID: 2139186385}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &888011531
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 888011529}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5c9b3986e5156cd43bc7f0d19dd4ac7d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  clueID: 
-  panel: {fileID: 1018976598}
-  defaultImage: {fileID: 21300000, guid: fbcb86f2cd0f5d24db627a8a5b166fbc, type: 3}
-  changedImage: {fileID: 21300000, guid: 8341028a0bc2c084095df886ac953452, type: 3}
-  PanelSound: {fileID: 8300000, guid: 9db86cd498224fe4b841c0ed5a3f5fd6, type: 3}
 --- !u!61 &888011532
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -9974,6 +10036,102 @@ MonoBehaviour:
   changedImage: {fileID: 21300000, guid: 8341028a0bc2c084095df886ac953452, type: 3}
   panelSound: {fileID: 8300000, guid: 9db86cd498224fe4b841c0ed5a3f5fd6, type: 3}
   quizManager: {fileID: 2013160175}
+--- !u!82 &888011536
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 888011529}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &903791298
 GameObject:
   m_ObjectHideFlags: 0
@@ -21997,6 +22155,18 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 400002, guid: baec086904791744185aaa07a6cf55c2, type: 3}
   m_PrefabInstance: {fileID: 2004215143}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1994310676
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1994310672}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09cb47252f140204f8d0c4a7138d8112, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1998719188
 GameObject:
   m_ObjectHideFlags: 0
@@ -22330,6 +22500,9 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1750049818}
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 100002, guid: baec086904791744185aaa07a6cf55c2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1994310676}
     - targetCorrespondingSourceObject: {fileID: 100002, guid: baec086904791744185aaa07a6cf55c2, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1994310674}
