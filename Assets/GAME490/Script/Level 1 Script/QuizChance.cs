@@ -65,9 +65,22 @@ public class QuizChance : MonoBehaviour
                 timerController.StopTimer();  //  타이머 멈춤
             }
 
+            // ✨ Reset clue and quiz progress!
+            GameProgressTracker.Instance?.ResetProgress();
             Time.timeScale = 1f;
             yield return new WaitForSeconds(1f);
+
+            // Reset HP before going to LoseScene
+            PlayerHealth playerHealth = FindObjectOfType<PlayerHealth>();
+            if (playerHealth != null)
+            {
+                playerHealth.ResetHealth(); // ✅ Call ResetHealth from PlayerHealth.cs
+            }
+
             SceneManager.LoadScene("LoseScene");
+
+
         }
+
     }
 }

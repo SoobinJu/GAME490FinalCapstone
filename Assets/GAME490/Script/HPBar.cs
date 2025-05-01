@@ -108,11 +108,13 @@ public class PlayerHealth : MonoBehaviour
         ResetHealth(); // 게임 오버 시 체력을 초기화
     }
 
-    private void ResetHealth()
+    public void ResetHealth()
     {
-        // 체력 초기화 (새 게임을 시작할 때만)
         health = maxHealth;
+        UpdateHealthbar();
     }
+
+
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
