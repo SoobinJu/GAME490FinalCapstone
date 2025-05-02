@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -36,3 +36,4 @@ public class L2Entrance : MonoBehaviour
         SceneManager.LoadScene("Red_Green");
     }
 }
+

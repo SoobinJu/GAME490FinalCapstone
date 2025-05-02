@@ -1,17 +1,17 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class L2Collectible : MonoBehaviour
 {
-    public string collectibleID; // Inspector¿¡¼­ °íÀ¯ ID ÀÔ·Â
+    public string collectibleID; // InspectorÂ¿Â¡Â¼Â­ Â°Ã­Ã€Â¯ ID Ã€Ã”Â·Ã‚
 
     private void Start()
     {
-        // ¾À ·Îµå½Ã ÀÌ¹Ì ¼öÁıµÈ ¾ÆÀÌÅÛÀÌ¸é »èÁ¦
+        // Â¾Ã€ Â·ÃÂµÃ¥Â½Ãƒ Ã€ÃŒÂ¹ÃŒ Â¼Ã¶ÃÃ½ÂµÃˆ Â¾Ã†Ã€ÃŒÃ…Ã›Ã€ÃŒÂ¸Ã© Â»Ã¨ÃÂ¦
         if (PlayerPrefs.GetInt(collectibleID, 0) == 1)
         {
-            Destroy(gameObject); // ÀÌ¹Ì ¸ÔÀº °Å¸é »ç¶óÁü
+            Destroy(gameObject); // Ã€ÃŒÂ¹ÃŒ Â¸Ã”Ã€Âº Â°Ã…Â¸Ã© Â»Ã§Â¶Ã³ÃÃ¼
         }
     }
 
@@ -19,11 +19,11 @@ public class L2Collectible : MonoBehaviour
     {
         if (PlayerPrefs.GetInt(collectibleID, 0) == 0)
         {
-            PlayerPrefs.SetInt(collectibleID, 1); // ¸Ô¾ú´Ù°í ÀúÀå
+            PlayerPrefs.SetInt(collectibleID, 1); // Â¸Ã”Â¾ÃºÂ´Ã™Â°Ã­ Ã€ÃºÃ€Ã¥
             PlayerPrefs.Save();
             return true;
         }
 
-        return false; // ÀÌ¹Ì ¼öÁıµÈ °Å¸é ´Ù½Ã ¼öÁı ¾È ÇÔ
+        return false; // Ã€ÃŒÂ¹ÃŒ Â¼Ã¶ÃÃ½ÂµÃˆ Â°Ã…Â¸Ã© Â´Ã™Â½Ãƒ Â¼Ã¶ÃÃ½ Â¾Ãˆ Ã‡Ã”
     }
 }

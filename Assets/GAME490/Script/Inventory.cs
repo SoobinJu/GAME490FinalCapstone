@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -35,14 +35,14 @@ public class Inventory : MonoBehaviour
         LoadInventory();
     }
 
-    // Æ¯Á¤ ½ÃÁ¡¿¡¼­ È£Ãâ
+    // Ã†Â¯ÃÂ¤ Â½ÃƒÃÂ¡Â¿Â¡Â¼Â­ ÃˆÂ£ÃƒÃ¢
     public void PlayBAnimationTrigger()
     {
         MarbleAnimator.SetTrigger("Marble");
         StartCoroutine(WaitForWin());
     }
 
-    private IEnumerator WaitForWin() //¿©¿ì±¸½½ ¹Ú»ì~À©¾À ³Ñ¾î°¡±â
+    private IEnumerator WaitForWin() //Â¿Â©Â¿Ã¬Â±Â¸Â½Â½ Â¹ÃšÂ»Ã¬~Ã€Â©Â¾Ã€ Â³Ã‘Â¾Ã®Â°Â¡Â±Ã¢
     {
         while (!MarbleAnimator.GetCurrentAnimatorStateInfo(0).IsName("Marble"))
         {
@@ -85,18 +85,19 @@ public class Inventory : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        // Æ¯Á¤ ¿ÀºêÁ§Æ®¿¡¼­ ³ª°¬À» ¶§
+        // Ã†Â¯ÃÂ¤ Â¿Ã€ÂºÃªÃÂ§Ã†Â®Â¿Â¡Â¼Â­ Â³ÂªÂ°Â¬Ã€Â» Â¶Â§
         if (other.CompareTag("Attackzone"))
         {
-            IsAttackzone = false;  // Æ¯Á¤ ±¸¿ª¿¡¼­ ³ª°¨
+            IsAttackzone = false;  // Ã†Â¯ÃÂ¤ Â±Â¸Â¿ÂªÂ¿Â¡Â¼Â­ Â³ÂªÂ°Â¨
             Shatter.SetActive(false);
         }
     }
 
     private void Collect(Collectible collectible)
     {
-        if (collectible.Collected())
+        if (collectible.Collected()) // âœ… Will return false if already collected!
         {
+            // âœ… Only update if actually collected
             if (collectible is AmuletCollectible)
             {
                 Amulet++;
@@ -111,6 +112,7 @@ public class Inventory : MonoBehaviour
             SaveInventory();
         }
     }
+
 
     private void UseAttack()
     {
