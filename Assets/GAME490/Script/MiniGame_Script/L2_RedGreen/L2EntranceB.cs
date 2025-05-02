@@ -18,7 +18,6 @@ public class L2EntranceB : MonoBehaviour
             PlayerPrefs.SetFloat("LastExitY", collision.transform.position.y);
             PlayerPrefs.SetInt("ReturningFromMini", 1);
             PlayerPrefs.SetString("LastEnteredTrigger", "B");
-            PlayerPrefs.Save();
 
             Debug.Log("Saved Player position and time");
             alarmPanel.SetActive(true);
@@ -31,6 +30,8 @@ public class L2EntranceB : MonoBehaviour
     {
         yield return new WaitForSeconds(3f);
         collision.GetComponent<Inventory>()?.SaveInventory();
+        PlayerPrefs.Save();
+
         SceneManager.LoadScene("Red_Green");
     }
 }

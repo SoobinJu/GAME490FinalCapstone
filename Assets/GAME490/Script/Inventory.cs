@@ -70,8 +70,8 @@ public class Inventory : MonoBehaviour
     }
 
     private void OnTriggerEnter2D(Collider2D other)
-    { 
-        if(other.CompareTag("Collectible"))
+    {
+        if (other.CompareTag("Collectible"))
         {
             Collect(other.GetComponent<Collectible>());
         }
@@ -93,11 +93,11 @@ public class Inventory : MonoBehaviour
         }
     }
 
-        private void Collect(Collectible collectible)
+    private void Collect(Collectible collectible)
     {
-        if(collectible.Collected())
+        if (collectible.Collected())
         {
-            if(collectible is AmuletCollectible)
+            if (collectible is AmuletCollectible)
             {
                 Amulet++;
                 audioSource.PlayOneShot(amuletSound);
@@ -108,6 +108,7 @@ public class Inventory : MonoBehaviour
                 audioSource.PlayOneShot(swordSound);
             }
             UpdateGUI();
+            SaveInventory();
         }
     }
 
@@ -122,7 +123,7 @@ public class Inventory : MonoBehaviour
     private void UpdateGUI()
     {
         SwordCounter.text = Sword.ToString();
-        AmuletCounter.text = Amulet.ToString(); 
+        AmuletCounter.text = Amulet.ToString();
     }
 
     public void SaveInventory()
@@ -147,5 +148,3 @@ public class Inventory : MonoBehaviour
         UpdateGUI();
     }
 }
-
-
