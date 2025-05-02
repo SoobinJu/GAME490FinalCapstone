@@ -25,16 +25,30 @@ public class PlayerHealth : MonoBehaviour
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
 
-        // 체력이 최대값보다 크면 최대값으로 제한
-        health = Mathf.Clamp(health, 0, maxHealth);
+        // 1. PlayerPrefs에서 저장된 체력 불러오기
+        if (PlayerPrefs.HasKey("PlayerHealth"))
+        {
+            health = PlayerPrefs.GetFloat("PlayerHealth");
+        }
 
-        UpdateHealthbar();
-
+        // 2. Game3에서 시작한 경우
         if (SceneManager.GetActiveScene().name == "Game3")
         {
-            health = maxHealth;
-            UpdateHealthbar();
+            // 미니게임에서 돌아온 경우가 아니라면 체력을 max로 설정
+            if (PlayerPrefs.GetInt("ReturningFromMiniGame", 0) == 0)
+            {
+                health = maxHealth;
+            }
+            // 돌아온 경우에는 PlayerPrefs에서 불러온 체력 사용
+
+            // 플래그 초기화 (다시 돌아왔다고 판단했으니)
+            PlayerPrefs.SetInt("ReturningFromMiniGame", 0);
+            PlayerPrefs.Save();
         }
+
+        // 체력값을 최대/최소 범위에 맞게 조정
+        health = Mathf.Clamp(health, 0, maxHealth);
+        UpdateHealthbar();
     }
 
     private void UpdateHealthbar()

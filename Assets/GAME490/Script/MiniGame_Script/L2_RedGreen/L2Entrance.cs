@@ -20,19 +20,22 @@ public class L2Entrance : MonoBehaviour
             PlayerPrefs.SetInt("ReturningFromMini", 1);
             PlayerPrefs.SetString("LastEnteredTrigger", "A");
 
+            PlayerPrefs.SetFloat("PlayerHealth", FindObjectOfType<PlayerHealth>().GetHealth());
+            PlayerPrefs.SetInt("ReturningFromMiniGame", 1);
+
+            collision.GetComponent<Inventory>()?.SaveInventory();
+            PlayerPrefs.Save();
+
             Debug.Log("Saved Player position and time");
             alarmPanel.SetActive(true);
 
-            StartCoroutine(SceneLoad(collision));
+            StartCoroutine(SceneLoad());
         }
     }
 
-    IEnumerator SceneLoad(Collider2D collision)
+    IEnumerator SceneLoad()
     {
         yield return new WaitForSeconds(3f);
-        collision.GetComponent<Inventory>()?.SaveInventory();
-        PlayerPrefs.Save();
-
         SceneManager.LoadScene("Red_Green");
     }
 }
