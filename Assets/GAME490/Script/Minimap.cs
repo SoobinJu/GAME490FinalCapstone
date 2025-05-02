@@ -22,7 +22,7 @@ public class Minimap : MonoBehaviour
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        string[] scenesToHideMinimap = { "Minigame", "Minigame2" };
+        string[] scenesToHideMinimap = { "Minigame", "Minigame2", "Game3" };
 
         if (System.Array.Exists(scenesToHideMinimap, name => name == scene.name))
         {

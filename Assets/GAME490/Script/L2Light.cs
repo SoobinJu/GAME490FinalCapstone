@@ -38,8 +38,6 @@ public class L2Light : MonoBehaviour
 
         UpdateGUI();
 
-
-
     }
 
     private void Update()
@@ -52,25 +50,23 @@ public class L2Light : MonoBehaviour
 
     public void DelayLight()
     {
-        if (useCount < maxUses)
+        if (remained > 0)
         {
-            useCount++;
-            remained = maxUses - useCount;
+            remained--;
             StartCoroutine(TurnOn());
             UpdateGUI();
 
-            if (useCount == maxUses && lightImage != null)
+            if (remained == 0 && lightImage != null)
             {
                 lightImage.sprite = unableImage;
             }
 
             SaveInventory();
-        }    
+        }
         else
         {
             Debug.Log("You used all lights.");
         }
-
     }
 
     private IEnumerator TurnOn()
